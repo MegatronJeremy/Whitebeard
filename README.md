@@ -11,6 +11,7 @@ The board that was used is a **DE0 development board**, with the **EP3C16F484C6*
 - ModelSim Altera 10.1d (Quartus II 13.1)
 
 ## Documentation
+- [Whitebeard ISA](https://docs.google.com/spreadsheets/d/18rZqVCBiyqC5lutWYUvzqir-jUIhvCMM/edit?usp=sharing&ouid=112769001018036241404&rtpof=true&sd=true)
 - [DE0 User Manual](https://rti.etf.bg.ac.rs/rti/oo1pot/labvezbe/DE0_User_manual.pdf)
 - [DE0 Schematic View](https://rti.etf.bg.ac.rs/rti/oo1pot/labvezbe/DE0_Release.pdf)
 - [Cyclone III Device Handbook](https://rti.etf.bg.ac.rs/rti/oo1pot/labvezbe/cyclone3_handbook.pdf)
