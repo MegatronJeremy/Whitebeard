@@ -1,4 +1,4 @@
-# Whitebeard
+# WHITEBEARD
 Implementation of a minimal ISA (Instruction Set Architecture) on an FPGA development board using Quartus, capable of running the classic video game **Pong** using a **VGA output** and **keyboard controls**.
 
 ## Project Description
