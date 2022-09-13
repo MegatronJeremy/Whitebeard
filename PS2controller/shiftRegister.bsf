@@ -1,0 +1,127 @@
+/*
+WARNING: Do NOT edit the input and output ports in this file in a text
+editor if you plan to continue editing the block that represents it in
+the Block Editor! File corruption is VERY likely to occur.
+*/
+/*
+Copyright (C) 1991-2013 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+*/
+(header "symbol" (version "1.2"))
+(symbol
+	(rect 16 16 192 240)
+	(text "shiftRegister" (rect 5 0 76 14)(font "Arial" (font_size 8)))
+	(text "inst" (rect 8 208 25 220)(font "Arial" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "data_in" (rect 0 0 41 14)(font "Arial" (font_size 8)))
+		(text "data_in" (rect 21 27 62 41)(font "Arial" (font_size 8)))
+		(line (pt 0 32)(pt 16 32))
+	)
+	(port
+		(pt 0 48)
+		(input)
+		(text "clk" (rect 0 0 15 14)(font "Arial" (font_size 8)))
+		(text "clk" (rect 21 43 36 57)(font "Arial" (font_size 8)))
+		(line (pt 0 48)(pt 16 48))
+	)
+	(port
+		(pt 0 64)
+		(input)
+		(text "shift_reset" (rect 0 0 61 14)(font "Arial" (font_size 8)))
+		(text "shift_reset" (rect 21 59 82 73)(font "Arial" (font_size 8)))
+		(line (pt 0 64)(pt 16 64))
+	)
+	(port
+		(pt 176 32)
+		(output)
+		(text "data_out3" (rect 0 0 56 14)(font "Arial" (font_size 8)))
+		(text "data_out3" (rect 99 27 155 41)(font "Arial" (font_size 8)))
+		(line (pt 176 32)(pt 160 32))
+	)
+	(port
+		(pt 176 48)
+		(output)
+		(text "data_out1" (rect 0 0 56 14)(font "Arial" (font_size 8)))
+		(text "data_out1" (rect 99 43 155 57)(font "Arial" (font_size 8)))
+		(line (pt 176 48)(pt 160 48))
+	)
+	(port
+		(pt 176 64)
+		(output)
+		(text "data_out10" (rect 0 0 63 14)(font "Arial" (font_size 8)))
+		(text "data_out10" (rect 92 59 155 73)(font "Arial" (font_size 8)))
+		(line (pt 176 64)(pt 160 64))
+	)
+	(port
+		(pt 176 80)
+		(output)
+		(text "data_out9" (rect 0 0 56 14)(font "Arial" (font_size 8)))
+		(text "data_out9" (rect 99 75 155 89)(font "Arial" (font_size 8)))
+		(line (pt 176 80)(pt 160 80))
+	)
+	(port
+		(pt 176 96)
+		(output)
+		(text "data_out8" (rect 0 0 56 14)(font "Arial" (font_size 8)))
+		(text "data_out8" (rect 99 91 155 105)(font "Arial" (font_size 8)))
+		(line (pt 176 96)(pt 160 96))
+	)
+	(port
+		(pt 176 112)
+		(output)
+		(text "data_out7" (rect 0 0 56 14)(font "Arial" (font_size 8)))
+		(text "data_out7" (rect 99 107 155 121)(font "Arial" (font_size 8)))
+		(line (pt 176 112)(pt 160 112))
+	)
+	(port
+		(pt 176 128)
+		(output)
+		(text "data_out6" (rect 0 0 56 14)(font "Arial" (font_size 8)))
+		(text "data_out6" (rect 99 123 155 137)(font "Arial" (font_size 8)))
+		(line (pt 176 128)(pt 160 128))
+	)
+	(port
+		(pt 176 144)
+		(output)
+		(text "data_out5" (rect 0 0 56 14)(font "Arial" (font_size 8)))
+		(text "data_out5" (rect 99 139 155 153)(font "Arial" (font_size 8)))
+		(line (pt 176 144)(pt 160 144))
+	)
+	(port
+		(pt 176 160)
+		(output)
+		(text "data_out4" (rect 0 0 56 14)(font "Arial" (font_size 8)))
+		(text "data_out4" (rect 99 155 155 169)(font "Arial" (font_size 8)))
+		(line (pt 176 160)(pt 160 160))
+	)
+	(port
+		(pt 176 176)
+		(output)
+		(text "data_out2" (rect 0 0 56 14)(font "Arial" (font_size 8)))
+		(text "data_out2" (rect 99 171 155 185)(font "Arial" (font_size 8)))
+		(line (pt 176 176)(pt 160 176))
+	)
+	(port
+		(pt 176 192)
+		(output)
+		(text "data_out0" (rect 0 0 56 14)(font "Arial" (font_size 8)))
+		(text "data_out0" (rect 99 187 155 201)(font "Arial" (font_size 8)))
+		(line (pt 176 192)(pt 160 192))
+	)
+	(drawing
+		(rectangle (rect 16 16 160 208))
+	)
+)
