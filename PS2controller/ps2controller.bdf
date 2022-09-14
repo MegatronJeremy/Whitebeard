@@ -500,24 +500,6 @@ applicable agreement for further details.
 	(rotate270)
 )
 (symbol
-	(rect 632 544 664 576)
-	(text "GND" (rect 6 8 16 29)(font "Arial" (font_size 6))(vertical))
-	(text "inst11" (rect -1 3 11 32)(font "Arial" )(vertical)(invisible))
-	(port
-		(pt 32 16)
-		(output)
-		(text "1" (rect 18 0 23 12)(font "Courier New" (bold))(invisible))
-		(text "1" (rect 20 18 32 23)(font "Courier New" (bold))(vertical)(invisible))
-		(line (pt 24 16)(pt 32 16))
-	)
-	(drawing
-		(line (pt 24 8)(pt 16 16))
-		(line (pt 16 16)(pt 24 24))
-		(line (pt 24 8)(pt 24 24))
-	)
-	(rotate270)
-)
-(symbol
 	(rect 1224 520 1288 568)
 	(text "AND3" (rect 1 0 25 10)(font "Arial" (font_size 6)))
 	(text "inst13" (rect 3 37 32 49)(font "Arial" ))
@@ -554,31 +536,6 @@ applicable agreement for further details.
 		(line (pt 16 37)(pt 31 37))
 		(line (pt 16 12)(pt 16 37))
 		(arc (pt 31 36)(pt 31 12)(rect 19 12 44 37))
-	)
-)
-(symbol
-	(rect 1152 528 1200 560)
-	(text "NOT" (rect 1 0 21 10)(font "Arial" (font_size 6)))
-	(text "inst9" (rect 3 21 26 33)(font "Arial" ))
-	(port
-		(pt 0 16)
-		(input)
-		(text "IN" (rect 2 7 13 19)(font "Courier New" (bold))(invisible))
-		(text "IN" (rect 2 7 13 19)(font "Courier New" (bold))(invisible))
-		(line (pt 0 16)(pt 13 16))
-	)
-	(port
-		(pt 48 16)
-		(output)
-		(text "OUT" (rect 32 7 49 19)(font "Courier New" (bold))(invisible))
-		(text "OUT" (rect 32 7 49 19)(font "Courier New" (bold))(invisible))
-		(line (pt 39 16)(pt 48 16))
-	)
-	(drawing
-		(line (pt 13 25)(pt 13 7))
-		(line (pt 13 7)(pt 31 16))
-		(line (pt 13 25)(pt 31 16))
-		(circle (rect 31 12 39 20))
 	)
 )
 (symbol
@@ -869,6 +826,31 @@ applicable agreement for further details.
 		(arc (pt 31 37)(pt 30 12)(rect 18 12 43 37))
 	)
 )
+(symbol
+	(rect 1152 528 1200 560)
+	(text "NOT" (rect 1 0 21 10)(font "Arial" (font_size 6)))
+	(text "inst55" (rect 3 21 32 33)(font "Arial" ))
+	(port
+		(pt 0 16)
+		(input)
+		(text "IN" (rect 2 7 13 19)(font "Courier New" (bold))(invisible))
+		(text "IN" (rect 2 7 13 19)(font "Courier New" (bold))(invisible))
+		(line (pt 0 16)(pt 13 16))
+	)
+	(port
+		(pt 48 16)
+		(output)
+		(text "OUT" (rect 32 7 49 19)(font "Courier New" (bold))(invisible))
+		(text "OUT" (rect 32 7 49 19)(font "Courier New" (bold))(invisible))
+		(line (pt 39 16)(pt 48 16))
+	)
+	(drawing
+		(line (pt 13 25)(pt 13 7))
+		(line (pt 13 7)(pt 31 16))
+		(line (pt 13 25)(pt 31 16))
+		(circle (rect 31 12 39 20))
+	)
+)
 (connector
 	(text "d_in[7..0]" (rect 488 200 534 212)(font "Arial" ))
 	(pt 488 216)
@@ -918,58 +900,6 @@ applicable agreement for further details.
 	(bus)
 )
 (connector
-	(text "q_out[3]" (rect 952 416 992 428)(font "Arial" ))
-	(pt 952 432)
-	(pt 968 432)
-	(bus)
-)
-(connector
-	(text "q_out[2]" (rect 952 440 992 452)(font "Arial" ))
-	(pt 952 456)
-	(pt 968 456)
-	(bus)
-)
-(connector
-	(text "q_out[0]" (rect 952 496 992 508)(font "Arial" ))
-	(pt 952 512)
-	(pt 968 512)
-	(bus)
-)
-(connector
-	(text "q_out[1]" (rect 952 472 992 484)(font "Arial" ))
-	(pt 952 488)
-	(pt 968 488)
-	(bus)
-)
-(connector
-	(pt 1088 448)
-	(pt 1072 448)
-)
-(connector
-	(pt 1072 416)
-	(pt 1072 448)
-)
-(connector
-	(pt 1072 416)
-	(pt 968 416)
-)
-(connector
-	(pt 968 416)
-	(pt 968 432)
-)
-(connector
-	(pt 992 456)
-	(pt 992 448)
-)
-(connector
-	(pt 992 448)
-	(pt 1000 448)
-)
-(connector
-	(pt 968 456)
-	(pt 992 456)
-)
-(connector
 	(pt 1048 448)
 	(pt 1056 448)
 )
@@ -980,40 +910,6 @@ applicable agreement for further details.
 (connector
 	(pt 1056 464)
 	(pt 1088 464)
-)
-(connector
-	(pt 968 488)
-	(pt 992 488)
-)
-(connector
-	(pt 992 488)
-	(pt 992 472)
-)
-(connector
-	(pt 992 472)
-	(pt 1088 472)
-)
-(connector
-	(pt 1088 472)
-	(pt 1088 480)
-)
-(connector
-	(pt 968 512)
-	(pt 992 512)
-)
-(connector
-	(pt 992 512)
-	(pt 992 496)
-)
-(connector
-	(pt 992 496)
-	(pt 1000 496)
-)
-(connector
-	(text "cnt10" (rect 1162 456 1189 468)(font "Arial" ))
-	(pt 1152 472)
-	(pt 1176 472)
-	(bus)
 )
 (connector
 	(text "cnt10" (rect 546 488 573 500)(font "Arial" ))
@@ -1032,20 +928,12 @@ applicable agreement for further details.
 	(pt 680 496)
 )
 (connector
-	(pt 1088 496)
-	(pt 1048 496)
-)
-(connector
 	(pt 624 544)
 	(pt 680 544)
 )
 (connector
 	(pt 680 528)
 	(pt 664 528)
-)
-(connector
-	(pt 664 560)
-	(pt 680 560)
 )
 (connector
 	(pt 488 200)
@@ -1152,28 +1040,6 @@ applicable agreement for further details.
 (connector
 	(pt 1200 544)
 	(pt 1224 544)
-)
-(connector
-	(pt 1176 472)
-	(pt 1224 472)
-)
-(connector
-	(pt 1224 472)
-	(pt 1224 536)
-)
-(connector
-	(pt 1224 552)
-	(pt 1224 584)
-)
-(connector
-	(pt 1224 584)
-	(pt 1152 584)
-)
-(connector
-	(text "bit10" (rect 1136 568 1159 580)(font "Arial" ))
-	(pt 1152 584)
-	(pt 1136 584)
-	(bus)
 )
 (connector
 	(text "bit0" (rect 1138 528 1155 540)(font "Arial" ))
@@ -1409,6 +1275,91 @@ applicable agreement for further details.
 	(text "d_out_tri[7..0]" (rect 168 648 236 660)(font "Arial" ))
 	(pt 168 664)
 	(pt 200 664)
+	(bus)
+)
+(connector
+	(pt 1048 496)
+	(pt 1088 496)
+)
+(connector
+	(pt 1088 432)
+	(pt 1088 448)
+	(bus)
+)
+(connector
+	(text "q_out[3]" (rect 952 416 992 428)(font "Arial" ))
+	(pt 952 432)
+	(pt 1088 432)
+	(bus)
+)
+(connector
+	(pt 992 488)
+	(pt 992 472)
+	(bus)
+)
+(connector
+	(text "q_out[1]" (rect 952 472 992 484)(font "Arial" ))
+	(pt 952 488)
+	(pt 992 488)
+	(bus)
+)
+(connector
+	(pt 992 472)
+	(pt 1088 472)
+	(bus)
+)
+(connector
+	(pt 1088 472)
+	(pt 1088 480)
+	(bus)
+)
+(connector
+	(pt 1000 512)
+	(pt 1000 496)
+	(bus)
+)
+(connector
+	(text "q_out[0]" (rect 952 496 992 508)(font "Arial" ))
+	(pt 952 512)
+	(pt 1000 512)
+	(bus)
+)
+(connector
+	(pt 1224 584)
+	(pt 1224 552)
+	(bus)
+)
+(connector
+	(text "bit10" (rect 1136 568 1159 580)(font "Arial" ))
+	(pt 1136 584)
+	(pt 1224 584)
+	(bus)
+)
+(connector
+	(pt 1224 472)
+	(pt 1224 536)
+	(bus)
+)
+(connector
+	(text "cnt10" (rect 1162 456 1189 468)(font "Arial" ))
+	(pt 1152 472)
+	(pt 1224 472)
+	(bus)
+)
+(connector
+	(text "q_out[2]" (rect 952 440 992 452)(font "Arial" ))
+	(pt 952 456)
+	(pt 992 456)
+	(bus)
+)
+(connector
+	(pt 992 456)
+	(pt 992 448)
+	(bus)
+)
+(connector
+	(pt 992 448)
+	(pt 1000 448)
 	(bus)
 )
 (junction (pt 880 216))
