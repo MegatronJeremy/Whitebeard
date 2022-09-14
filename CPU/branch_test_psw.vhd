@@ -36,7 +36,6 @@ begin
 	
 process(func, n, z, c, v)
 	begin
-	
 		case func(3 downto 1) is
 			when "000" => -- TRUE and FALSE
 				is_true <= NOT func(0);

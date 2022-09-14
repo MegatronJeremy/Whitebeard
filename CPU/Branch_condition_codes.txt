@@ -1,0 +1,17 @@
+0000: Always branch
+0001: Don't branch
+
+0010: BZ/BEQ
+0011: BNZ/BNE
+
+0100: BLU/BC
+0101: BGEU/BNC
+
+0110: BLEU/BC or BZ
+0111: BGU/not(BC or BZ)
+
+1000: BLT/BN xor BV
+1001: BGE/not(BN xor BV)
+
+1010: BLE/BZ or BN xor BV
+1011: BGT/BNZ and not(BN xor BV)
