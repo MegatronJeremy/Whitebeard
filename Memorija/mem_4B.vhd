@@ -25,16 +25,18 @@ architecture rtl of mem_4B is
 	signal ld1 : std_logic;
 	signal ld2 : std_logic;
 	signal ld3 : std_logic;
+	signal mr : std_logic;
 	
 		
 		
 		
 begin
 	--ovo bi trebalo da je ok
-	reg0 : entity work.reg8b port map (d_in=>d_in, mr=>not clr, clk=>clk, ld=>ld0, q_out=>d_reg0(7 downto 0));
-	reg1 : entity work.reg8b port map (d_in=>d_in, mr=>not clr, clk=>clk, ld=>ld1, q_out=>d_reg1(7 downto 0));
-	reg2 : entity work.reg8b port map (d_in=>d_in, mr=>not clr, clk=>clk, ld=>ld2, q_out=>d_reg2(7 downto 0));
-	reg3 : entity work.reg8b port map (d_in=>d_in, mr=>not clr, clk=>clk, ld=>ld3, q_out=>d_reg3(7 downto 0));
+	mr<= not clr;
+	reg0 : entity work.reg8b port map (d_in=>d_in, mr=>mr, clk=>clk, ld=>ld0, q_out=>d_reg0(7 downto 0));
+	reg1 : entity work.reg8b port map (d_in=>d_in, mr=>mr, clk=>clk, ld=>ld1, q_out=>d_reg1(7 downto 0));
+	reg2 : entity work.reg8b port map (d_in=>d_in, mr=>mr, clk=>clk, ld=>ld2, q_out=>d_reg2(7 downto 0));
+	reg3 : entity work.reg8b port map (d_in=>d_in, mr=>mr, clk=>clk, ld=>ld3, q_out=>d_reg3(7 downto 0));
 
 	
 	--ne znam da li ovo radi
@@ -55,7 +57,7 @@ begin
 					when "01" => d_reg<=d_reg1;
 					when "10" => d_reg<=d_reg2;
 					when "11" => d_reg<=d_reg3;
-					
+					when others => d_reg<="ZZZZZZZZ";
 				end case;
 	
 			else 

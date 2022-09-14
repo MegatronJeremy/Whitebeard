@@ -22,18 +22,19 @@ begin
 		stimulus : process
 	  begin
 		 wait for 4 * Tclk;
+		 rdwr<='0';
 		 clr <= '1';
 		 wait for 4 * Tclk;
 		 clr <= '0';
-		 d_in <= x"ffff";
-		 addr<=x"01";
+		 d_in <= x"ff";
+		 addr<="01";
 		 CS<='1';
 		 wait for 4 * Tclk;
 		 CS<='0';
-		 d_in <= x"8800";
+		 d_in <= x"88";
 		 wait for 4 * Tclk;
-		 d_in <= x"1fff";
-		 addr <= x"11";
+		 d_in <= x"1f";
+		 addr <= "11";
 		 CS<='1';
 		 wait for 4 * Tclk;
 		 CS<='1';
@@ -44,8 +45,8 @@ begin
 		 rdwr<='0';
 		 wait for 4 * Tclk;
 		 rdwr<='1';
-		 addr<=x"01";
-		 d_in<=x"0001";
+		 addr<="01";
+		 d_in<=x"01";
 		 CS<='1';
 		 wait for 10 * Tclk;
 		 CS<='0';
