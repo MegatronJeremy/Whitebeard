@@ -1,0 +1,71 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity reg_32b_inc_tb is
+end;
+
+architecture bench of reg_32b_inc_tb is
+
+  component reg_32b_inc
+      port (
+      mr : in std_logic;
+      clk : in std_logic;
+      ld : in std_logic;
+      inc : in std_logic;
+      d_in : in std_logic_vector(31 downto 0);
+      q_out : out std_logic_vector(31 downto 0)
+    );
+  end component;
+
+  -- Clock period
+  constant clk_period : time := 20 ns;
+  -- Generics
+
+  -- Ports
+  signal mr : std_logic;
+  signal clk : std_logic;
+  signal ld : std_logic;
+  signal inc : std_logic;
+  signal d_in : std_logic_vector(31 downto 0);
+  signal q_out : std_logic_vector(31 downto 0);
+
+begin
+
+  reg_32b_inc_inst : reg_32b_inc
+    port map (
+      mr => mr,
+      clk => clk,
+      ld => ld,
+      inc => inc,
+      d_in => d_in,
+      q_out => q_out
+    );
+
+  clk_process : process
+  begin 
+    wait for 4 * Tclk;
+    mr <= '0';
+    wait for 4 * Tclk;
+    mr <= '1';
+    d_in <= x"000000fe";
+    ld <= '1';
+    wait for 4 * Tclk;
+    inc <= '1';
+    wait for 4 * Tclk;
+    inc <= '1';
+    ld <= '0';
+    d_in <= x"88008888";
+    wait for 4 * Tclk;
+    d_in <= x"ffffffff";
+    ld <= '1';
+    wait for 4 * Tclk;
+    mr <= '1';
+    inc <= '1';
+    wait for 10 * Tclk;
+    mr <= '0';
+    wait for 10 * Tclk;
+    wait;
+  end process clk_process;
+
+end;
