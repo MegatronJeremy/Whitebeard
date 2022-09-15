@@ -20,9 +20,9 @@ applicable agreement for further details.
 */
 (header "graphic" (version "1.4"))
 (symbol
-	(rect 896 136 1072 248)
+	(rect 888 104 1064 216)
 	(text "alu_8b" (rect 5 0 36 12)(font "Arial" ))
-	(text "inst" (rect 8 96 25 108)(font "Arial" ))
+	(text "ALU" (rect 8 96 29 108)(font "Arial" ))
 	(port
 		(pt 0 32)
 		(input)
@@ -72,7 +72,7 @@ applicable agreement for further details.
 (symbol
 	(rect 896 288 1072 400)
 	(text "barrel_shifter_8b" (rect 5 0 87 12)(font "Arial" ))
-	(text "inst2" (rect 8 96 31 108)(font "Arial" ))
+	(text "BARREL_SHIFTER" (rect 8 96 104 108)(font "Arial" ))
 	(port
 		(pt 0 32)
 		(input)
@@ -113,9 +113,9 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 896 424 1064 568)
+	(rect 888 480 1056 624)
 	(text "branch_test_psw" (rect 5 0 87 12)(font "Arial" ))
-	(text "inst3" (rect 8 128 31 140)(font "Arial" ))
+	(text "BRANCH_TEST" (rect 8 128 87 140)(font "Arial" ))
 	(port
 		(pt 0 32)
 		(input)
@@ -170,9 +170,102 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 296 288 536 432)
+	(rect 504 480 688 592)
+	(text "reg_4b" (rect 5 0 38 12)(font "Arial" ))
+	(text "PSW" (rect 8 96 32 108)(font "Arial" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "mr" (rect 0 0 12 12)(font "Arial" ))
+		(text "mr" (rect 21 27 33 39)(font "Arial" ))
+		(line (pt 0 32)(pt 16 32))
+	)
+	(port
+		(pt 0 48)
+		(input)
+		(text "clk" (rect 0 0 14 12)(font "Arial" ))
+		(text "clk" (rect 21 43 35 55)(font "Arial" ))
+		(line (pt 0 48)(pt 16 48))
+	)
+	(port
+		(pt 0 64)
+		(input)
+		(text "ld" (rect 0 0 8 12)(font "Arial" ))
+		(text "ld" (rect 21 59 29 71)(font "Arial" ))
+		(line (pt 0 64)(pt 16 64))
+	)
+	(port
+		(pt 0 80)
+		(input)
+		(text "d_in[3..0]" (rect 0 0 46 12)(font "Arial" ))
+		(text "d_in[3..0]" (rect 21 75 67 87)(font "Arial" ))
+		(line (pt 0 80)(pt 16 80)(line_width 3))
+	)
+	(port
+		(pt 184 32)
+		(output)
+		(text "q_out[3..0]" (rect 0 0 53 12)(font "Arial" ))
+		(text "q_out[3..0]" (rect 119 27 172 39)(font "Arial" ))
+		(line (pt 184 32)(pt 168 32)(line_width 3))
+	)
+	(drawing
+		(rectangle (rect 16 16 168 96))
+	)
+)
+(symbol
+	(rect 472 80 648 224)
+	(text "reg_2b_inc" (rect 5 0 58 12)(font "Arial" ))
+	(text "STATE_COUNTER" (rect 8 128 101 140)(font "Arial" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "mr" (rect 0 0 12 12)(font "Arial" ))
+		(text "mr" (rect 21 27 33 39)(font "Arial" ))
+		(line (pt 0 32)(pt 16 32))
+	)
+	(port
+		(pt 0 48)
+		(input)
+		(text "clk" (rect 0 0 14 12)(font "Arial" ))
+		(text "clk" (rect 21 43 35 55)(font "Arial" ))
+		(line (pt 0 48)(pt 16 48))
+	)
+	(port
+		(pt 0 64)
+		(input)
+		(text "ld" (rect 0 0 8 12)(font "Arial" ))
+		(text "ld" (rect 21 59 29 71)(font "Arial" ))
+		(line (pt 0 64)(pt 16 64))
+	)
+	(port
+		(pt 0 80)
+		(input)
+		(text "inc" (rect 0 0 14 12)(font "Arial" ))
+		(text "inc" (rect 21 75 35 87)(font "Arial" ))
+		(line (pt 0 80)(pt 16 80))
+	)
+	(port
+		(pt 0 96)
+		(input)
+		(text "d_in[1..0]" (rect 0 0 46 12)(font "Arial" ))
+		(text "d_in[1..0]" (rect 21 91 67 103)(font "Arial" ))
+		(line (pt 0 96)(pt 16 96)(line_width 3))
+	)
+	(port
+		(pt 176 32)
+		(output)
+		(text "q_out[1..0]" (rect 0 0 53 12)(font "Arial" ))
+		(text "q_out[1..0]" (rect 111 27 164 39)(font "Arial" ))
+		(line (pt 176 32)(pt 160 32)(line_width 3))
+	)
+	(drawing
+		(rectangle (rect 16 16 160 128))
+	)
+)
+(symbol
+	(rect 336 280 576 424)
 	(text "reg_file_8x8b" (rect 5 0 71 12)(font "Arial" ))
-	(text "inst4" (rect 8 128 31 140)(font "Arial" ))
+	(text "GPR" (rect 8 128 31 140)(font "Arial" ))
 	(port
 		(pt 0 32)
 		(input)
@@ -232,4 +325,88 @@ applicable agreement for further details.
 	(drawing
 		(rectangle (rect 16 16 224 128))
 	)
+)
+(connector
+	(text "PSW[3..0]" (rect 696 496 746 508)(font "Arial" ))
+	(pt 688 512)
+	(pt 704 512)
+	(bus)
+)
+(connector
+	(text "PSW[2]" (rect 832 536 869 548)(font "Arial" ))
+	(pt 872 544)
+	(pt 888 544)
+)
+(connector
+	(text "PSW[3]" (rect 832 520 869 532)(font "Arial" ))
+	(pt 888 528)
+	(pt 872 528)
+)
+(connector
+	(text "PSW[1]" (rect 832 552 869 564)(font "Arial" ))
+	(pt 872 560)
+	(pt 888 560)
+)
+(connector
+	(text "PSW[0]" (rect 832 568 869 580)(font "Arial" ))
+	(pt 872 576)
+	(pt 888 576)
+)
+(connector
+	(text "mr" (rect 466 504 478 516)(font "Arial" ))
+	(pt 504 512)
+	(pt 488 512)
+)
+(connector
+	(text "clk" (rect 466 520 480 532)(font "Arial" ))
+	(pt 504 528)
+	(pt 488 528)
+)
+(connector
+	(text "ld_psw" (rect 448 536 481 548)(font "Arial" ))
+	(pt 488 544)
+	(pt 504 544)
+)
+(connector
+	(text "PSW_IN[3..0]" (rect 424 552 492 564)(font "Arial" ))
+	(pt 504 560)
+	(pt 488 560)
+	(bus)
+)
+(connector
+	(text "mr" (rect 434 104 446 116)(font "Arial" ))
+	(pt 456 112)
+	(pt 472 112)
+)
+(connector
+	(text "clk" (rect 434 120 448 132)(font "Arial" ))
+	(pt 472 128)
+	(pt 456 128)
+)
+(connector
+	(text "ld_sc" (rect 426 136 451 148)(font "Arial" ))
+	(pt 456 144)
+	(pt 472 144)
+)
+(connector
+	(text "inc_sc" (rect 424 152 455 164)(font "Arial" ))
+	(pt 472 160)
+	(pt 456 160)
+)
+(connector
+	(text "state[1..0]" (rect 672 104 722 116)(font "Arial" ))
+	(pt 664 112)
+	(pt 648 112)
+	(bus)
+)
+(connector
+	(text "state_in[1..0]" (rect 392 168 456 180)(font "Arial" ))
+	(pt 472 176)
+	(pt 456 176)
+	(bus)
+)
+(connector
+	(text "clk" (rect 298 304 312 316)(font "Arial" ))
+	(pt 336 312)
+	(pt 320 312)
 )
