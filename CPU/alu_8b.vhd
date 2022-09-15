@@ -27,34 +27,39 @@ begin
 
   process (func, a, b, carry_in)
     variable t : std_logic_vector(8 downto 0);
-	 variable p : std_logic_vector(6 downto 0) := (others => '0');
+	 variable p : std_logic_vector(8 downto 0);
+	 variable a_tmp : std_logic_vector(8 downto 0);
+	 variable b_tmp : std_logic_vector(8 downto 0);
   begin
+	 a_tmp := '0' & a;
+	 b_tmp := '0' & b;
+	 p := x"00" & carry_in;
     c <= t(7 downto 0);
 	 carry_out <= t(8);
     case func is
       when ALU_ADD =>
-			t := std_logic_vector(unsigned('0' & a) + unsigned(b));
+			t := std_logic_vector(unsigned(a_tmp) + unsigned(b_tmp));
 			
 		when ALU_ADDC =>
-			t := std_logic_vector(unsigned('0' & a) + unsigned(b) + unsigned(p & carry_in));
+			t := std_logic_vector(unsigned(a_tmp) + unsigned(b_tmp) + unsigned(p));
 			 
 		when ALU_SUB =>
-			t := std_logic_vector(unsigned('0' & a) - unsigned(b));
+			t := std_logic_vector(unsigned(a_tmp) - unsigned(b_tmp));
 			
 		when ALU_SUBC =>
-			t := std_logic_vector(unsigned('0' & a) - unsigned(b) - unsigned(p & carry_in));
+			t := std_logic_vector(unsigned(a_tmp) - unsigned(b_tmp) - unsigned(p));
 			
 		when ALU_IMPLIES =>
-			t := ('0' & NOT a) or b;
+			t := (NOT a_tmp) or b_tmp;
 			  
       when ALU_XOR =>
-         t := ('0' & a) xor b;
+         t := a_tmp xor b_tmp;
 		  
       when ALU_OR =>
-         t := ('0' & a) or b;
+         t := a_tmp or b_tmp;
 		  
       when ALU_AND =>
-         t := ('0' & a) and b;  
+         t := a_tmp and b_tmp;  
 			
 		when others =>
     end case;
