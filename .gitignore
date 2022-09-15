@@ -46,5 +46,5 @@ _output_files/
 *.dat
 *.swp
 *.wlf
-*/_info
-*/_vmake
+*_info
+*_vmake
