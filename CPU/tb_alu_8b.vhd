@@ -42,6 +42,7 @@ begin
 		func <= "001";
 		a <= "10001111";
 		b <= "10111001";
+		carry_in <= '1';
 		wait for 2*Tclk;
 		b <= "00000011";
 		wait for 2*Tclk;

@@ -34,7 +34,7 @@ begin
 		 d_in <= x"88";
 		 wait for 4 * Tclk;
 		 d_in <= x"1f";
-		 addr <= x"ff";
+		 addr <= x"1ff";
 		 CS<='1';
 		 wait for 4 * Tclk;
 		 CS<='1';

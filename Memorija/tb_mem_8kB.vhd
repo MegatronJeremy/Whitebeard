@@ -28,16 +28,16 @@ begin
 		 wait for 4 * Tclk;
 		 clr <= '0';
 		 d_in <= x"ff";
-		 --addr_helper<=x"0001";
-		 addr<=x"0001";
+		 addr_helper<=x"0001";
+		 addr<=addr_helper(12 downto 0);
 		 CS<='1';
 		 wait for 4 * Tclk;
 		 CS<='0';
 		 d_in <= x"88";
 		 wait for 4 * Tclk;
 		 d_in <= x"1f";
-		 --addr_helper<=x"00ff";
-		 addr <= x"00ff";
+		 addr_helper<=x"00ff";
+		 addr<=addr_helper(12 downto 0);
 		 CS<='1';
 		 wait for 4 * Tclk;
 		 CS<='1';
@@ -46,11 +46,11 @@ begin
 		 CS<='0';
 		 clr <= '0';
 		 rdwr<='0';
-		 --addr_helper<=x"0001";
+		 addr_helper<=x"0001";
 		 wait for 4 * Tclk;
 		 rdwr<='1';
 		
-		 addr<=x"0001";
+		 addr<=addr_helper(12 downto 0);
 		 d_in<=x"01";
 		 CS<='1';
 		 wait for 10 * Tclk;

@@ -34,8 +34,7 @@ begin
 	 a_tmp := '0' & a;
 	 b_tmp := '0' & b;
 	 p := x"00" & carry_in;
-    c <= t(7 downto 0);
-	 carry_out <= t(8);
+    
     case func is
       when ALU_ADD =>
 			t := std_logic_vector(unsigned(a_tmp) + unsigned(b_tmp));
@@ -62,6 +61,11 @@ begin
          t := a_tmp and b_tmp;  
 			
 		when others =>
+			t := "000000000";
     end case;
+	 
+	 c <= t(7 downto 0);
+	 carry_out <= t(8);
+	 
   end process;
 end beh;

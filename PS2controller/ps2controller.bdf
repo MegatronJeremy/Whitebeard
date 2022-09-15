@@ -318,31 +318,6 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 1000 480 1048 512)
-	(text "NOT" (rect 1 0 26 13)(font "Arial" (font_size 6)))
-	(text "inst6" (rect 3 21 34 36)(font "Arial" ))
-	(port
-		(pt 0 16)
-		(input)
-		(text "IN" (rect 2 7 18 23)(font "Courier New" (bold))(invisible))
-		(text "IN" (rect 2 7 18 23)(font "Courier New" (bold))(invisible))
-		(line (pt 0 16)(pt 13 16))
-	)
-	(port
-		(pt 48 16)
-		(output)
-		(text "OUT" (rect 32 7 56 23)(font "Courier New" (bold))(invisible))
-		(text "OUT" (rect 32 7 56 23)(font "Courier New" (bold))(invisible))
-		(line (pt 39 16)(pt 48 16))
-	)
-	(drawing
-		(line (pt 13 25)(pt 13 7))
-		(line (pt 13 7)(pt 31 16))
-		(line (pt 13 25)(pt 31 16))
-		(circle (rect 31 12 39 20))
-	)
-)
-(symbol
 	(rect 608 528 624 560)
 	(text "VCC" (rect 0 5 13 29)(font "Arial" (font_size 6))(vertical))
 	(text "inst1" (rect 5 6 20 37)(font "Arial" )(vertical)(invisible))
@@ -1088,10 +1063,6 @@ applicable agreement for further details.
 	(bus)
 )
 (connector
-	(pt 1048 496)
-	(pt 1088 496)
-)
-(connector
 	(pt 1088 432)
 	(pt 1088 448)
 	(bus)
@@ -1267,9 +1238,14 @@ applicable agreement for further details.
 	(bus)
 )
 (connector
-	(text "cnt10" (rect 498 216 533 231)(font "Arial" ))
+	(text "ldReg" (rect 498 216 536 231)(font "Arial" ))
 	(pt 488 232)
 	(pt 536 232)
+	(bus)
+)
+(connector
+	(pt 1000 496)
+	(pt 1088 496)
 	(bus)
 )
 (junction (pt 880 216))
