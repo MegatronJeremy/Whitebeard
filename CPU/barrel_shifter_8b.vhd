@@ -35,41 +35,41 @@ process(func, a, b, pad)
 	begin
 		-- Swap bit order if not shiting to the right
 		if func = SHIFT_RIGHT_LOG OR func = SHIFT_RIGHT_ARI OR func = SHIFT_ROT_RIGHT then
-			t := '0' & a;
+			t := a & '0';
 		else
-			t := '0' & a( 0) & a( 1) & a( 2) & a( 3) & a( 4) & a( 5) & a( 6) & a( 7);
+			t := a( 0) & a( 1) & a( 2) & a( 3) & a( 4) & a( 5) & a( 6) & a( 7) & '0';
 		end if;
 		
 		if b(2) = '1' then
 			if func = SHIFT_ROT_RIGHT then
-				t := '0' & t(3 downto 0) & t(7 downto 4);
+				t := t(4 downto 1) & t(8 downto 5) & '0';
 			else 
-				t := pad(4 downto 0) & t(7 downto 4);
+				t := pad(3 downto 0) & t(8 downto 4);
 			end if;
 		end if;
 		
 		if b(1) = '1' then
 			if func = SHIFT_ROT_RIGHT then
-				t := '0' & t(1 downto 0) & t (7 downto 2);
+				t := t(2 downto 1) & t (8 downto 3) & '0';
 			else
-				t := pad(2 downto 0) & t(7 downto 2);
+				t := pad(1 downto 0) & t(8 downto 2);
 			end if;
 		end if;
 		
 		if b(0) = '1' then
 			if func = SHIFT_ROT_RIGHT then
-				t := '0' & t(0 downto 0) & t(7 downto 1);
+				t := t(1 downto 1) & t(8 downto 2) & '0';
 			else 
-				t := pad(1 downto 0) & t(7 downto 1);
+				t := pad(0 downto 0) & t(8 downto 1);
 			end if;
 		end if;
 		
 		if func = SHIFT_RIGHT_LOG OR func = SHIFT_RIGHT_ARI OR func = SHIFT_ROT_RIGHT then
-			c <= t(7 downto 0);
+			c <= t(8 downto 1);
 		else 
-			c <= t( 0) & t( 1) & t( 2) & t( 3) & t( 4) & t( 5) & t( 6) & t( 7);
+			c <= t( 1) & t( 2) & t( 3) & t( 4) & t( 5) & t( 6) & t( 7) & t( 8);
 		end if;
 		
-		carry_out <= t(8);
+		carry_out <= t(0);
 	end process;
 end beh;
