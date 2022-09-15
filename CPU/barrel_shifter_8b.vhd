@@ -6,7 +6,8 @@ entity barrel_shifter_8b is
 		func : in std_logic_vector(1 downto 0) := "00";
 		a : in std_logic_vector(7 downto 0);
 		b : in std_logic_vector(2 downto 0);
-		c : out std_logic_vector(7 downto 0) := (others => '0')
+		c : out std_logic_vector(7 downto 0) := (others => '0');
+		carry_out : out std_logic
 	);
 end entity;
 
@@ -30,41 +31,43 @@ process(func, a)
 	end process;
 
 process(func, a, b, pad)
-	variable t : std_logic_vector(7 downto 0);
+	variable t : std_logic_vector(8 downto 0);
 	begin
+		carry_out <= t(8);
+
 		-- Swap bit order if not shiting to the right
 		if func = SHIFT_RIGHT_LOG OR func = SHIFT_RIGHT_ARI OR func = SHIFT_ROT_RIGHT then
-			t := a;
+			t := '0' & a;
 		else
-			t := a( 0) & a( 1) & a( 2) & a( 3) & a( 4) & a( 5) & a( 6) & a( 7);
+			t := '0' & a( 0) & a( 1) & a( 2) & a( 3) & a( 4) & a( 5) & a( 6) & a( 7);
 		end if;
 		
 		if b(2) = '1' then
 			if func = SHIFT_ROT_RIGHT then
-				t := t(3 downto 0) & t(7 downto 4);
+				t := t(3 downto 0) & t(8 downto 4);
 			else 
-				t := pad(3 downto 0) & t(7 downto 4);
+				t := pad(3 downto 0) & t(8 downto 4);
 			end if;
 		end if;
 		
 		if b(1) = '1' then
 			if func = SHIFT_ROT_RIGHT then
-				t := t(1 downto 0) & t (7 downto 2);
+				t := t(1 downto 0) & t (8 downto 2);
 			else
-				t := pad(1 downto 0) & t(7 downto 2);
+				t := pad(1 downto 0) & t(8 downto 2);
 			end if;
 		end if;
 		
 		if b(0) = '1' then
 			if func = SHIFT_ROT_RIGHT then
-				t := t(0 downto 0) & t(7 downto 1);
+				t := t(0 downto 0) & t(8 downto 1);
 			else 
-				t := pad(0 downto 0) & t(7 downto 1);
+				t := pad(0 downto 0) & t(8 downto 1);
 			end if;
 		end if;
 		
 		if func = SHIFT_RIGHT_LOG OR func = SHIFT_RIGHT_ARI OR func = SHIFT_ROT_RIGHT then
-			c <= t;
+			c <= t(7 downto 0);
 		else 
 			c <= t( 0) & t( 1) & t( 2) & t( 3) & t( 4) & t( 5) & t( 6) & t( 7);
 		end if;
