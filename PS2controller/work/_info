@@ -1,0 +1,219 @@
+m255
+K3
+13
+cModel Technology
+Z0 dC:\Users\xparh\OneDrive - student.etf.bg.ac.rs\Desktop\Whitebeard\PS2controller
+Eps2controller
+Z1 w1663234856
+Z2 DPx3 std 6 textio 0 22 5>J:;AW>W0[[dW0I6EN1Q0
+Z3 DPx4 ieee 14 std_logic_1164 0 22 5=aWaoGZSMWIcH0i^f`XF1
+Z4 dC:\Users\xparh\OneDrive - student.etf.bg.ac.rs\Desktop\Whitebeard\PS2controller
+Z5 8C:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/PS2controller/ps2controller.vhd
+Z6 FC:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/PS2controller/ps2controller.vhd
+l0
+L24
+VzBj4hFE4TY<9i;J=IX8`33
+!s100 _Tzc5X8<G0AW?_M8m3g@`1
+Z7 OV;C;10.1d;51
+32
+!i10b 1
+Z8 !s108 1663234873.853000
+Z9 !s90 -reportprogress|300|-work|work|C:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/PS2controller/ps2controller.vhd|
+Z10 !s107 C:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/PS2controller/ps2controller.vhd|
+Z11 o-work work -O0
+Z12 tExplicit 1
+Abdf_type
+R2
+R3
+Z13 DEx4 work 13 ps2controller 0 22 zBj4hFE4TY<9i;J=IX8`33
+l81
+L38
+VV2B`SGIJU@GH_:81MUT];3
+!s100 S[hl1gm0ASEE50PVN^5zd3
+R7
+32
+!i10b 1
+R8
+R9
+R10
+R11
+R12
+Eps2test
+Z14 w1663234245
+R2
+R3
+R4
+Z15 8C:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/PS2controller/ps2test.vhd
+Z16 FC:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/PS2controller/ps2test.vhd
+l0
+L4
+VSAThJZ^hF=SJ;;>?I>:z81
+R7
+32
+Z17 !s108 1663234717.803000
+Z18 !s90 -reportprogress|300|-work|work|C:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/PS2controller/ps2test.vhd|
+Z19 !s107 C:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/PS2controller/ps2test.vhd|
+R11
+R12
+!s100 FLW=cDA_F@@1C>nF5:`UW2
+!i10b 1
+Atest1
+R13
+R2
+R3
+DEx4 work 7 ps2test 0 22 SAThJZ^hF=SJ;;>?I>:z81
+l19
+L7
+VneieN2=z8EJ=[D[fmV8BL0
+R7
+32
+R17
+R18
+R19
+R11
+R12
+!s100 [M>De?1B:Nc4^1M[4<mkY3
+!i10b 1
+Ereg_4b_inc
+Z20 w1663219731
+Z21 DPx4 ieee 11 numeric_std 0 22 O3PF8EB`?j9=z7KT`fn941
+R2
+R3
+R4
+Z22 8C:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/PS2controller/reg_4b_inc.vhd
+Z23 FC:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/PS2controller/reg_4b_inc.vhd
+l0
+L5
+VhXZLT6?L<C65k:aP5MB>M3
+R7
+32
+Z24 !s108 1663234262.556000
+Z25 !s90 -reportprogress|300|-work|work|C:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/PS2controller/reg_4b_inc.vhd|
+Z26 !s107 C:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/PS2controller/reg_4b_inc.vhd|
+R11
+R12
+!s100 Q`if`Q<lGW0:;bnmolM?N0
+!i10b 1
+Abeh
+R21
+R2
+R3
+DEx4 work 10 reg_4b_inc 0 22 hXZLT6?L<C65k:aP5MB>M3
+l18
+L16
+VYLb0[bF928bXd2[bFa]e30
+R7
+32
+R24
+R25
+R26
+R11
+R12
+!s100 YRToC<WW@cCeK>jM^Y3AS2
+!i10b 1
+Ereg_8b
+Z27 w1663233444
+R2
+R3
+R4
+Z28 8C:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/PS2controller/reg_8b.vhd
+Z29 FC:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/PS2controller/reg_8b.vhd
+l0
+L24
+VOPEBeU8IJnW>71adO?B;<2
+R7
+32
+Z30 !s108 1663234266.027000
+Z31 !s90 -reportprogress|300|-work|work|C:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/PS2controller/reg_8b.vhd|
+Z32 !s107 C:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/PS2controller/reg_8b.vhd|
+R11
+R12
+!s100 DVB^=R886d:BQ4R3ACaa]0
+!i10b 1
+Abdf_type
+R2
+R3
+DEx4 work 6 reg_8b 0 22 OPEBeU8IJnW>71adO?B;<2
+l40
+L35
+VL59l7Q0TiN9J3c@?[<zlA0
+R7
+32
+R30
+R31
+R32
+R11
+R12
+!s100 9fB?BHlfDKbh12m[kUOHd3
+!i10b 1
+Eshiftregister
+Z33 w1663231571
+R2
+R3
+R4
+Z34 8C:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/PS2controller/shiftRegister.vhd
+Z35 FC:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/PS2controller/shiftRegister.vhd
+l0
+L24
+V8IYndG6PCH2n]4SZF[4`N0
+R7
+32
+Z36 !s108 1663231895.102000
+Z37 !s90 -reportprogress|300|-work|work|C:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/PS2controller/shiftRegister.vhd|
+Z38 !s107 C:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/PS2controller/shiftRegister.vhd|
+R11
+R12
+!s100 iS89jfULgzB`k3O`gNP6Z1
+!i10b 1
+Abdf_type
+R2
+R3
+Z39 DEx4 work 13 shiftregister 0 22 8IYndG6PCH2n]4SZF[4`N0
+l39
+L34
+VnQOEj`0>GcJS:PJk3D4on1
+R7
+32
+R36
+R37
+R38
+R11
+R12
+!s100 @R^51`76Pa?LlX;[;jJ7K1
+!i10b 1
+Eshiftregtest
+Z40 w1663231825
+R2
+R3
+R4
+Z41 8C:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/PS2controller/shiftReg test bench.vhd
+Z42 FC:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/PS2controller/shiftReg test bench.vhd
+l0
+L4
+V;O<1dCUlRaPB1SQiU6FNl2
+R7
+32
+Z43 !s108 1663231894.930000
+Z44 !s90 -reportprogress|300|-work|work|C:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/PS2controller/shiftReg test bench.vhd|
+Z45 !s107 C:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/PS2controller/shiftReg test bench.vhd|
+R11
+R12
+!s100 1Mh;=6M096LMBEPD?3lK<3
+!i10b 1
+Atest1
+R39
+R2
+R3
+DEx4 work 12 shiftregtest 0 22 ;O<1dCUlRaPB1SQiU6FNl2
+l14
+L7
+VRjd6oZKk`JEZHS?7VRNZ`3
+R7
+32
+R43
+R44
+R45
+R11
+R12
+!s100 5gR3IO1IFM0?Q5bl[KQi;0
+!i10b 1

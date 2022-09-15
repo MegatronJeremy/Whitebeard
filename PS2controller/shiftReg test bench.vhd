@@ -10,7 +10,7 @@ architecture test1 of shiftRegtest is
 	signal kclk : std_logic := '0';
 	signal data_out : std_logic_vector(10 downto 0);
 	
-	constant Tsclk : time := 20 ns;
+	constant Tkclk : time := 20 ns;
 begin
 	
 	clk_gen1: kclk <= not kclk after Tkclk/2;

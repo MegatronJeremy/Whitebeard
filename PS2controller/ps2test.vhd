@@ -24,7 +24,10 @@ begin
 	dut: entity work.ps2controller port map (mr, kclk, serial_data_in, RD, sclk, EN,shift_reset, d_out_tri);
 	
 	stimulus: process
-	begin
+	begin	
+		mr <= '0';
+		wait for 2*Tsclk;
+		mr <= '1';
 		serial_data_in <= '0';
 		wait for Tkclk;
 		serial_data_in <= '1';
