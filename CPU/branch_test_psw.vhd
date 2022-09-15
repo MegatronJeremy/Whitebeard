@@ -31,9 +31,7 @@ architecture beh of branch_test_psw is
 	
 	signal is_true : std_logic;
 	
-begin
-	branch <= is_true and enable;
-	
+begin	
 process(func, n, z, c, v)
 	begin
 		case func(3 downto 1) is
@@ -80,5 +78,7 @@ process(func, n, z, c, v)
 			
 		end case;
 	end process;
+	
+	branch <= is_true and enable;
 	
 end beh;

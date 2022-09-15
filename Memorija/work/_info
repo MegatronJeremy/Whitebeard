@@ -1,0 +1,364 @@
+m255
+K3
+13
+cModel Technology
+Z0 dC:\Users\xparh\OneDrive - student.etf.bg.ac.rs\Desktop\Whitebeard\Memorija
+Emem_16b
+Z1 w1663232760
+Z2 DPx3 std 6 textio 0 22 5>J:;AW>W0[[dW0I6EN1Q0
+Z3 DPx4 ieee 14 std_logic_1164 0 22 5=aWaoGZSMWIcH0i^f`XF1
+Z4 dC:\Users\xparh\OneDrive - student.etf.bg.ac.rs\Desktop\Whitebeard\Memorija
+Z5 8C:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/Memorija/mem_16B.vhd
+Z6 FC:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/Memorija/mem_16B.vhd
+l0
+L4
+VVg1SnSlz`4W3D3W=EFSeG3
+Z7 OV;C;10.1d;51
+32
+Z8 !s108 1663235410.983000
+Z9 !s90 -reportprogress|300|-work|work|C:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/Memorija/mem_16B.vhd|
+Z10 !s107 C:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/Memorija/mem_16B.vhd|
+Z11 o-work work -O0
+Z12 tExplicit 1
+!s100 lOUINaZSLG=aih?Re5[_]1
+!i10b 1
+Artl
+Z13 DEx4 work 6 mem_4b 0 22 10g[=bG[RM7[blkfZMDm32
+R2
+R3
+Z14 DEx4 work 7 mem_16b 0 22 Vg1SnSlz`4W3D3W=EFSeG3
+l31
+L18
+V[dK]=NRmZGmQKaOeUIO1^2
+R7
+32
+R8
+R9
+R10
+R11
+R12
+!s100 Gk]:EkFd:Rz:9]e<5G^Al1
+!i10b 1
+Emem_1kb
+R1
+R2
+R3
+R4
+Z15 8C:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/Memorija/mem_1kB.vhd
+Z16 FC:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/Memorija/mem_1kB.vhd
+l0
+L4
+VRG];3R>2ZG4JEM2J@fhRO0
+R7
+32
+Z17 !s108 1663235424.186000
+Z18 !s90 -reportprogress|300|-work|work|C:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/Memorija/mem_1kB.vhd|
+Z19 !s107 C:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/Memorija/mem_1kB.vhd|
+R11
+R12
+!s100 N7FnnfFai`0Y?MZ>TGGgK2
+!i10b 1
+Artl
+Z20 DEx4 work 8 mem_256b 0 22 W2lg?X0E4c4dV^RQDM5g01
+R2
+R3
+Z21 DEx4 work 7 mem_1kb 0 22 RG];3R>2ZG4JEM2J@fhRO0
+l31
+L18
+V::<6?>deoYInEUmCAmeD01
+R7
+32
+R17
+R18
+R19
+R11
+R12
+!s100 2;02TZ@9AAOoH3mPd2=g22
+!i10b 1
+Emem_256b
+R1
+R2
+R3
+R4
+Z22 8C:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/Memorija/mem_256B.vhd
+Z23 FC:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/Memorija/mem_256B.vhd
+l0
+L4
+VW2lg?X0E4c4dV^RQDM5g01
+R7
+32
+Z24 !s108 1663235418.942000
+Z25 !s90 -reportprogress|300|-work|work|C:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/Memorija/mem_256B.vhd|
+Z26 !s107 C:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/Memorija/mem_256B.vhd|
+R11
+R12
+!s100 K`[F>;43S7B0iK:GddXWE0
+!i10b 1
+Artl
+Z27 DEx4 work 7 mem_64b 0 22 APAGX>_W3Zfb1cZV9;d_H3
+R2
+R3
+R20
+l31
+L18
+VNG;lg8_MMK6Z4PP@Sc6Qc2
+R7
+32
+R24
+R25
+R26
+R11
+R12
+!s100 <4;`m44M[a3]Zzoe_n`=X3
+!i10b 1
+Emem_4b
+R1
+R2
+R3
+R4
+Z28 8C:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/Memorija/mem_4B.vhd
+Z29 FC:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/Memorija/mem_4B.vhd
+l0
+L4
+V10g[=bG[RM7[blkfZMDm32
+R7
+32
+Z30 !s108 1663235400.621000
+Z31 !s90 -reportprogress|300|-work|work|C:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/Memorija/mem_4B.vhd|
+Z32 !s107 C:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/Memorija/mem_4B.vhd|
+R11
+R12
+!s100 X1V?K@PB^jzD@R=k?f<]a0
+!i10b 1
+Artl
+Z33 DEx4 work 5 reg8b 0 22 SclXA>M0;FS5Qcjz[LWIT0
+R2
+R3
+R13
+l33
+L18
+VS;V45LQHYkDI_H5@J_TA?2
+R7
+32
+R30
+R31
+R32
+R11
+R12
+!s100 69nhA@B5PLUFkAl<Ug;]`0
+!i10b 1
+Emem_4kb
+R1
+R2
+R3
+R4
+Z34 8C:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/Memorija/mem_4kB.vhd
+Z35 FC:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/Memorija/mem_4kB.vhd
+l0
+L4
+VeO9J:dNI8Q36J][CMU@R[0
+R7
+32
+Z36 !s108 1663235432.871000
+Z37 !s90 -reportprogress|300|-work|work|C:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/Memorija/mem_4kB.vhd|
+Z38 !s107 C:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/Memorija/mem_4kB.vhd|
+R11
+R12
+!s100 1bNeDJM^H;odOFj48ko[`0
+!i10b 1
+Artl
+R21
+R2
+R3
+Z39 DEx4 work 7 mem_4kb 0 22 eO9J:dNI8Q36J][CMU@R[0
+l31
+L18
+V:oACZ3DDT4M?IGliI2GQ=3
+R7
+32
+R36
+R37
+R38
+R11
+R12
+!s100 <anPjMU[a?dXoPNadaH[`0
+!i10b 1
+Emem_64b
+R1
+R2
+R3
+R4
+Z40 8C:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/Memorija/mem_64B.vhd
+Z41 FC:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/Memorija/mem_64B.vhd
+l0
+L4
+VAPAGX>_W3Zfb1cZV9;d_H3
+R7
+32
+Z42 !s108 1663235415.287000
+Z43 !s90 -reportprogress|300|-work|work|C:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/Memorija/mem_64B.vhd|
+Z44 !s107 C:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/Memorija/mem_64B.vhd|
+R11
+R12
+!s100 Ennk<ZYzZPcL4CEd4_EB?0
+!i10b 1
+Artl
+R14
+R2
+R3
+R27
+l31
+L18
+V;F2XAL`Zg=03W=2R:`D792
+R7
+32
+R42
+R43
+R44
+R11
+R12
+!s100 WB4kNoL:<b7XKLA=iW8VX1
+!i10b 1
+Emem_8kb
+R1
+R2
+R3
+R4
+Z45 8C:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/Memorija/mem_8kB.vhd
+Z46 FC:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/Memorija/mem_8kB.vhd
+l0
+L4
+VacoQj2fa35d>=]n7MJ:1e1
+R7
+32
+Z47 !s108 1663235437.982000
+Z48 !s90 -reportprogress|300|-work|work|C:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/Memorija/mem_8kB.vhd|
+Z49 !s107 C:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/Memorija/mem_8kB.vhd|
+R11
+R12
+!s100 1[0`6m^fc:GS1B>nFBm1Z0
+!i10b 1
+Artl
+R39
+R2
+R3
+Z50 DEx4 work 7 mem_8kb 0 22 acoQj2fa35d>=]n7MJ:1e1
+l27
+L18
+VlWB79Ff1LI8T::lzlhQ1^3
+R7
+32
+R47
+R48
+R49
+R11
+R12
+!s100 OmM2?Db3G;InIE5Cd6?GR2
+!i10b 1
+Ereg8b
+Z51 w1663219731
+R2
+R3
+R4
+Z52 8C:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/Memorija/reg8b.vhd
+Z53 FC:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/Memorija/reg8b.vhd
+l0
+L7
+VSclXA>M0;FS5Qcjz[LWIT0
+R7
+32
+Z54 !s108 1663235396.048000
+Z55 !s90 -reportprogress|300|-work|work|C:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/Memorija/reg8b.vhd|
+Z56 !s107 C:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/Memorija/reg8b.vhd|
+R11
+R12
+!s100 YR^>MVDdz9f6>kQDgRLgL1
+!i10b 1
+Abeh
+R2
+R3
+R33
+l25
+L21
+V@5FPmk_;>G_[dRl<R3^j83
+R7
+32
+R54
+R55
+R56
+R11
+R12
+!s100 mLYM7YIPi]P037eId4e710
+!i10b 1
+Etb_mem_4kb
+Z57 w1663235608
+R2
+R3
+R4
+Z58 8C:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/Memorija/tb_mem_4kB.vhd
+Z59 FC:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/Memorija/tb_mem_4kB.vhd
+l0
+L4
+VQQh=0NVIDRNAmCoCX?UJn3
+!s100 A:E:ZJmYY:3`feQ_Rc4L]0
+R7
+32
+!i10b 1
+Z60 !s108 1663235612.068000
+Z61 !s90 -reportprogress|300|-work|work|C:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/Memorija/tb_mem_4kB.vhd|
+Z62 !s107 C:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/Memorija/tb_mem_4kB.vhd|
+R11
+R12
+Atest
+R39
+R2
+R3
+DEx4 work 10 tb_mem_4kb 0 22 QQh=0NVIDRNAmCoCX?UJn3
+l18
+L7
+VH@lnkO5]0enQH_ZzNN0Ub2
+!s100 :;VE66k@_3aRHHM:VmN7=0
+R7
+32
+!i10b 1
+R60
+R61
+R62
+R11
+R12
+Etb_mem_8kb
+Z63 w1663235564
+R2
+R3
+R4
+Z64 8C:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/Memorija/tb_mem_8kB.vhd
+Z65 FC:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/Memorija/tb_mem_8kB.vhd
+l0
+L4
+VVijT>`zOj:A:V28JBMn7i1
+R7
+32
+Z66 !s108 1663235568.099000
+Z67 !s90 -reportprogress|300|-work|work|C:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/Memorija/tb_mem_8kB.vhd|
+Z68 !s107 C:/Users/xparh/OneDrive - student.etf.bg.ac.rs/Desktop/Whitebeard/Memorija/tb_mem_8kB.vhd|
+R11
+R12
+!s100 Hg52FMmDnKXIhf3DFdZG12
+!i10b 1
+Atest
+R50
+R2
+R3
+DEx4 work 10 tb_mem_8kb 0 22 VijT>`zOj:A:V28JBMn7i1
+l18
+L7
+V@a9cKUZh`ajn10M:Ul64P3
+R7
+32
+R66
+R67
+R68
+R11
+R12
+!s100 h5]3R^m1^B<3U3ZPX>^Am2
+!i10b 1
