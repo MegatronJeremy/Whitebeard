@@ -38,6 +38,7 @@ begin
 		wait for 2*Tclk;
 		write_addr <= "111";
 		write_data <= x"ff";
+		read_addr_2 <= "111";
 		load <= '0';
 		wait for 2*Tclk;
 		write_addr <= "111";
