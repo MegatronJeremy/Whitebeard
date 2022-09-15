@@ -31,8 +31,10 @@ architecture rtl of mem_4B is
 		
 		
 begin
+
 	--ovo bi trebalo da je ok
 	mr<= not clr;
+	--napraviti da radi sinhrono!!!!
 	--pokusati u for petlji?
 	reg0 : entity work.reg8b port map (d_in=>d_in, mr=>mr, clk=>clk, ld=>ld0, q_out=>d_reg0(7 downto 0));
 	reg1 : entity work.reg8b port map (d_in=>d_in, mr=>mr, clk=>clk, ld=>ld1, q_out=>d_reg1(7 downto 0));
