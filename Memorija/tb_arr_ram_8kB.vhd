@@ -19,7 +19,7 @@ architecture test of tb_arr_ram_8kB is
 
 begin
 		clk_gen : clk <= not clk after Tclk/2;
-		dut : entity work.arr_ram_8kB port map (clr => clr, clk => clk, CS => CS, data_in => data_in, data_out => data_out, addr=>addr, rdwr=>rdwr);
+		dut : entity work.arr_ram_8kB port map ( clk => clk, CS => CS, data_in => data_in, data_out => data_out, addr=>addr, rdwr=>rdwr);
 		stimulus : process
 	  begin
 		 wait for 4 * Tclk;
@@ -42,6 +42,9 @@ begin
 		 wait for 4 * Tclk;
 		 CS<='1';
 		 rdwr<='1';
+		 wait for 1* Tclk;
+		 CS<='0';
+		 rdwr<='0';
 		 wait for 4 * Tclk;
 		 CS<='0';
 		 clr <= '0';
@@ -52,7 +55,7 @@ begin
 		 addr<=addr_helper(12 downto 0);
 		 data_in<=x"01";
 		 CS<='1';
-		 wait for 10 * Tclk;
+		 wait for 1 * Tclk;
 		 CS<='0';
 		 wait for 10 * Tclk;		 
 		 wait;
