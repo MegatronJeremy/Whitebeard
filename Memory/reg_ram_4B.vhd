@@ -27,6 +27,7 @@ architecture rtl of reg_ram_4B is
 	
 begin
 	
+	
 
 
 end rtl;

@@ -2,7 +2,9 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
-entity arr_ram_8kB is 
+
+--WARNING: asynchronous clear prevents quartus from inferring native Cyclone III ram nodes
+entity clr_arr_ram_8kB is 
 	generic(
 		addr_width: integer :=13;
 		data_width : integer :=8
@@ -19,9 +21,9 @@ entity arr_ram_8kB is
 		data_out: out std_logic_vector(data_width-1 downto 0)
 	);
 
-end arr_ram_8kB;
+end clr_arr_ram_8kB;
 
-architecture rtl of arr_ram_8kB is
+architecture rtl of clr_arr_ram_8kB is
 	constant RAM_DEPTH :integer := 2**addr_width;
 	type a_memory is array(0 to RAM_DEPTH-1) of std_logic_vector(data_width-1 downto 0);
 
@@ -32,10 +34,12 @@ architecture rtl of arr_ram_8kB is
 begin
 	interface : process (clk, clr)
 	begin
-		if (clr='1') then
-			memory<=(others=>(others=>'0'));
-		
-		elsif (rising_edge(clk)) then
+	if (clr='1') then
+		memory<=(others=>(others=>'0'));
+	
+
+	elsif (rising_edge(clk)) then
+
 			if(cs='1') then
 				if(rdwr='1') then
 					data_mem<=memory(to_integer(unsigned(addr)));

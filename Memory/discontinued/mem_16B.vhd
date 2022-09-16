@@ -1,7 +1,7 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
 
-entity mem_4kB is
+entity mem_16B is
 	port(
 		d_in : in std_logic_vector(7 downto 0);
 		d_out : out std_logic_vector(7 downto 0);
@@ -9,13 +9,13 @@ entity mem_4kB is
 		clr : in std_logic;
 		clk : in std_logic;
 		rdwr : in std_logic;
-		addr : in std_logic_vector(11 downto 0)
+		addr : in std_logic_vector(3 downto 0)
 
 	);
 
-end mem_4kB;
+end mem_16B;
 
-architecture rtl of mem_4kB is
+architecture rtl of mem_16B is
 	signal d_reg0 : std_logic_vector(7 downto 0);
 	signal d_reg1 : std_logic_vector(7 downto 0);
 	signal d_reg2 : std_logic_vector(7 downto 0);
@@ -30,22 +30,23 @@ architecture rtl of mem_4kB is
 		
 begin
 
-	mem0 : entity work.mem_1kB port map (d_in=>d_in, clr=> clr, clk=>clk, cs=>cs0, d_out=>d_reg0(7 downto 0), rdwr=>rdwr, addr=>addr(9 downto 0));
-	mem1 : entity work.mem_1kB port map (d_in=>d_in, clr=> clr, clk=>clk, cs=>cs1, d_out=>d_reg1(7 downto 0), rdwr=>rdwr, addr=>addr(9 downto 0));
-	mem2 : entity work.mem_1kB port map (d_in=>d_in, clr=> clr, clk=>clk, cs=>cs2, d_out=>d_reg2(7 downto 0), rdwr=>rdwr, addr=>addr(9 downto 0));
-	mem3 : entity work.mem_1kB port map (d_in=>d_in,clr=> clr, clk=>clk, cs=>cs3, d_out=>d_reg3(7 downto 0), rdwr=>rdwr, addr=>addr(9 downto 0));
+	mem0 : entity work.mem_4B port map (d_in=>d_in, clr=> clr, clk=>clk, cs=>cs0, d_out=>d_reg0(7 downto 0), rdwr=>rdwr, addr=>addr(1 downto 0));
+	mem1 : entity work.mem_4B port map (d_in=>d_in, clr=> clr, clk=>clk, cs=>cs1, d_out=>d_reg1(7 downto 0), rdwr=>rdwr, addr=>addr(1 downto 0));
+	mem2 : entity work.mem_4B port map (d_in=>d_in, clr=> clr, clk=>clk, cs=>cs2, d_out=>d_reg2(7 downto 0), rdwr=>rdwr, addr=>addr(1 downto 0));
+	mem3 : entity work.mem_4B port map (d_in=>d_in,clr=> clr, clk=>clk, cs=>cs3, d_out=>d_reg3(7 downto 0), rdwr=>rdwr, addr=>addr(1 downto 0));
 	
-	addrselect<= addr (11 downto 10);
-	cs1<='1' when (addrselect="01" and rdwr='0' and CS='1') else '0';
-	cs0<='1' when (addrselect="00" and rdwr='0' and CS='1') else '0';
-	cs2<='1' when (addrselect="10" and rdwr='0' and CS='1') else '0';
-	cs3<='1' when (addrselect="11" and rdwr='0' and CS='1') else '0';
+	addrselect<= addr (3 downto 2);
+	cs1<='1' when (addrselect="01"  and CS='1') else '0';
+	cs0<='1' when (addrselect="00"  and CS='1') else '0';
+	cs2<='1' when (addrselect="10" and CS='1') else '0';
+	cs3<='1' when (addrselect="11"  and CS='1') else '0';
 	
 	--jos nije gotovo.
 	cs_reg : process (addrselect, rdwr, d_reg0, d_reg1, d_reg2, d_reg3, cs0, cs1, cs2, cs3, d_reg, CS, d_in) is
 	begin
 		if(cs ='1') then
 			if(rdwr='1') then
+				
 				case addrselect is 
 
 					when "00" => d_reg<=d_reg0;
@@ -55,6 +56,7 @@ begin
 					when others => d_reg<="ZZZZZZZZ";
 
 				end case;
+			
 	
 			else 
 					--tribaferi mogu prestavljati problem mozda na fpga, nisam siguran da li rade
