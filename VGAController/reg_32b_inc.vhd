@@ -9,12 +9,12 @@ entity reg_32b_inc is
 		ld : in std_logic;
 		inc : in std_logic;
 		d_in : in std_logic_vector(31 downto 0);
-		q_out : out std_logic_vector(31 downto 0)
+		q_out : out std_logic_vector(31 downto 0) := "00000000000000000000000000000000"
 	);
 end reg_32b_inc;
 
 architecture beh of reg_32b_inc is
-	signal q_reg : std_logic_vector(31 downto 0); 
+	signal q_reg : std_logic_vector(31 downto 0) := "00000000000000000000000000000000"; 
 begin
 	process (mr, clk) is
 	begin

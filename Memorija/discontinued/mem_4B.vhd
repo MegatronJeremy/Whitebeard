@@ -53,7 +53,7 @@ begin
 	cs_reg : process (addr, rdwr, d_reg0, d_reg1, d_reg2, d_reg3, ld0, ld1, ld2, ld3, d_reg, CS, d_in) is
 	begin
 		if(cs ='1') then
-			if(rdwr='1') then
+		if(rdwr='1') then
 				case addr is 
 
 					when "00" => d_reg<=d_reg0;
