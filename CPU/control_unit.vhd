@@ -86,8 +86,6 @@ architecture beh of control_unit is
   constant NOP : std_logic_vector(4 downto 0) := "00000";
   constant HALT : std_logic_vector(4 downto 0) := "00001";
   constant JMP : std_logic_vector(4 downto 0) := "00010";
-  constant JSR : std_logic_vector(4 downto 0) := "00011";
-  constant RET : std_logic_vector(4 downto 0) := "00100";
   constant BR : std_logic_vector(4 downto 0) := "00101";
   constant POI : std_logic_vector(4 downto 0) := "00110";
   constant ST : std_logic_vector(4 downto 0) := "00111";
