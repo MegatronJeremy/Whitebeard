@@ -10,7 +10,6 @@ architecture test of tb_arr_ram_8kB is
 		signal data_in :  std_logic_vector(7 downto 0):= (others => '0');
 		signal data_out : std_logic_vector(7 downto 0);
 		signal CS : std_logic := '0' ;
-		signal clr :  std_logic := '0' ;
 		signal clk :  std_logic :='0' ;
 		signal rdwr :  std_logic := '0' ;
 		signal addr : std_logic_vector(12 downto 0):= (others => '0');
@@ -24,9 +23,7 @@ begin
 	  begin
 		 wait for 4 * Tclk;
 		 rdwr<='0';
-		 clr <= '1';
 		 wait for 4 * Tclk;
-		 clr <= '0';
 		 data_in <= x"ff";
 		 addr_helper<=x"0001";
 		 addr<=addr_helper(12 downto 0);
@@ -47,7 +44,6 @@ begin
 		 rdwr<='0';
 		 wait for 4 * Tclk;
 		 CS<='0';
-		 clr <= '0';
 		 rdwr<='0';
 		 wait for 4 * Tclk;
 		 rdwr<='1';
