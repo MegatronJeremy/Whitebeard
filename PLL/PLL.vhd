@@ -14,7 +14,7 @@
 
 -- PROGRAM		"Quartus II 64-Bit"
 -- VERSION		"Version 13.1.0 Build 162 10/23/2013 SJ Web Edition"
--- CREATED		"Thu Sep 15 13:03:24 2022"
+-- CREATED		"Fri Sep 16 01:14:13 2022"
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.all; 
@@ -47,38 +47,27 @@ SIGNAL	d_in :  STD_LOGIC_VECTOR(1 DOWNTO 0);
 SIGNAL	q_out :  STD_LOGIC_VECTOR(1 DOWNTO 0);
 SIGNAL	SYNTHESIZED_WIRE_0 :  STD_LOGIC;
 SIGNAL	SYNTHESIZED_WIRE_1 :  STD_LOGIC;
-SIGNAL	SYNTHESIZED_WIRE_2 :  STD_LOGIC;
 
 
 BEGIN 
 sclk <= clk;
+SYNTHESIZED_WIRE_0 <= '0';
+SYNTHESIZED_WIRE_1 <= '1';
 
 
 
 b2v_inst : reg_2b_inc
 PORT MAP(mr => mr,
 		 clk => clk,
-		 ld => d_in(1),
-		 inc => d_in(0),
+		 ld => SYNTHESIZED_WIRE_0,
+		 inc => SYNTHESIZED_WIRE_1,
 		 d_in => d_in,
 		 q_out => q_out);
 
 
 
 
-SYNTHESIZED_WIRE_2 <= SYNTHESIZED_WIRE_0 AND q_out(0);
+vclk <= q_out(0);
 
-
-SYNTHESIZED_WIRE_1 <= q_out(1) AND q_out(0);
-
-
-vclk <= SYNTHESIZED_WIRE_1 OR SYNTHESIZED_WIRE_2;
-
-
-SYNTHESIZED_WIRE_0 <= NOT(q_out(1));
-
-
-
-d_in(1) <= '0';
-d_in(0) <= '1';
+d_in(0) <= '0';
 END bdf_type;
