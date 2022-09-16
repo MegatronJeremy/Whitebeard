@@ -32,7 +32,7 @@ architecture rtl of clr_arr_ram_8kB is
 	);
 	signal data_mem : std_logic_vector(data_width-1 downto 0):= (others=>'Z');
 begin
-	interface : process (clk)
+	interface : process (clk, clr)
 	begin
 	if (clr='1') then
 		memory<=(others=>(others=>'0'));

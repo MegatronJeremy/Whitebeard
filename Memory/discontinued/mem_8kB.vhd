@@ -30,8 +30,8 @@ begin
 	mem1 : entity work.mem_4kB port map (d_in=>d_in, clr=> clr, clk=>clk, cs=>cs1, d_out=>d_reg1(7 downto 0), rdwr=>rdwr, addr=>addr(11 downto 0));
 	
 	addrselect<= addr (11);
-	cs1<='1' when (addrselect='1' and rdwr='0' and CS='1') else '0';
-	cs0<='1' when (addrselect='0' and rdwr='0' and CS='1') else '0';
+	cs1<='1' when (addrselect='1'  and CS='1') else '0';
+	cs0<='1' when (addrselect='0'  and CS='1') else '0';
 	
 	--jos nije gotovo.
 	cs_reg : process (addrselect, rdwr, d_reg0, d_reg1, cs0, cs1, d_reg, CS, d_in) is

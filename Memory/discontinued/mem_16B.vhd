@@ -36,16 +36,17 @@ begin
 	mem3 : entity work.mem_4B port map (d_in=>d_in,clr=> clr, clk=>clk, cs=>cs3, d_out=>d_reg3(7 downto 0), rdwr=>rdwr, addr=>addr(1 downto 0));
 	
 	addrselect<= addr (3 downto 2);
-	cs1<='1' when (addrselect="01" and rdwr='0' and CS='1') else '0';
-	cs0<='1' when (addrselect="00" and rdwr='0' and CS='1') else '0';
-	cs2<='1' when (addrselect="10" and rdwr='0' and CS='1') else '0';
-	cs3<='1' when (addrselect="11" and rdwr='0' and CS='1') else '0';
+	cs1<='1' when (addrselect="01"  and CS='1') else '0';
+	cs0<='1' when (addrselect="00"  and CS='1') else '0';
+	cs2<='1' when (addrselect="10" and CS='1') else '0';
+	cs3<='1' when (addrselect="11"  and CS='1') else '0';
 	
 	--jos nije gotovo.
 	cs_reg : process (addrselect, rdwr, d_reg0, d_reg1, d_reg2, d_reg3, cs0, cs1, cs2, cs3, d_reg, CS, d_in) is
 	begin
 		if(cs ='1') then
 			if(rdwr='1') then
+				
 				case addrselect is 
 
 					when "00" => d_reg<=d_reg0;
@@ -55,6 +56,7 @@ begin
 					when others => d_reg<="ZZZZZZZZ";
 
 				end case;
+			
 	
 			else 
 					--tribaferi mogu prestavljati problem mozda na fpga, nisam siguran da li rade

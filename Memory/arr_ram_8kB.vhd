@@ -32,7 +32,7 @@ begin
 	interface : process (clk)
 	begin
 
-	if (rising_edge(clk)) then
+		if (rising_edge(clk)) then
 
 			if(cs='1') then
 				if(rdwr='1') then
