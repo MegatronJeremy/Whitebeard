@@ -26,8 +26,8 @@ applicable agreement for further details.
 	(port
 		(pt 0 32)
 		(input)
-		(text "d_in[6..0]" (rect 0 0 51 14)(font "Arial" (font_size 8)))
-		(text "d_in[6..0]" (rect 21 27 72 41)(font "Arial" (font_size 8)))
+		(text "d_in[4..0]" (rect 0 0 51 14)(font "Arial" (font_size 8)))
+		(text "d_in[4..0]" (rect 21 27 72 41)(font "Arial" (font_size 8)))
 		(line (pt 0 32)(pt 16 32)(line_width 3))
 	)
 	(port

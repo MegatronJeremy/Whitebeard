@@ -23,7 +23,7 @@ applicable agreement for further details.
 	(input)
 	(rect 112 184 280 200)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "C" (rect 5 0 14 12)(font "Arial" ))
+	(text "C" (rect 5 0 13 12)(font "Arial" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -39,7 +39,7 @@ applicable agreement for further details.
 	(input)
 	(rect 112 216 280 232)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "AB[7..0]" (rect 5 0 46 12)(font "Arial" ))
+	(text "AB[7..0]" (rect 5 0 45 12)(font "Arial" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -55,7 +55,7 @@ applicable agreement for further details.
 	(input)
 	(rect 112 248 280 264)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "BB[7..0]" (rect 5 0 46 12)(font "Arial" ))
+	(text "BB[7..0]" (rect 5 0 45 12)(font "Arial" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -71,7 +71,7 @@ applicable agreement for further details.
 	(input)
 	(rect 112 312 280 328)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "ALU7" (rect 5 0 33 12)(font "Arial" ))
+	(text "ALU7" (rect 5 0 32 12)(font "Arial" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -87,7 +87,7 @@ applicable agreement for further details.
 	(input)
 	(rect 112 344 280 360)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "ADD" (rect 5 0 29 12)(font "Arial" ))
+	(text "ADD" (rect 5 0 28 12)(font "Arial" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -103,7 +103,7 @@ applicable agreement for further details.
 	(input)
 	(rect 112 368 280 384)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "SUB" (rect 5 0 28 12)(font "Arial" ))
+	(text "SUB" (rect 5 0 27 12)(font "Arial" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -762,46 +762,6 @@ applicable agreement for further details.
 	(pt 320 320)
 )
 (connector
-	(text "AB[7]" (rect 200 408 227 420)(font "Arial" ))
-	(pt 216 424)
-	(pt 200 424)
-)
-(connector
-	(text "AB[6]" (rect 200 424 227 436)(font "Arial" ))
-	(pt 216 440)
-	(pt 200 440)
-)
-(connector
-	(text "AB[5]" (rect 200 440 227 452)(font "Arial" ))
-	(pt 216 456)
-	(pt 200 456)
-)
-(connector
-	(text "AB[4]" (rect 200 456 227 468)(font "Arial" ))
-	(pt 216 472)
-	(pt 200 472)
-)
-(connector
-	(text "AB[3]" (rect 200 472 227 484)(font "Arial" ))
-	(pt 216 488)
-	(pt 200 488)
-)
-(connector
-	(text "AB[2]" (rect 208 488 235 500)(font "Arial" ))
-	(pt 200 504)
-	(pt 216 504)
-)
-(connector
-	(text "AB[1]" (rect 200 504 227 516)(font "Arial" ))
-	(pt 216 520)
-	(pt 200 520)
-)
-(connector
-	(text "AB[0]" (rect 200 520 227 532)(font "Arial" ))
-	(pt 216 536)
-	(pt 200 536)
-)
-(connector
 	(text "ADD" (rect 290 336 313 348)(font "Arial" ))
 	(pt 280 352)
 	(pt 320 352)
@@ -1071,6 +1031,46 @@ applicable agreement for further details.
 	(text "nzcv[3]" (rect 544 112 580 124)(font "Arial" ))
 	(pt 544 128)
 	(pt 568 128)
+)
+(connector
+	(text "AB[7]" (rect 176 408 203 420)(font "Arial" ))
+	(pt 216 424)
+	(pt 176 424)
+)
+(connector
+	(text "AB[6]" (rect 176 424 203 436)(font "Arial" ))
+	(pt 216 440)
+	(pt 176 440)
+)
+(connector
+	(text "AB[5]" (rect 176 440 203 452)(font "Arial" ))
+	(pt 216 456)
+	(pt 176 456)
+)
+(connector
+	(text "AB[4]" (rect 176 456 203 468)(font "Arial" ))
+	(pt 216 472)
+	(pt 176 472)
+)
+(connector
+	(text "AB[3]" (rect 176 472 203 484)(font "Arial" ))
+	(pt 216 488)
+	(pt 176 488)
+)
+(connector
+	(text "AB[2]" (rect 176 488 203 500)(font "Arial" ))
+	(pt 216 504)
+	(pt 176 504)
+)
+(connector
+	(text "AB[1]" (rect 176 504 203 516)(font "Arial" ))
+	(pt 216 520)
+	(pt 176 520)
+)
+(connector
+	(text "AB[0]" (rect 176 520 203 532)(font "Arial" ))
+	(pt 216 536)
+	(pt 176 536)
 )
 (junction (pt 504 224))
 (junction (pt 472 248))

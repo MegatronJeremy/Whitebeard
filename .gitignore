@@ -48,3 +48,5 @@ _output_files/
 *.wlf
 *_info
 *_vmake
+*work
+*tmp

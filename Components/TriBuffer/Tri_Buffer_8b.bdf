@@ -23,7 +23,7 @@ applicable agreement for further details.
 	(input)
 	(rect 112 96 280 112)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "d_in[7..0]" (rect 5 0 52 12)(font "Arial" ))
+	(text "d_in[7..0]" (rect 5 0 51 12)(font "Arial" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -39,7 +39,7 @@ applicable agreement for further details.
 	(input)
 	(rect 344 48 512 64)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "ENbuffer" (rect 5 0 52 12)(font "Arial" ))
+	(text "ENbuffer" (rect 5 0 51 12)(font "Arial" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -56,7 +56,7 @@ applicable agreement for further details.
 	(output)
 	(rect 752 120 928 136)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
-	(text "d_out[7..0]" (rect 90 0 143 12)(font "Arial" ))
+	(text "d_out_tri[7..0]" (rect 90 0 158 12)(font "Arial" ))
 	(pt 0 8)
 	(drawing
 		(line (pt 0 8)(pt 52 8))
@@ -513,7 +513,7 @@ applicable agreement for further details.
 	(pt 528 104)
 )
 (connector
-	(text "d_out_tri[7..0]" (rect 736 112 804 124)(font "Arial" ))
+	(text "d_out_tri[7..0]" (rect 704 104 772 116)(font "Arial" ))
 	(pt 752 128)
 	(pt 736 128)
 	(bus)
