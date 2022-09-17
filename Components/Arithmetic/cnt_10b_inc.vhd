@@ -1,0 +1,27 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.all;
+use IEEE.STD_LOGIC_UNSIGNED.all;
+
+entity cnt_10b_inc is
+    Port (
+		 rst,clk : in std_logic;
+		 inc: in std_logic;
+		 en: in std_logic;
+		 o: out std_logic_vector(0 to 9)
+	 );
+end cnt_10b_inc;
+
+architecture count_arch of cnt_10b_inc is
+   signal count : std_logic_vector(0 to 9) := "0000000000";
+    begin
+      process(rst,clk)
+        begin
+			 if (en = '1') then
+				 if (rst = '1') then count <= "0000000000";
+				 elsif (inc = '1') then count <= count + 1;
+				 end if;
+          end if;
+    end process;
+    o <= count;
+end count_arch;
