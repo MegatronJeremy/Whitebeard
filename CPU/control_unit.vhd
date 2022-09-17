@@ -114,6 +114,7 @@ architecture beh of control_unit is
   constant REG_DST_ALU : std_logic_vector(1 downto 0) := "00";
   constant REG_DST_IMM : std_logic_vector(1 downto 0) := "01";
   constant REG_DST_SHF : std_logic_vector(1 downto 0) := "10";
+  constant REG_DST_DBUS : std_logic_vector(1 downto 0) := "11";
     
   constant ALU_B_RS2 : std_logic_vector(1 downto 0) := "00";
   constant ALU_B_IMM : std_logic_vector(1 downto 0) := "01";
@@ -261,6 +262,7 @@ instr_decode : process(instr, state, busy, opcode, reg_src)
 						abus_out <= '1';
 						reg_a_sel <= REG_A_POI;
 						ld_rdst <= '1';
+						reg_dst_sel <= REG_DST_DBUS;
 						ld_psw <= '1';
 						psw_sel <= PSW_DBUS_IN;
 						clr_state <= '1';

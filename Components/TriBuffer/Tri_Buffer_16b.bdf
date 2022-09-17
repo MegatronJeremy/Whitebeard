@@ -56,7 +56,7 @@ applicable agreement for further details.
 	(output)
 	(rect 720 104 896 120)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
-	(text "d_out[15..0]" (rect 90 0 149 12)(font "Arial" ))
+	(text "d_out_tri[15..0]" (rect 90 0 164 12)(font "Arial" ))
 	(pt 0 8)
 	(drawing
 		(line (pt 0 8)(pt 52 8))
@@ -857,7 +857,7 @@ applicable agreement for further details.
 	(pt 496 472)
 )
 (connector
-	(text "d_out_tri[15..0]" (rect 704 96 778 108)(font "Arial" ))
+	(text "d_out_tri[15..0]" (rect 664 88 738 100)(font "Arial" ))
 	(pt 720 112)
 	(pt 704 112)
 	(bus)

@@ -14,7 +14,7 @@
 
 -- PROGRAM		"Quartus II 64-Bit"
 -- VERSION		"Version 13.1.0 Build 162 10/23/2013 SJ Web Edition"
--- CREATED		"Sat Sep 17 10:35:46 2022"
+-- CREATED		"Sat Sep 17 21:46:02 2022"
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.all; 
@@ -26,181 +26,180 @@ ENTITY Tri_Buffer_16b IS
 	(
 		ENbuffer :  IN  STD_LOGIC;
 		d_in :  IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
-		d_out :  OUT  STD_LOGIC_VECTOR(15 DOWNTO 0)
+		d_out_tri :  OUT  STD_LOGIC_VECTOR(15 DOWNTO 0)
 	);
 END Tri_Buffer_16b;
 
 ARCHITECTURE bdf_type OF Tri_Buffer_16b IS 
 
-SIGNAL	d_out_ALTERA_SYNTHESIZED :  STD_LOGIC_VECTOR(15 DOWNTO 0);
-SIGNAL	d_out_tri :  STD_LOGIC_VECTOR(15 DOWNTO 0);
+SIGNAL	d_out :  STD_LOGIC_VECTOR(15 DOWNTO 0);
+SIGNAL	d_out_tri_ALTERA_SYNTHESIZED :  STD_LOGIC_VECTOR(15 DOWNTO 0);
 
 
 BEGIN 
 
 
 
-PROCESS(d_out_ALTERA_SYNTHESIZED(7),ENbuffer)
+PROCESS(d_out(7),ENbuffer)
 BEGIN
 if (ENbuffer = '1') THEN
-	d_out_tri(7) <= d_out_ALTERA_SYNTHESIZED(7);
+	d_out_tri_ALTERA_SYNTHESIZED(7) <= d_out(7);
 ELSE
-	d_out_tri(7) <= 'Z';
+	d_out_tri_ALTERA_SYNTHESIZED(7) <= 'Z';
 END IF;
 END PROCESS;
 
 
-PROCESS(d_out_ALTERA_SYNTHESIZED(6),ENbuffer)
+PROCESS(d_out(6),ENbuffer)
 BEGIN
 if (ENbuffer = '1') THEN
-	d_out_tri(6) <= d_out_ALTERA_SYNTHESIZED(6);
+	d_out_tri_ALTERA_SYNTHESIZED(6) <= d_out(6);
 ELSE
-	d_out_tri(6) <= 'Z';
+	d_out_tri_ALTERA_SYNTHESIZED(6) <= 'Z';
 END IF;
 END PROCESS;
 
 
-PROCESS(d_out_ALTERA_SYNTHESIZED(5),ENbuffer)
+PROCESS(d_out(5),ENbuffer)
 BEGIN
 if (ENbuffer = '1') THEN
-	d_out_tri(5) <= d_out_ALTERA_SYNTHESIZED(5);
+	d_out_tri_ALTERA_SYNTHESIZED(5) <= d_out(5);
 ELSE
-	d_out_tri(5) <= 'Z';
+	d_out_tri_ALTERA_SYNTHESIZED(5) <= 'Z';
 END IF;
 END PROCESS;
 
 
-PROCESS(d_out_ALTERA_SYNTHESIZED(4),ENbuffer)
+PROCESS(d_out(4),ENbuffer)
 BEGIN
 if (ENbuffer = '1') THEN
-	d_out_tri(4) <= d_out_ALTERA_SYNTHESIZED(4);
+	d_out_tri_ALTERA_SYNTHESIZED(4) <= d_out(4);
 ELSE
-	d_out_tri(4) <= 'Z';
+	d_out_tri_ALTERA_SYNTHESIZED(4) <= 'Z';
 END IF;
 END PROCESS;
 
 
-PROCESS(d_out_ALTERA_SYNTHESIZED(3),ENbuffer)
+PROCESS(d_out(3),ENbuffer)
 BEGIN
 if (ENbuffer = '1') THEN
-	d_out_tri(3) <= d_out_ALTERA_SYNTHESIZED(3);
+	d_out_tri_ALTERA_SYNTHESIZED(3) <= d_out(3);
 ELSE
-	d_out_tri(3) <= 'Z';
+	d_out_tri_ALTERA_SYNTHESIZED(3) <= 'Z';
 END IF;
 END PROCESS;
 
 
-PROCESS(d_out_ALTERA_SYNTHESIZED(2),ENbuffer)
+PROCESS(d_out(2),ENbuffer)
 BEGIN
 if (ENbuffer = '1') THEN
-	d_out_tri(2) <= d_out_ALTERA_SYNTHESIZED(2);
+	d_out_tri_ALTERA_SYNTHESIZED(2) <= d_out(2);
 ELSE
-	d_out_tri(2) <= 'Z';
+	d_out_tri_ALTERA_SYNTHESIZED(2) <= 'Z';
 END IF;
 END PROCESS;
 
 
-PROCESS(d_out_ALTERA_SYNTHESIZED(1),ENbuffer)
+PROCESS(d_out(1),ENbuffer)
 BEGIN
 if (ENbuffer = '1') THEN
-	d_out_tri(1) <= d_out_ALTERA_SYNTHESIZED(1);
+	d_out_tri_ALTERA_SYNTHESIZED(1) <= d_out(1);
 ELSE
-	d_out_tri(1) <= 'Z';
+	d_out_tri_ALTERA_SYNTHESIZED(1) <= 'Z';
 END IF;
 END PROCESS;
 
 
-PROCESS(d_out_ALTERA_SYNTHESIZED(0),ENbuffer)
+PROCESS(d_out(0),ENbuffer)
 BEGIN
 if (ENbuffer = '1') THEN
-	d_out_tri(0) <= d_out_ALTERA_SYNTHESIZED(0);
+	d_out_tri_ALTERA_SYNTHESIZED(0) <= d_out(0);
 ELSE
-	d_out_tri(0) <= 'Z';
+	d_out_tri_ALTERA_SYNTHESIZED(0) <= 'Z';
 END IF;
 END PROCESS;
 
 
-PROCESS(d_out_ALTERA_SYNTHESIZED(15),ENbuffer)
+PROCESS(d_out(15),ENbuffer)
 BEGIN
 if (ENbuffer = '1') THEN
-	d_out_tri(15) <= d_out_ALTERA_SYNTHESIZED(15);
+	d_out_tri_ALTERA_SYNTHESIZED(15) <= d_out(15);
 ELSE
-	d_out_tri(15) <= 'Z';
+	d_out_tri_ALTERA_SYNTHESIZED(15) <= 'Z';
 END IF;
 END PROCESS;
 
 
-PROCESS(d_out_ALTERA_SYNTHESIZED(14),ENbuffer)
+PROCESS(d_out(14),ENbuffer)
 BEGIN
 if (ENbuffer = '1') THEN
-	d_out_tri(14) <= d_out_ALTERA_SYNTHESIZED(14);
+	d_out_tri_ALTERA_SYNTHESIZED(14) <= d_out(14);
 ELSE
-	d_out_tri(14) <= 'Z';
+	d_out_tri_ALTERA_SYNTHESIZED(14) <= 'Z';
 END IF;
 END PROCESS;
 
 
-PROCESS(d_out_ALTERA_SYNTHESIZED(13),ENbuffer)
+PROCESS(d_out(13),ENbuffer)
 BEGIN
 if (ENbuffer = '1') THEN
-	d_out_tri(13) <= d_out_ALTERA_SYNTHESIZED(13);
+	d_out_tri_ALTERA_SYNTHESIZED(13) <= d_out(13);
 ELSE
-	d_out_tri(13) <= 'Z';
+	d_out_tri_ALTERA_SYNTHESIZED(13) <= 'Z';
 END IF;
 END PROCESS;
 
 
-PROCESS(d_out_ALTERA_SYNTHESIZED(12),ENbuffer)
+PROCESS(d_out(12),ENbuffer)
 BEGIN
 if (ENbuffer = '1') THEN
-	d_out_tri(12) <= d_out_ALTERA_SYNTHESIZED(12);
+	d_out_tri_ALTERA_SYNTHESIZED(12) <= d_out(12);
 ELSE
-	d_out_tri(12) <= 'Z';
+	d_out_tri_ALTERA_SYNTHESIZED(12) <= 'Z';
 END IF;
 END PROCESS;
 
 
-PROCESS(d_out_ALTERA_SYNTHESIZED(11),ENbuffer)
+PROCESS(d_out(11),ENbuffer)
 BEGIN
 if (ENbuffer = '1') THEN
-	d_out_tri(11) <= d_out_ALTERA_SYNTHESIZED(11);
+	d_out_tri_ALTERA_SYNTHESIZED(11) <= d_out(11);
 ELSE
-	d_out_tri(11) <= 'Z';
+	d_out_tri_ALTERA_SYNTHESIZED(11) <= 'Z';
 END IF;
 END PROCESS;
 
 
-PROCESS(d_out_ALTERA_SYNTHESIZED(10),ENbuffer)
+PROCESS(d_out(10),ENbuffer)
 BEGIN
 if (ENbuffer = '1') THEN
-	d_out_tri(10) <= d_out_ALTERA_SYNTHESIZED(10);
+	d_out_tri_ALTERA_SYNTHESIZED(10) <= d_out(10);
 ELSE
-	d_out_tri(10) <= 'Z';
+	d_out_tri_ALTERA_SYNTHESIZED(10) <= 'Z';
 END IF;
 END PROCESS;
 
 
-PROCESS(d_out_ALTERA_SYNTHESIZED(9),ENbuffer)
+PROCESS(d_out(9),ENbuffer)
 BEGIN
 if (ENbuffer = '1') THEN
-	d_out_tri(9) <= d_out_ALTERA_SYNTHESIZED(9);
+	d_out_tri_ALTERA_SYNTHESIZED(9) <= d_out(9);
 ELSE
-	d_out_tri(9) <= 'Z';
+	d_out_tri_ALTERA_SYNTHESIZED(9) <= 'Z';
 END IF;
 END PROCESS;
 
 
-PROCESS(d_out_ALTERA_SYNTHESIZED(8),ENbuffer)
+PROCESS(d_out(8),ENbuffer)
 BEGIN
 if (ENbuffer = '1') THEN
-	d_out_tri(8) <= d_out_ALTERA_SYNTHESIZED(8);
+	d_out_tri_ALTERA_SYNTHESIZED(8) <= d_out(8);
 ELSE
-	d_out_tri(8) <= 'Z';
+	d_out_tri_ALTERA_SYNTHESIZED(8) <= 'Z';
 END IF;
 END PROCESS;
 
-d_out_ALTERA_SYNTHESIZED <= d_in;
-d_out_ALTERA_SYNTHESIZED <= d_out_tri;
-d_out <= d_out_ALTERA_SYNTHESIZED;
+d_out_tri <= d_out_tri_ALTERA_SYNTHESIZED;
+d_out <= d_in;
 
 END bdf_type;
