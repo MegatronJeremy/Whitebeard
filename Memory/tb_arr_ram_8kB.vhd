@@ -18,43 +18,43 @@ architecture test of tb_arr_ram_8kB is
 
 begin
 		clk_gen : clk <= not clk after Tclk/2;
+		
 		dut : entity work.arr_ram_8kB port map ( clk => clk, CS => CS, data_in => data_in, data_out => data_out, addr=>addr, rdwr=>rdwr);
+		
 		stimulus : process
-	  begin
-		 wait for 4 * Tclk;
-		 rdwr<='0';
-		 wait for 4 * Tclk;
-		 data_in <= x"ff";
-		 addr_helper<=x"0001";
-		 addr<=addr_helper(12 downto 0);
-		 CS<='1';
-		 wait for 4 * Tclk;
-		 CS<='0';
-		 data_in <= x"88";
-		 wait for 4 * Tclk;
-		 data_in <= x"1f";
-		 addr_helper<=x"0003";
-		 addr <= addr_helper(12 downto 0);
-		 CS<='1';
-		 wait for 4 * Tclk;
-		 CS<='1';
-		 rdwr<='1';
-		 wait for 1* Tclk;
-		 CS<='0';
-		 rdwr<='0';
-		 wait for 4 * Tclk;
-		 CS<='0';
-		 rdwr<='0';
-		 wait for 4 * Tclk;
-		 rdwr<='1';
-		 addr_helper<=x"0001";
-		 addr<=addr_helper(12 downto 0);
-		 data_in<=x"01";
-		 CS<='1';
-		 wait for 1 * Tclk;
-		 CS<='0';
-		 wait for 10 * Tclk;		 
-		 wait;
-	end process;
+		begin
+			
+			wait for 4*Tclk;
+			addr_helper<=x"ffff";
+			addr<=addr_helper(12 downto 0);
+			data_in<=x"ff";
+			CS<='1';
+			rdwr<='0';
+			wait for 1*Tclk;
+			CS<='0';
+			wait for 4*Tclk;
+			data_in<=x"31";
+			addr_helper<=x"0000";
+			addr<=addr_helper(12 downto 0);
+			rdwr<='0';
+			CS<='1';
+			wait for 1*Tclk;
+			CS<='0';
+			wait for 4*Tclk;
+			rdwr<='1';
+			CS<='1';
+			wait for 1*Tclk;
+			CS<='0';
+			rdwr<='1';
+			wait for 4*Tclk;
+			rdwr<='0';
+			addr_helper<=(others=>'Z');
+			addr<=addr_helper(12 downto 0);
+			wait for 10*Tclk;
+			wait;
+			
+			
+			
+		end process;
 		
 end test;
