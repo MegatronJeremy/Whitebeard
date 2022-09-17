@@ -38,7 +38,7 @@
 
 set_global_assignment -name FAMILY "Cyclone III"
 set_global_assignment -name DEVICE EP3C16F484C6
-set_global_assignment -name TOP_LEVEL_ENTITY adder_16b
+set_global_assignment -name TOP_LEVEL_ENTITY control_unit
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 13.1
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "22:15:18  SEPTEMBER 13, 2022"
 set_global_assignment -name LAST_QUARTUS_VERSION 13.1
@@ -61,6 +61,9 @@ set_global_assignment -name VHDL_FILE tb_alu_8b.vhd
 set_global_assignment -name VHDL_FILE tb_branch_test_psw.vhd
 set_global_assignment -name VHDL_FILE tb_reg_file_8x8b.vhd
 set_global_assignment -name BDF_FILE CPU.bdf
+set_global_assignment -name SEARCH_PATH "c:\\users\\dv200543d\\desktop\\quartus\\whitebeard\\components"
+set_global_assignment -name QIP_FILE lpm_constant0.qip
+set_global_assignment -name VHDL_FILE ../Components/SignExtenders/zero_ext_8_16.vhd
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top

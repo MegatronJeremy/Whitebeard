@@ -9,7 +9,7 @@ entity control_unit is
 		busy : in std_logic;
 				
 		-- ABUS
-		abus_sel : out std_logic_vector(1 downto 0) := (others => '0');
+		abus_sel : out std_logic := '0';
 		abus_out : out std_logic := '0';
 		
 		-- DBUS
@@ -39,7 +39,7 @@ entity control_unit is
 		out_reg_a : out std_logic_vector(2 downto 0) := (others => '0');
 		out_reg_b : out std_logic_vector(2 downto 0) := (others => '0');
 		reg_dst : out std_logic_vector(2 downto 0) := (others => '0');
-		reg_a_sel : out std_logic_vector(1 downto 0) := (others => '0');
+		reg_a_sel : out std_logic := '0';
 		reg_dst_sel : out std_logic_vector(1 downto 0) := (others => '0');
 		ld_rdst : out std_logic := '0';
 		
@@ -50,7 +50,6 @@ entity control_unit is
 		imm_shf : out std_logic_vector(2 downto 0) := (others => '0');
 		
 		-- ALU
-		alu_a_sel : out std_logic_vector(1 downto 0) := (others => '0');
 		alu_b_sel : out std_logic_vector(1 downto 0) := (others => '0');
 		alu_func : out std_logic_vector(2 downto 0) := (others => '0');
 		
@@ -64,7 +63,11 @@ entity control_unit is
 		
 		-- BARREL SHIFTER
 		shf_func : out std_logic_vector(1 downto 0) := (others => '0');
-		shf_b_sel : out std_logic := '0'
+		shf_b_sel : out std_logic := '0';
+		
+		-- ADDER
+		adder_a_sel : out std_logic := '0';
+		adder_b_sel : out std_logic := '0'
 		
   );
 end entity;
@@ -102,24 +105,19 @@ architecture beh of control_unit is
   constant SHFI : std_logic_vector(4 downto 0) := "10001";
   
   -- MX selection codes
-  constant ABUS_PC : std_logic_vector(1 downto 0) := "00";
-  constant ABUS_ALU : std_logic_vector(1 downto 0) := "01";
+  constant ABUS_PC : std_logic := '0';
+  constant ABUS_ADDER : std_logic := '1';
   
-  constant REG_A_RS1 : std_logic_vector(1 downto 0) := "00";
-  constant REG_A_POI : std_logic_vector(1 downto 0) := "01";
+  constant REG_A_RS1 : std_logic := '0';
+  constant REG_A_POI : std_logic := '1';
   
   constant REG_DST_ALU : std_logic_vector(1 downto 0) := "00";
   constant REG_DST_IMM : std_logic_vector(1 downto 0) := "01";
   constant REG_DST_SHF : std_logic_vector(1 downto 0) := "10";
-  
-  constant ALU_A_RS1 : std_logic_vector(1 downto 0) := "00";
-  constant ALU_A_POI : std_logic_vector(1 downto 0) := "01";
-  constant ALU_A_PC : std_logic_vector(1 downto 0) := "10";
-  
+    
   constant ALU_B_RS2 : std_logic_vector(1 downto 0) := "00";
   constant ALU_B_IMM : std_logic_vector(1 downto 0) := "01";
-  constant ALU_B_SE_OFFS : std_logic_vector(1 downto 0) := "10";
-  constant ALU_B_SE_IMM : std_logic_vector(1 downto 0) := "11";
+  constant ALU_B_SE_IMM : std_logic_vector(1 downto 0) := "10";
   
   constant PSW_ALU_OUT : std_logic_vector(1 downto 0) := "00";
   constant PSW_DBUS_IN : std_logic_vector(1 downto 0) := "01";
@@ -128,6 +126,12 @@ architecture beh of control_unit is
   
   constant SHF_RS2 : std_logic := '0';
   constant SHF_IMM : std_logic := '1';
+  
+  constant ADDER_A_REG : std_logic := '0';
+  constant ADDER_A_PC : std_logic := '1';
+  
+  constant ADDER_B_IMM : std_logic := '0';
+  constant ADDER_B_SE_OFFS : std_logic := '1';
   
   -- ALU FUNCTION CODES
   constant ALU_ADD : std_logic_vector(2 downto 0) := "000";
@@ -187,7 +191,6 @@ instr_decode : process(instr, state, busy, opcode, reg_src)
 	reg_dst_sel <= REG_DST_ALU;
 	ld_rdst <= '0';
 		
-	alu_a_sel <= ALU_A_RS1;
 	alu_b_sel <= ALU_B_RS2;
 	
 	br_enable <= '0';
@@ -196,24 +199,24 @@ instr_decode : process(instr, state, busy, opcode, reg_src)
 	psw_sel <= PSW_ALU_OUT;
 	
 	shf_b_sel <= SHF_RS2;
+	
+	adder_a_sel <= ADDER_A_REG;
+	adder_b_sel <= ADDER_B_IMM;
   
 	case state is
 		
-		when (FETCH_1 OR FETCH_2) =>
+		when FETCH_1 | FETCH_2 =>
 			if NOT(busy = '1') then
 				bus_busy_out <= '1';
 				bus_rd_out <= '1';
 				abus_out <= '1';
-				if state = FETCH_1 then
-					ld_ir1 <= '1';
-				else
-					ld_ir2 <= '1';
-				end if;
+				ld_ir1 <= NOT state(0);
+				ld_ir2 <= state(0);
 				inc_state <= '1';
 				inc_pc <= '1';
 			end if;
 			
-		when (EXEC_1 OR EXEC_2) => 
+		when EXEC_1 | EXEC_2 => 
 			case opcode is
 				when NOP =>
 					clr_state <= '1';
@@ -225,16 +228,13 @@ instr_decode : process(instr, state, busy, opcode, reg_src)
 					out_reg_a <= reg_src;
 					br_enable <= '1';
 					br_cond <= BR_TRUE;
-					alu_b_sel <= ALU_B_IMM;
-					alu_func <= ALU_ADD;
 					ld_pc <= '1';
 					clr_state <= '1';
 					
 				when BR =>
 					br_enable <= '1';
-					alu_a_sel <= ALU_A_PC;
-					alu_b_sel <= ALU_B_SE_OFFS;
-					alu_func <= ALU_ADD;
+					adder_a_sel <= ADDER_A_PC;
+					adder_b_sel <= ADDER_B_SE_OFFS;
 					ld_pc <= '1';
 					clr_state <= '1';
 				
@@ -246,11 +246,8 @@ instr_decode : process(instr, state, busy, opcode, reg_src)
 					if NOT(busy = '1') then
 						bus_busy_out <= '1';
 						bus_wr_out <= '1';
-						abus_sel <= ABUS_ALU;
+						abus_sel <= ABUS_ADDER;
 						abus_out <= '1';
-						alu_a_sel <= ALU_A_POI;
-						alu_b_sel <= ALU_B_IMM;
-						alu_func <= ALU_ADD;
 						reg_a_sel <= REG_A_POI;
 						dbus_out <= '1';
 						clr_state <= '1';
@@ -260,11 +257,8 @@ instr_decode : process(instr, state, busy, opcode, reg_src)
 					if NOT(busy = '1') then
 						bus_busy_out <= '1';
 						bus_wr_out <= '1';
-						abus_sel <= ABUS_ALU;
+						abus_sel <= ABUS_ADDER;
 						abus_out <= '1';
-						alu_a_sel <= ALU_A_POI;
-						alu_b_sel <= ALU_B_IMM;
-						alu_func <= ALU_ADD;
 						reg_a_sel <= REG_A_POI;
 						ld_rdst <= '1';
 						ld_psw <= '1';
@@ -301,7 +295,7 @@ instr_decode : process(instr, state, busy, opcode, reg_src)
 					ld_psw <= '1';
 					clr_state <= '1';
 					
-				when (ADD OR SUB OR BITW) =>
+				when ADD | BITW =>
 					ld_rdst <= '1';
 					ld_psw <= '1';
 					clr_state <= '1';
