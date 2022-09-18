@@ -17,9 +17,9 @@ architecture beh of rom_4kB_test is
 	type a_prog_memory is array (0 to 2**12-1) of std_logic_vector(7 downto 0);
 	signal prog_memory : a_prog_memory :=(
 		-- Test XOR, ADDI and ADD
-		0 => "10000" & "001",
+		0 => "01111" & "001",
 		1 => "001" & "01" & "001", -- xor r1, r1, r1
-		2 => "10000" & "010", 
+		2 => "01111" & "010", 
 		3 => "010" & "01" & "010", -- xor r2, r2, r2
 		4 => "01110" & "001",
 		5 => "001" & "00001", -- addi r1, r1, 1
