@@ -4335,6 +4335,15 @@ applicable agreement for further details.
 	(pt 504 1408)
 )
 (connector
+	(pt 272 448)
+	(pt 272 392)
+)
+(connector
+	(text "ENABLE" (rect 240 402 252 444)(font "Arial" )(vertical))
+	(pt 256 448)
+	(pt 256 424)
+)
+(connector
 	(text "VCLK" (rect 264 1261 276 1289)(font "Arial" )(vertical))
 	(pt 280 1296)
 	(pt 280 1248)
@@ -4356,6 +4365,11 @@ applicable agreement for further details.
 	(pt 264 1248)
 )
 (connector
+	(text "ENABLE" (rect 232 1250 244 1292)(font "Arial" )(vertical))
+	(pt 248 1296)
+	(pt 248 1248)
+)
+(connector
 	(pt 256 1480)
 	(pt 296 1480)
 	(bus)
@@ -4364,20 +4378,6 @@ applicable agreement for further details.
 	(pt 296 1480)
 	(pt 384 1480)
 	(bus)
-)
-(connector
-	(pt 272 448)
-	(pt 272 392)
-)
-(connector
-	(text "ENABLE" (rect 240 402 252 444)(font "Arial" )(vertical))
-	(pt 256 448)
-	(pt 256 424)
-)
-(connector
-	(text "ENABLE" (rect 232 1250 244 1292)(font "Arial" )(vertical))
-	(pt 248 1296)
-	(pt 248 1248)
 )
 (junction (pt 304 648))
 (junction (pt 144 648))
