@@ -39,18 +39,25 @@ begin
 			rdwr<='0';
 			CS<='1';
 			wait for 1*Tclk;
+			data_in<=x"25";
 			CS<='0';
 			wait for 4*Tclk;
 			rdwr<='1';
 			CS<='1';
 			wait for 1*Tclk;
 			CS<='0';
-			rdwr<='1';
-			wait for 4*Tclk;
 			rdwr<='0';
-			addr_helper<=(others=>'Z');
+			wait for 4*Tclk;
+			addr_helper<=(others=>'0');
 			addr<=addr_helper(12 downto 0);
-			wait for 10*Tclk;
+			rdwr<='1';
+			CS<='1';
+			wait for 1*Tclk;
+			CS<='0';
+			rdwr<='0';
+			addr_helper<=(others=>'0');
+			addr<=addr_helper(12 downto 0);
+			wait for 4*Tclk;
 			wait;
 			
 			
