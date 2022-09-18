@@ -18,14 +18,14 @@
 #
 # Quartus II 64-Bit
 # Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
-# Date created = 22:15:18  September 13, 2022
+# Date created = 07:57:41  September 18, 2022
 #
 # -------------------------------------------------------------------------- #
 #
 # Notes:
 #
 # 1) The default values for assignments are stored in the file:
-#		CPU_assignment_defaults.qdf
+#		TopLevel_assignment_defaults.qdf
 #    If this file doesn't exist, see file:
 #		assignment_defaults.qdf
 #
@@ -38,9 +38,9 @@
 
 set_global_assignment -name FAMILY "Cyclone III"
 set_global_assignment -name DEVICE EP3C16F484C6
-set_global_assignment -name TOP_LEVEL_ENTITY CPU
+set_global_assignment -name TOP_LEVEL_ENTITY TopLevel
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 13.1
-set_global_assignment -name PROJECT_CREATION_TIME_DATE "22:15:18  SEPTEMBER 13, 2022"
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "07:57:41  SEPTEMBER 18, 2022"
 set_global_assignment -name LAST_QUARTUS_VERSION 13.1
 set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
 set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
@@ -51,43 +51,38 @@ set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (VHDL)"
 set_global_assignment -name EDA_OUTPUT_DATA_FORMAT VHDL -section_id eda_simulation
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
-set_global_assignment -name SEARCH_PATH "c:\\users\\dv200543d\\desktop\\quartus\\whitebeard\\components"
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
-set_global_assignment -name VHDL_FILE tb_cpu.vhd
-set_global_assignment -name VHDL_FILE CPU.vhd
-set_global_assignment -name VHDL_FILE ../Components/SignExtenders/sign_ext_5_8.vhd
-set_global_assignment -name VHDL_FILE ../Components/SignExtenders/sign_ext_7_16.vhd
-set_global_assignment -name BDF_FILE ../Components/TriBuffer/Tri_Buffer_8b.bdf
-set_global_assignment -name BDF_FILE ../Components/TriBuffer/Tri_Buffer_16b.bdf
-set_global_assignment -name BDF_FILE ../Components/Plexers/mx2x8.bdf
-set_global_assignment -name BDF_FILE ../Components/Logic/zero_checker_8b.bdf
+set_global_assignment -name VHDL_FILE ../ChipSelects/CSrom.vhd
+set_global_assignment -name VHDL_FILE ../Components/TriBuffer/Tri_Buffer_16b.vhd
+set_global_assignment -name VHDL_FILE ../Components/TriBuffer/Tri_Buffer_8b.vhd
+set_global_assignment -name VHDL_FILE ../Components/Plexers/mx2x8.vhd
+set_global_assignment -name VHDL_FILE TopLevel.vhd
+set_global_assignment -name VHDL_FILE ../CPU/lpm_constant1.vhd
+set_global_assignment -name VHDL_FILE ../CPU/barrel_shifter_8b.vhd
+set_global_assignment -name VHDL_FILE ../CPU/reg_file_8x8b.vhd
+set_global_assignment -name VHDL_FILE ../CPU/alu_8b.vhd
+set_global_assignment -name VHDL_FILE ../CPU/branch_test_psw.vhd
+set_global_assignment -name VHDL_FILE ../CPU/lpm_constant0.vhd
+set_global_assignment -name VHDL_FILE ../CPU/control_unit.vhd
+set_global_assignment -name VHDL_FILE ../Components/Storage/reg_3b.vhd
 set_global_assignment -name VHDL_FILE ../Components/SignExtenders/zero_ext_8_16.vhd
-set_global_assignment -name VHDL_FILE lpm_constant0.vhd
-set_global_assignment -name VHDL_FILE ../Components/Storage/reg_8b.vhd
-set_global_assignment -name BDF_FILE nzcv_gen.bdf
-set_global_assignment -name SOURCE_FILE lpm_constant1.cmp
-set_global_assignment -name QIP_FILE lpm_constant1.qip
-set_global_assignment -name VHDL_FILE lpm_constant1.vhd
-set_global_assignment -name VHDL_FILE control_unit.vhd
-set_global_assignment -name VHDL_FILE barrel_shifter_8b.vhd
-set_global_assignment -name VHDL_FILE reg_file_8x8b.vhd
-set_global_assignment -name VHDL_FILE branch_test_psw.vhd
-set_global_assignment -name VHDL_FILE alu_8b.vhd
-set_global_assignment -name VHDL_FILE tb_barrel_shifter_8b.vhd
-set_global_assignment -name VHDL_FILE tb_alu_8b.vhd
-set_global_assignment -name VHDL_FILE tb_branch_test_psw.vhd
-set_global_assignment -name VHDL_FILE tb_reg_file_8x8b.vhd
-set_global_assignment -name QIP_FILE lpm_constant0.qip
-set_global_assignment -name VHDL_FILE ../Components/Storage/reg_2b_inc.vhd
+set_global_assignment -name VHDL_FILE ../Components/Storage/reg_4b.vhd
 set_global_assignment -name VHDL_FILE ../Components/Storage/reg_16b_inc.vhd
+set_global_assignment -name VHDL_FILE ../Components/Plexers/mux4_4b.vhd
 set_global_assignment -name VHDL_FILE ../Components/Plexers/mux2_3b.vhd
 set_global_assignment -name VHDL_FILE ../Components/Plexers/mux2_16b.vhd
-set_global_assignment -name BDF_FILE ../Components/Plexers/mx4x8.bdf
-set_global_assignment -name VHDL_FILE ../Components/Plexers/mux4_4b.vhd
-set_global_assignment -name VHDL_FILE ../Components/Storage/reg_4b.vhd
-set_global_assignment -name VHDL_FILE ../Components/Storage/reg_3b.vhd
+set_global_assignment -name VHDL_FILE ../Components/Storage/reg_2b_inc.vhd
+set_global_assignment -name VHDL_FILE ../Components/Storage/reg_8b.vhd
+set_global_assignment -name VHDL_FILE ../ProgramMemory/rom_4kB_test.vhd
 set_global_assignment -name VHDL_FILE ../Components/Arithmetic/adder_16b.vhd
-set_global_assignment -name SDC_FILE CPU.sdc
+set_global_assignment -name VHDL_FILE tb_top_level.vhd
+set_global_assignment -name VHDL_FILE ../Components/Plexers/mx4x8.vhd
+set_global_assignment -name VHDL_FILE ../Components/Logic/zero_checker_8b.vhd
+set_global_assignment -name VHDL_FILE ../CPU/nzcv_gen.vhd
+set_global_assignment -name VHDL_FILE ../CPU/CPU.vhd
+set_global_assignment -name VHDL_FILE ../Components/SignExtenders/sign_ext_7_16.vhd
+set_global_assignment -name VHDL_FILE ../Components/SignExtenders/sign_ext_5_8.vhd
+set_global_assignment -name SDC_FILE TopLevel.sdc
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

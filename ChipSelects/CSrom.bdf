@@ -21,9 +21,9 @@ applicable agreement for further details.
 (header "graphic" (version "1.4"))
 (pin
 	(input)
-	(rect 384 136 552 152)
+	(rect 344 136 512 152)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "A[15..12]" (rect 5 0 50 12)(font "Arial" ))
+	(text "A[15..12]" (rect 5 0 49 12)(font "Arial" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -102,32 +102,32 @@ applicable agreement for further details.
 	)
 )
 (connector
-	(text "A[3..0]" (rect 552 128 585 140)(font "Arial" ))
-	(pt 552 144)
-	(pt 576 144)
-	(bus)
-)
-(connector
-	(text "A[3]" (rect 618 104 638 116)(font "Arial" ))
+	(text "A[3]" (rect 586 104 606 116)(font "Arial" ))
 	(pt 608 120)
 	(pt 624 120)
 )
 (connector
-	(text "A[2]" (rect 618 120 638 132)(font "Arial" ))
+	(text "A[2]" (rect 586 120 606 132)(font "Arial" ))
 	(pt 608 136)
 	(pt 624 136)
 )
 (connector
-	(text "A[1]" (rect 618 136 638 148)(font "Arial" ))
+	(text "A[1]" (rect 586 136 606 148)(font "Arial" ))
 	(pt 608 152)
 	(pt 624 152)
 )
 (connector
-	(text "A[0]" (rect 618 152 638 164)(font "Arial" ))
+	(text "A[0]" (rect 586 152 606 164)(font "Arial" ))
 	(pt 608 168)
 	(pt 624 168)
 )
 (connector
 	(pt 688 144)
 	(pt 728 144)
+)
+(connector
+	(text "A[3..0]" (rect 512 128 545 140)(font "Arial" ))
+	(pt 512 144)
+	(pt 536 144)
+	(bus)
 )

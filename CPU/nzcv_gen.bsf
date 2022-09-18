@@ -21,7 +21,7 @@ applicable agreement for further details.
 (header "symbol" (version "1.2"))
 (symbol
 	(rect 16 16 176 176)
-	(text "nzcvGenSema" (rect 5 0 88 14)(font "Arial" (font_size 8)))
+	(text "nzcv_gen" (rect 5 0 61 14)(font "Arial" (font_size 8)))
 	(text "inst" (rect 8 144 25 156)(font "Arial" ))
 	(port
 		(pt 0 32)

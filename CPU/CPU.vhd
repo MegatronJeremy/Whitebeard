@@ -14,7 +14,7 @@
 
 -- PROGRAM		"Quartus II 64-Bit"
 -- VERSION		"Version 13.1.0 Build 162 10/23/2013 SJ Web Edition"
--- CREATED		"Sat Sep 17 21:57:30 2022"
+-- CREATED		"Sun Sep 18 10:27:30 2022"
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.all; 
@@ -169,6 +169,17 @@ COMPONENT mux2_3b
 	);
 END COMPONENT;
 
+COMPONENT nzcv_gen
+	PORT(C : IN STD_LOGIC;
+		 ALU7 : IN STD_LOGIC;
+		 ADD : IN STD_LOGIC;
+		 SUB : IN STD_LOGIC;
+		 AB : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+		 BB : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+		 nzcv : OUT STD_LOGIC_VECTOR(3 DOWNTO 0)
+	);
+END COMPONENT;
+
 COMPONENT zero_checker_8b
 	PORT(data_in : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
 		 zero : OUT STD_LOGIC
@@ -207,17 +218,6 @@ COMPONENT reg_8b
 		 ld : IN STD_LOGIC;
 		 d_in : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
 		 q_out : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
-	);
-END COMPONENT;
-
-COMPONENT nzcvgensema
-	PORT(C : IN STD_LOGIC;
-		 ALU7 : IN STD_LOGIC;
-		 ADD : IN STD_LOGIC;
-		 SUB : IN STD_LOGIC;
-		 AB : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
-		 BB : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
-		 nzcv : OUT STD_LOGIC_VECTOR(3 DOWNTO 0)
 	);
 END COMPONENT;
 
@@ -329,12 +329,12 @@ SIGNAL	SYNTHESIZED_WIRE_1 :  STD_LOGIC_VECTOR(15 DOWNTO 0);
 SIGNAL	SYNTHESIZED_WIRE_2 :  STD_LOGIC_VECTOR(7 DOWNTO 0);
 SIGNAL	SYNTHESIZED_WIRE_3 :  STD_LOGIC_VECTOR(2 DOWNTO 0);
 SIGNAL	SYNTHESIZED_WIRE_4 :  STD_LOGIC_VECTOR(15 DOWNTO 0);
-SIGNAL	SYNTHESIZED_WIRE_5 :  STD_LOGIC_VECTOR(7 DOWNTO 0);
-SIGNAL	SYNTHESIZED_WIRE_6 :  STD_LOGIC_VECTOR(15 DOWNTO 0);
-SIGNAL	SYNTHESIZED_WIRE_7 :  STD_LOGIC_VECTOR(15 DOWNTO 0);
+SIGNAL	SYNTHESIZED_WIRE_5 :  STD_LOGIC;
+SIGNAL	SYNTHESIZED_WIRE_6 :  STD_LOGIC;
+SIGNAL	SYNTHESIZED_WIRE_7 :  STD_LOGIC_VECTOR(7 DOWNTO 0);
 SIGNAL	SYNTHESIZED_WIRE_8 :  STD_LOGIC_VECTOR(15 DOWNTO 0);
-SIGNAL	SYNTHESIZED_WIRE_9 :  STD_LOGIC;
-SIGNAL	SYNTHESIZED_WIRE_10 :  STD_LOGIC;
+SIGNAL	SYNTHESIZED_WIRE_9 :  STD_LOGIC_VECTOR(15 DOWNTO 0);
+SIGNAL	SYNTHESIZED_WIRE_10 :  STD_LOGIC_VECTOR(15 DOWNTO 0);
 SIGNAL	SYNTHESIZED_WIRE_11 :  STD_LOGIC;
 SIGNAL	SYNTHESIZED_WIRE_12 :  STD_LOGIC;
 SIGNAL	SYNTHESIZED_WIRE_13 :  STD_LOGIC_VECTOR(3 DOWNTO 0);
@@ -452,7 +452,7 @@ PORT MAP(		 result => zero_2b);
 
 b2v_inst12 : sign_ext_5_8
 PORT MAP(d_in => se_imm,
-		 d_out => SYNTHESIZED_WIRE_5);
+		 d_out => SYNTHESIZED_WIRE_7);
 
 
 b2v_inst14 : lpm_constant1
@@ -467,6 +467,16 @@ PORT MAP(sel => shf_b_sel,
 		 d_out => SYNTHESIZED_WIRE_3);
 
 
+b2v_inst16 : nzcv_gen
+PORT MAP(C => alu_carry,
+		 ALU7 => alu(7),
+		 ADD => SYNTHESIZED_WIRE_5,
+		 SUB => SYNTHESIZED_WIRE_6,
+		 AB => reg_a,
+		 BB => reg_b,
+		 nzcv => psw_alu);
+
+
 b2v_inst17 : zero_checker_8b
 PORT MAP(data_in => dbus_in,
 		 zero => psw_dbus(2));
@@ -478,7 +488,7 @@ PORT MAP(EN => vcc,
 		 S1 => alu_b_sel(1),
 		 I0 => reg_b,
 		 I1 => imm,
-		 I2 => SYNTHESIZED_WIRE_5,
+		 I2 => SYNTHESIZED_WIRE_7,
 		 I3 => zero_8b,
 		 Y => SYNTHESIZED_WIRE_2);
 
@@ -491,8 +501,8 @@ PORT MAP(d_in => reg_a,
 b2v_inst2 : mux2_16b
 PORT MAP(sel => adder_b_sel,
 		 zero => gnd,
-		 d_in_1 => SYNTHESIZED_WIRE_6,
-		 d_in_2 => SYNTHESIZED_WIRE_7,
+		 d_in_1 => SYNTHESIZED_WIRE_8,
+		 d_in_2 => SYNTHESIZED_WIRE_9,
 		 d_out => SYNTHESIZED_WIRE_1);
 
 
@@ -501,12 +511,12 @@ PORT MAP(sel => abus_sel,
 		 zero => gnd,
 		 d_in_1 => pc,
 		 d_in_2 => adder,
-		 d_out => SYNTHESIZED_WIRE_8);
+		 d_out => SYNTHESIZED_WIRE_10);
 
 
 b2v_inst21 : zero_ext_8_16
 PORT MAP(d_in => imm,
-		 d_out => SYNTHESIZED_WIRE_6);
+		 d_out => SYNTHESIZED_WIRE_8);
 
 
 b2v_inst22 : zero_checker_8b
@@ -521,7 +531,7 @@ PORT MAP(data_in => shf,
 
 b2v_inst24 : tri_buffer_16b
 PORT MAP(ENbuffer => abus_out,
-		 d_in => SYNTHESIZED_WIRE_8,
+		 d_in => SYNTHESIZED_WIRE_10,
 		 d_out_tri => abus);
 
 
@@ -534,19 +544,37 @@ PORT MAP(ENbuffer => dbus_out_out,
 		 d_out_tri => dbus_out);
 
 
-SYNTHESIZED_WIRE_11 <= SYNTHESIZED_WIRE_9 AND alu_func(1);
+SYNTHESIZED_WIRE_6 <= SYNTHESIZED_WIRE_11 AND alu_func(1);
 
 
-SYNTHESIZED_WIRE_10 <= NOT(alu_func(2) OR alu_func(1));
+SYNTHESIZED_WIRE_5 <= NOT(alu_func(2) OR alu_func(1));
 
 
-SYNTHESIZED_WIRE_9 <= NOT(alu_func(2));
+SYNTHESIZED_WIRE_11 <= NOT(alu_func(2));
 
 
 
 b2v_inst3 : sign_ext_7_16
 PORT MAP(d_in => se_offset,
-		 d_out => SYNTHESIZED_WIRE_7);
+		 d_out => SYNTHESIZED_WIRE_9);
+
+psw_dbus(1 DOWNTO 0) <= zero_2b;
+
+
+psw_imm(1 DOWNTO 0) <= zero_2b;
+
+
+psw_shf(0) <= gnd;
+
+
+psw_shf(3) <= shf(7);
+
+
+psw_imm(3) <= imm(7);
+
+
+psw_dbus(3) <= dbus_in(7);
+
 
 
 b2v_inst4 : mux2_3b
@@ -603,16 +631,6 @@ PORT MAP(mr => mr,
 		 ld => ld_ir2,
 		 d_in => dbus_in,
 		 q_out => ir(7 DOWNTO 0));
-
-
-b2v_NZCV_ALU_GEN : nzcvgensema
-PORT MAP(C => alu_carry,
-		 ALU7 => alu(7),
-		 ADD => SYNTHESIZED_WIRE_10,
-		 SUB => SYNTHESIZED_WIRE_11,
-		 AB => reg_a,
-		 BB => reg_b,
-		 nzcv => psw_alu);
 
 
 b2v_POINTER_ADDRESS : reg_3b
