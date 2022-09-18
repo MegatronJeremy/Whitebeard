@@ -5,6 +5,7 @@ entity tb_reg_file_8x8b is
 end tb_reg_file_8x8b;
 
 architecture test of tb_reg_file_8x8b is
+		signal mr : std_logic := '1';
 		signal clk : std_logic := '0';
 		signal read_addr_1 : std_logic_vector(2 downto 0) := (others => '0');
 		signal read_addr_2 : std_logic_vector(2 downto 0) := (others => '0');
@@ -19,6 +20,7 @@ begin
 	clk_gen: clk <= not clk after Tclk/2;
 
 	dut: entity work.reg_file_8x8b port map (
+		mr => mr,
 		clk => clk,
 		read_addr_1 => read_addr_1,
 		read_addr_2 => read_addr_2,

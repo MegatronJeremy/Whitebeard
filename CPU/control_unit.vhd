@@ -144,7 +144,7 @@ architecture beh of control_unit is
 
 begin
 
-instr_decode : process(instr, state, busy, opcode, reg_src)
+instr_decode : process(instr, state, opcode, reg_src)
   begin
    
 	-- INSTRUCTION DECODE

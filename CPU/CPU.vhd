@@ -14,7 +14,7 @@
 
 -- PROGRAM		"Quartus II 64-Bit"
 -- VERSION		"Version 13.1.0 Build 162 10/23/2013 SJ Web Edition"
--- CREATED		"Sun Sep 18 10:27:30 2022"
+-- CREATED		"Sun Sep 18 17:37:28 2022"
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.all; 
@@ -251,6 +251,7 @@ END COMPONENT;
 
 COMPONENT reg_file_8x8b
 	PORT(clk : IN STD_LOGIC;
+		 mr : IN STD_LOGIC;
 		 load : IN STD_LOGIC;
 		 read_addr_1 : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
 		 read_addr_2 : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
@@ -660,6 +661,7 @@ PORT MAP(mr => mr,
 
 b2v_REG_FILE : reg_file_8x8b
 PORT MAP(clk => clk,
+		 mr => mr,
 		 load => ld_rdst,
 		 read_addr_1 => SYNTHESIZED_WIRE_14,
 		 read_addr_2 => out_reg_b,

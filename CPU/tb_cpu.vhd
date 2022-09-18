@@ -30,9 +30,11 @@ begin
 	
 	stimulus: process 
 	begin
+		wait for 10*Tclk;
 		mr <= '0';
-		wait for 2*Tclk;
+		wait for Tclk;
 		mr <= '1';
+		wait for Tclk;
 		wait for 10*Tclk;
 		wait;
 	end process;
