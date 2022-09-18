@@ -22,12 +22,11 @@ begin
 	stimulus: process
 	begin
 		wait for 2 * Tvclk;
-		enbl <= '1';
-		wait for 2 * Tvclk;
 		mr <= '0';
 		wait for 4 * Tvclk;
 		mr <= '1';
-		wait for Tvclk;
+		wait for 2 * Tvclk;
+		enbl <= '1';
 		wait;
 	end process;
 end test;
