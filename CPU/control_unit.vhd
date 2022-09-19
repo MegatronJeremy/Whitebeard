@@ -144,7 +144,7 @@ architecture beh of control_unit is
 
 begin
 
-instr_decode : process(instr, state, opcode, reg_src)
+instr_decode : process(instr, state, busy, opcode, reg_src)
   begin
    
 	-- INSTRUCTION DECODE
@@ -208,7 +208,6 @@ instr_decode : process(instr, state, opcode, reg_src)
 		
 		when FETCH_1 | FETCH_2 =>
 			if NOT(busy = '1') then
-				bus_busy_out <= '1';
 				bus_rd_out <= '1';
 				abus_out <= '1';
 				ld_ir1 <= NOT state(0);
@@ -245,7 +244,7 @@ instr_decode : process(instr, state, opcode, reg_src)
 
 				when ST =>
 					if NOT(busy = '1') then
-						bus_busy_out <= '1';
+						out_reg_b <= reg_src;
 						bus_wr_out <= '1';
 						abus_sel <= ABUS_ADDER;
 						abus_out <= '1';
@@ -256,7 +255,6 @@ instr_decode : process(instr, state, opcode, reg_src)
 					
 				when LD =>
 					if NOT(busy = '1') then
-						bus_busy_out <= '1';
 						bus_wr_out <= '1';
 						abus_sel <= ABUS_ADDER;
 						abus_out <= '1';
@@ -332,6 +330,6 @@ instr_decode : process(instr, state, opcode, reg_src)
 		when others =>
 		
 	 end case;
-	
+	 
   end process;
 end beh;

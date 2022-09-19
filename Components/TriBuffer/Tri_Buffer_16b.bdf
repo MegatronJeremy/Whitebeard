@@ -923,13 +923,13 @@ applicable agreement for further details.
 	(bus)
 )
 (connector
-	(text "d_out_tri[10]" (rect 553 720 614 732)(font "Arial" ))
+	(text "d_out_tri[10]" (rect 593 720 654 732)(font "Arial" ))
 	(pt 584 736)
 	(pt 608 736)
 	(bus)
 )
 (connector
-	(text "d_out_tri[11]" (rect 553 672 614 684)(font "Arial" ))
+	(text "d_out_tri[11]" (rect 593 672 654 684)(font "Arial" ))
 	(pt 584 688)
 	(pt 608 688)
 	(bus)

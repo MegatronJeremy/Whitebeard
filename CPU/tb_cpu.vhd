@@ -30,11 +30,16 @@ begin
 	
 	stimulus: process 
 	begin
-		wait for 10*Tclk;
 		mr <= '0';
 		wait for Tclk;
 		mr <= '1';
+		dbus_in <= "01110" & "001";
 		wait for Tclk;
+		dbus_in <= "001" & "00001"; -- addi r1, r1, 1
+		wait for 2*Tclk;
+		dbus_in <= "00111" & "001";
+		wait for Tclk;
+		dbus_in <= "00000000"; -- st r1, 0x00
 		wait for 10*Tclk;
 		wait;
 	end process;

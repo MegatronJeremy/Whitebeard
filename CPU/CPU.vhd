@@ -14,7 +14,7 @@
 
 -- PROGRAM		"Quartus II 64-Bit"
 -- VERSION		"Version 13.1.0 Build 162 10/23/2013 SJ Web Edition"
--- CREATED		"Sun Sep 18 17:37:28 2022"
+-- CREATED		"Mon Sep 19 09:33:12 2022"
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.all; 
@@ -192,20 +192,6 @@ COMPONENT zero_ext_8_16
 	);
 END COMPONENT;
 
-COMPONENT tri_buffer_16b
-	PORT(ENbuffer : IN STD_LOGIC;
-		 d_in : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
-		 d_out_tri : OUT STD_LOGIC_VECTOR(15 DOWNTO 0)
-	);
-END COMPONENT;
-
-COMPONENT tri_buffer_8b
-	PORT(ENbuffer : IN STD_LOGIC;
-		 d_in : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
-		 d_out_tri : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
-	);
-END COMPONENT;
-
 COMPONENT sign_ext_7_16
 	PORT(d_in : IN STD_LOGIC_VECTOR(6 DOWNTO 0);
 		 d_out : OUT STD_LOGIC_VECTOR(15 DOWNTO 0)
@@ -330,10 +316,10 @@ SIGNAL	SYNTHESIZED_WIRE_1 :  STD_LOGIC_VECTOR(15 DOWNTO 0);
 SIGNAL	SYNTHESIZED_WIRE_2 :  STD_LOGIC_VECTOR(7 DOWNTO 0);
 SIGNAL	SYNTHESIZED_WIRE_3 :  STD_LOGIC_VECTOR(2 DOWNTO 0);
 SIGNAL	SYNTHESIZED_WIRE_4 :  STD_LOGIC_VECTOR(15 DOWNTO 0);
-SIGNAL	SYNTHESIZED_WIRE_5 :  STD_LOGIC;
+SIGNAL	SYNTHESIZED_WIRE_5 :  STD_LOGIC_VECTOR(15 DOWNTO 0);
 SIGNAL	SYNTHESIZED_WIRE_6 :  STD_LOGIC;
-SIGNAL	SYNTHESIZED_WIRE_7 :  STD_LOGIC_VECTOR(7 DOWNTO 0);
-SIGNAL	SYNTHESIZED_WIRE_8 :  STD_LOGIC_VECTOR(15 DOWNTO 0);
+SIGNAL	SYNTHESIZED_WIRE_7 :  STD_LOGIC;
+SIGNAL	SYNTHESIZED_WIRE_8 :  STD_LOGIC_VECTOR(7 DOWNTO 0);
 SIGNAL	SYNTHESIZED_WIRE_9 :  STD_LOGIC_VECTOR(15 DOWNTO 0);
 SIGNAL	SYNTHESIZED_WIRE_10 :  STD_LOGIC_VECTOR(15 DOWNTO 0);
 SIGNAL	SYNTHESIZED_WIRE_11 :  STD_LOGIC;
@@ -453,7 +439,152 @@ PORT MAP(		 result => zero_2b);
 
 b2v_inst12 : sign_ext_5_8
 PORT MAP(d_in => se_imm,
-		 d_out => SYNTHESIZED_WIRE_7);
+		 d_out => SYNTHESIZED_WIRE_8);
+
+
+PROCESS(SYNTHESIZED_WIRE_5,abus_out)
+BEGIN
+if (abus_out = '1') THEN
+	abus(15) <= SYNTHESIZED_WIRE_5(15);
+ELSE
+	abus(15) <= 'Z';
+END IF;
+END PROCESS;
+
+PROCESS(SYNTHESIZED_WIRE_5,abus_out)
+BEGIN
+if (abus_out = '1') THEN
+	abus(14) <= SYNTHESIZED_WIRE_5(14);
+ELSE
+	abus(14) <= 'Z';
+END IF;
+END PROCESS;
+
+PROCESS(SYNTHESIZED_WIRE_5,abus_out)
+BEGIN
+if (abus_out = '1') THEN
+	abus(13) <= SYNTHESIZED_WIRE_5(13);
+ELSE
+	abus(13) <= 'Z';
+END IF;
+END PROCESS;
+
+PROCESS(SYNTHESIZED_WIRE_5,abus_out)
+BEGIN
+if (abus_out = '1') THEN
+	abus(12) <= SYNTHESIZED_WIRE_5(12);
+ELSE
+	abus(12) <= 'Z';
+END IF;
+END PROCESS;
+
+PROCESS(SYNTHESIZED_WIRE_5,abus_out)
+BEGIN
+if (abus_out = '1') THEN
+	abus(11) <= SYNTHESIZED_WIRE_5(11);
+ELSE
+	abus(11) <= 'Z';
+END IF;
+END PROCESS;
+
+PROCESS(SYNTHESIZED_WIRE_5,abus_out)
+BEGIN
+if (abus_out = '1') THEN
+	abus(10) <= SYNTHESIZED_WIRE_5(10);
+ELSE
+	abus(10) <= 'Z';
+END IF;
+END PROCESS;
+
+PROCESS(SYNTHESIZED_WIRE_5,abus_out)
+BEGIN
+if (abus_out = '1') THEN
+	abus(9) <= SYNTHESIZED_WIRE_5(9);
+ELSE
+	abus(9) <= 'Z';
+END IF;
+END PROCESS;
+
+PROCESS(SYNTHESIZED_WIRE_5,abus_out)
+BEGIN
+if (abus_out = '1') THEN
+	abus(8) <= SYNTHESIZED_WIRE_5(8);
+ELSE
+	abus(8) <= 'Z';
+END IF;
+END PROCESS;
+
+PROCESS(SYNTHESIZED_WIRE_5,abus_out)
+BEGIN
+if (abus_out = '1') THEN
+	abus(7) <= SYNTHESIZED_WIRE_5(7);
+ELSE
+	abus(7) <= 'Z';
+END IF;
+END PROCESS;
+
+PROCESS(SYNTHESIZED_WIRE_5,abus_out)
+BEGIN
+if (abus_out = '1') THEN
+	abus(6) <= SYNTHESIZED_WIRE_5(6);
+ELSE
+	abus(6) <= 'Z';
+END IF;
+END PROCESS;
+
+PROCESS(SYNTHESIZED_WIRE_5,abus_out)
+BEGIN
+if (abus_out = '1') THEN
+	abus(5) <= SYNTHESIZED_WIRE_5(5);
+ELSE
+	abus(5) <= 'Z';
+END IF;
+END PROCESS;
+
+PROCESS(SYNTHESIZED_WIRE_5,abus_out)
+BEGIN
+if (abus_out = '1') THEN
+	abus(4) <= SYNTHESIZED_WIRE_5(4);
+ELSE
+	abus(4) <= 'Z';
+END IF;
+END PROCESS;
+
+PROCESS(SYNTHESIZED_WIRE_5,abus_out)
+BEGIN
+if (abus_out = '1') THEN
+	abus(3) <= SYNTHESIZED_WIRE_5(3);
+ELSE
+	abus(3) <= 'Z';
+END IF;
+END PROCESS;
+
+PROCESS(SYNTHESIZED_WIRE_5,abus_out)
+BEGIN
+if (abus_out = '1') THEN
+	abus(2) <= SYNTHESIZED_WIRE_5(2);
+ELSE
+	abus(2) <= 'Z';
+END IF;
+END PROCESS;
+
+PROCESS(SYNTHESIZED_WIRE_5,abus_out)
+BEGIN
+if (abus_out = '1') THEN
+	abus(1) <= SYNTHESIZED_WIRE_5(1);
+ELSE
+	abus(1) <= 'Z';
+END IF;
+END PROCESS;
+
+PROCESS(SYNTHESIZED_WIRE_5,abus_out)
+BEGIN
+if (abus_out = '1') THEN
+	abus(0) <= SYNTHESIZED_WIRE_5(0);
+ELSE
+	abus(0) <= 'Z';
+END IF;
+END PROCESS;
 
 
 b2v_inst14 : lpm_constant1
@@ -471,8 +602,8 @@ PORT MAP(sel => shf_b_sel,
 b2v_inst16 : nzcv_gen
 PORT MAP(C => alu_carry,
 		 ALU7 => alu(7),
-		 ADD => SYNTHESIZED_WIRE_5,
-		 SUB => SYNTHESIZED_WIRE_6,
+		 ADD => SYNTHESIZED_WIRE_6,
+		 SUB => SYNTHESIZED_WIRE_7,
 		 AB => reg_a,
 		 BB => reg_b,
 		 nzcv => psw_alu);
@@ -489,7 +620,7 @@ PORT MAP(EN => vcc,
 		 S1 => alu_b_sel(1),
 		 I0 => reg_b,
 		 I1 => imm,
-		 I2 => SYNTHESIZED_WIRE_7,
+		 I2 => SYNTHESIZED_WIRE_8,
 		 I3 => zero_8b,
 		 Y => SYNTHESIZED_WIRE_2);
 
@@ -502,8 +633,8 @@ PORT MAP(d_in => reg_a,
 b2v_inst2 : mux2_16b
 PORT MAP(sel => adder_b_sel,
 		 zero => gnd,
-		 d_in_1 => SYNTHESIZED_WIRE_8,
-		 d_in_2 => SYNTHESIZED_WIRE_9,
+		 d_in_1 => SYNTHESIZED_WIRE_9,
+		 d_in_2 => SYNTHESIZED_WIRE_10,
 		 d_out => SYNTHESIZED_WIRE_1);
 
 
@@ -512,12 +643,12 @@ PORT MAP(sel => abus_sel,
 		 zero => gnd,
 		 d_in_1 => pc,
 		 d_in_2 => adder,
-		 d_out => SYNTHESIZED_WIRE_10);
+		 d_out => SYNTHESIZED_WIRE_5);
 
 
 b2v_inst21 : zero_ext_8_16
 PORT MAP(d_in => imm,
-		 d_out => SYNTHESIZED_WIRE_8);
+		 d_out => SYNTHESIZED_WIRE_9);
 
 
 b2v_inst22 : zero_checker_8b
@@ -530,25 +661,13 @@ PORT MAP(data_in => shf,
 		 zero => psw_shf(2));
 
 
-b2v_inst24 : tri_buffer_16b
-PORT MAP(ENbuffer => abus_out,
-		 d_in => SYNTHESIZED_WIRE_10,
-		 d_out_tri => abus);
-
-
 SYNTHESIZED_WIRE_12 <= ld_pc AND branch;
 
 
-b2v_inst26 : tri_buffer_8b
-PORT MAP(ENbuffer => dbus_out_out,
-		 d_in => reg_a,
-		 d_out_tri => dbus_out);
+SYNTHESIZED_WIRE_7 <= SYNTHESIZED_WIRE_11 AND alu_func(1);
 
 
-SYNTHESIZED_WIRE_6 <= SYNTHESIZED_WIRE_11 AND alu_func(1);
-
-
-SYNTHESIZED_WIRE_5 <= NOT(alu_func(2) OR alu_func(1));
+SYNTHESIZED_WIRE_6 <= NOT(alu_func(2) OR alu_func(1));
 
 
 SYNTHESIZED_WIRE_11 <= NOT(alu_func(2));
@@ -557,7 +676,7 @@ SYNTHESIZED_WIRE_11 <= NOT(alu_func(2));
 
 b2v_inst3 : sign_ext_7_16
 PORT MAP(d_in => se_offset,
-		 d_out => SYNTHESIZED_WIRE_9);
+		 d_out => SYNTHESIZED_WIRE_10);
 
 psw_dbus(1 DOWNTO 0) <= zero_2b;
 
@@ -576,6 +695,79 @@ psw_imm(3) <= imm(7);
 
 psw_dbus(3) <= dbus_in(7);
 
+
+
+PROCESS(reg_b,dbus_out_out)
+BEGIN
+if (dbus_out_out = '1') THEN
+	dbus_out(7) <= reg_b(7);
+ELSE
+	dbus_out(7) <= 'Z';
+END IF;
+END PROCESS;
+
+PROCESS(reg_b,dbus_out_out)
+BEGIN
+if (dbus_out_out = '1') THEN
+	dbus_out(6) <= reg_b(6);
+ELSE
+	dbus_out(6) <= 'Z';
+END IF;
+END PROCESS;
+
+PROCESS(reg_b,dbus_out_out)
+BEGIN
+if (dbus_out_out = '1') THEN
+	dbus_out(5) <= reg_b(5);
+ELSE
+	dbus_out(5) <= 'Z';
+END IF;
+END PROCESS;
+
+PROCESS(reg_b,dbus_out_out)
+BEGIN
+if (dbus_out_out = '1') THEN
+	dbus_out(4) <= reg_b(4);
+ELSE
+	dbus_out(4) <= 'Z';
+END IF;
+END PROCESS;
+
+PROCESS(reg_b,dbus_out_out)
+BEGIN
+if (dbus_out_out = '1') THEN
+	dbus_out(3) <= reg_b(3);
+ELSE
+	dbus_out(3) <= 'Z';
+END IF;
+END PROCESS;
+
+PROCESS(reg_b,dbus_out_out)
+BEGIN
+if (dbus_out_out = '1') THEN
+	dbus_out(2) <= reg_b(2);
+ELSE
+	dbus_out(2) <= 'Z';
+END IF;
+END PROCESS;
+
+PROCESS(reg_b,dbus_out_out)
+BEGIN
+if (dbus_out_out = '1') THEN
+	dbus_out(1) <= reg_b(1);
+ELSE
+	dbus_out(1) <= 'Z';
+END IF;
+END PROCESS;
+
+PROCESS(reg_b,dbus_out_out)
+BEGIN
+if (dbus_out_out = '1') THEN
+	dbus_out(0) <= reg_b(0);
+ELSE
+	dbus_out(0) <= 'Z';
+END IF;
+END PROCESS;
 
 
 b2v_inst4 : mux2_3b

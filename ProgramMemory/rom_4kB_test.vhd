@@ -4,12 +4,10 @@ use IEEE.numeric_Std.all;
 
 entity rom_4kB_test is
 	port (
-		clk : in std_logic;
 		cs : in std_logic;
 		-- Instruction interface
 		addr : in std_logic_vector(11 downto 0);
 		instr_out : out std_logic_vector(7 downto 0)
-		
 	);
 end entity;
 
@@ -33,7 +31,7 @@ architecture beh of rom_4kB_test is
 		13 => "00000000", -- st r1, 0x00
 		14 => "00111" & "010",
 		15 => "00000000", -- st r2, 0x00
-		-- r1 should be 1, r2 should be 2
+		-- r1 should be 1, r2 should be 4
 	
 	
 		others => x"00"
@@ -49,16 +47,13 @@ architecture beh of rom_4kB_test is
 	attribute ram_style : string;
 
 begin
-		--koristi d flipflopove vrv jer je sinhrona
-		process(clk)
+		process(cs, prog_memory, addr)
 		begin
-			if rising_edge(clk) then
 				if cs = '1' then
 					rom_out <= prog_memory(to_integer(unsigned(addr(11 downto 0))));
 				else
 					rom_out <= (others => 'Z');
 				end if;
-			end if;
 		end process;
 		instr_out<=rom_out;
 
