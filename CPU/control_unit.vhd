@@ -89,6 +89,8 @@ architecture beh of control_unit is
   constant NOP : std_logic_vector(4 downto 0) := "00000";
   constant HALT : std_logic_vector(4 downto 0) := "00001";
   constant JMP : std_logic_vector(4 downto 0) := "00010";
+  constant INST_OUT : std_logic_vector(4 downto 0) := "00011";
+  constant INST_IN : std_logic_vector(4 downto 0) := "00100";
   constant BR : std_logic_vector(4 downto 0) := "00101";
   constant POI : std_logic_vector(4 downto 0) := "00110";
   constant ST : std_logic_vector(4 downto 0) := "00111";
@@ -229,6 +231,30 @@ instr_decode : process(instr, state, busy, opcode, reg_src)
 					br_cond <= BR_TRUE;
 					ld_pc <= '1';
 					clr_state <= '1';
+					
+				when INST_OUT =>
+					if NOT(busy = '1') then
+						out_reg_b <= reg_src;
+						bus_wr_out <= '1';
+						abus_sel <= ABUS_ADDER;
+						abus_out <= '1';
+						reg_a_sel <= REG_A_POI;
+						dbus_out <= '1';
+						clr_state <= '1';
+					end if;
+					
+				when INST_IN =>
+					if NOT(busy = '1') then
+						bus_rd_out <= '1';
+						abus_sel <= ABUS_ADDER;
+						abus_out <= '1';
+						reg_a_sel <= REG_A_POI;
+						ld_rdst <= '1';
+						reg_dst_sel <= REG_DST_DBUS;
+						ld_psw <= '1';
+						psw_sel <= PSW_DBUS_IN;
+						clr_state <= '1';
+					end if;
 					
 				when BR =>
 					br_enable <= '1';
