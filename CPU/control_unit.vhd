@@ -5,7 +5,7 @@ entity control_unit is
   port (
 		-- Input logic
 		instr : in std_logic_vector(15 downto 0);
-		state : in std_logic_vector(1 downto 0);
+		state : in std_logic_vector(2 downto 0);
 		busy : in std_logic;
 				
 		-- ABUS
@@ -65,9 +65,8 @@ entity control_unit is
 		shf_func : out std_logic_vector(1 downto 0) := (others => '0');
 		shf_b_sel : out std_logic := '0';
 		
-		-- ADDER
-		adder_a_sel : out std_logic := '0';
-		adder_b_sel : out std_logic := '0'
+		-- MEMORY ADDR
+		addr_sel : out std_logic := '0'
 		
   );
 end entity;
@@ -80,10 +79,11 @@ architecture beh of control_unit is
   signal reg_src : std_logic_vector(2 downto 0);
   
   -- States
-  constant FETCH_1 : std_logic_vector(1 downto 0) := "00";
-  constant FETCH_2 : std_logic_vector(1 downto 0) := "01";
-  constant FETCH_3 : std_logic_vector(1 downto 0) := "10";
-  constant EXEC : std_logic_vector(1 downto 0) := "11";
+  constant FETCH_1 : std_logic_vector(2 downto 0) := "000";
+  constant FETCH_2 : std_logic_vector(2 downto 0) := "001";
+  constant FETCH_3 : std_logic_vector(2 downto 0) := "010";
+  constant EXEC_1 : std_logic_vector(2 downto 0) := "011";
+  constant EXEC_2 : std_logic_vector(2 downto 0) := "100";
   
   -- Opcodes
   constant NOP : std_logic_vector(4 downto 0) := "00000";
@@ -128,11 +128,8 @@ architecture beh of control_unit is
   constant SHF_RS2 : std_logic := '0';
   constant SHF_IMM : std_logic := '1';
   
-  constant ADDER_A_REG : std_logic := '0';
-  constant ADDER_A_PC : std_logic := '1';
-  
-  constant ADDER_B_IMM : std_logic := '0';
-  constant ADDER_B_SE_OFFS : std_logic := '1';
+  constant ADDR_POI : std_logic := '0';
+  constant ADDR_PC : std_logic := '1';
   
   -- ALU FUNCTION CODES
   constant ALU_ADD : std_logic_vector(2 downto 0) := "000";
@@ -201,8 +198,7 @@ instr_decode : process(instr, state, busy, opcode, reg_src)
 	
 	shf_b_sel <= SHF_RS2;
 	
-	adder_a_sel <= ADDER_A_REG;
-	adder_b_sel <= ADDER_B_IMM;
+	addr_sel <= ADDR_POI;
   
 	case state is
 		
@@ -219,7 +215,7 @@ instr_decode : process(instr, state, busy, opcode, reg_src)
 			ld_ir2 <= '1';
 			inc_state <= '1';
 			
-		when EXEC => 
+		when EXEC_1 | EXEC_2 => 
 			case opcode is
 				when NOP =>
 					clr_state <= '1';
@@ -236,8 +232,7 @@ instr_decode : process(instr, state, busy, opcode, reg_src)
 					
 				when BR =>
 					br_enable <= '1';
-					adder_a_sel <= ADDER_A_PC;
-					adder_b_sel <= ADDER_B_SE_OFFS;
+					addr_sel <= ADDR_PC;
 					ld_pc <= '1';
 					clr_state <= '1';
 				
@@ -257,17 +252,25 @@ instr_decode : process(instr, state, busy, opcode, reg_src)
 					end if;
 					
 				when LD =>
-					if NOT(busy = '1') then
-						bus_wr_out <= '1';
-						abus_sel <= ABUS_ADDER;
-						abus_out <= '1';
-						reg_a_sel <= REG_A_POI;
-						ld_rdst <= '1';
-						reg_dst_sel <= REG_DST_DBUS;
-						ld_psw <= '1';
-						psw_sel <= PSW_DBUS_IN;
-						clr_state <= '1';
-					end if;
+					case state is 
+						when EXEC_1 =>
+							if NOT(busy = '1') then
+								bus_rd_out <= '1';
+								abus_sel <= ABUS_ADDER;
+								abus_out <= '1';
+								reg_a_sel <= REG_A_POI;
+								inc_state <= '1';
+							end if;
+							
+						when EXEC_2 =>
+							ld_rdst <= '1';
+							reg_dst_sel <= REG_DST_DBUS;
+							ld_psw <= '1';
+							psw_sel <= PSW_DBUS_IN;
+							clr_state <= '1';
+						
+						when others =>
+					end case;
 					
 				when LDI =>
 					reg_dst_sel <= REG_DST_IMM;

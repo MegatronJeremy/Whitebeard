@@ -7,7 +7,7 @@ end tb_control_unit;
 architecture test of tb_control_unit is
 	-- Input logic
 	signal instr : std_logic_vector(15 downto 0) := (others => '0');
-	signal state : std_logic_vector(1 downto 0) := (others => '0');
+	signal state : std_logic_vector(2 downto 0) := (others => '0');
 	signal busy : std_logic := 'Z';
 				
 	-- ABUS
@@ -68,8 +68,7 @@ architecture test of tb_control_unit is
 	signal shf_b_sel : std_logic;
 		
 		-- ADDER
-	signal adder_a_sel : std_logic;
-	signal adder_b_sel : std_logic;
+	signal addr_sel : std_logic;
 	
 	constant Tclk : time := 20 ns;
 begin
@@ -109,8 +108,7 @@ begin
 		psw_sel => psw_sel,
 		shf_func => shf_func,
 		shf_b_sel => shf_b_sel,
-		adder_a_sel => adder_a_sel,
-		adder_b_sel => adder_b_sel
+		addr_sel => addr_sel
 	);
 	
 	stimulus: process 

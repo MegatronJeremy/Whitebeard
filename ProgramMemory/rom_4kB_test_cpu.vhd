@@ -2,7 +2,7 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_Std.all;
 
-entity rom_4kB_test is
+entity rom_4kB_test_cpu is
 	port (
 		cs : in std_logic;
 		clk : in std_logic;
@@ -13,7 +13,7 @@ entity rom_4kB_test is
 	);
 end entity;
 
-architecture beh of rom_4kB_test is
+architecture beh of rom_4kB_test_cpu is
 	type a_prog_memory is array (0 to 2**12-1) of std_logic_vector(7 downto 0);
 	signal prog_memory : a_prog_memory :=(
 		-- Test XOR, ADDI and ADD
@@ -29,12 +29,26 @@ architecture beh of rom_4kB_test is
 	   9 => "010" & "00" & "001", -- add r2, r2, r1
 		10 => "01101" & "010",
 	   11 =>	"001" & "00" & "010", -- add r2, r1, r2
-		12 => "00111" & "001",
-		13 => "00000000", -- st r1, 0x00
-		14 => "00111" & "010",
-		15 => "00000000", -- st r2, 0x00
 		-- r1 should be 1, r2 should be 4
-	
+		
+		-- Test POI, LDI, LD, ST, SUB (and RAM memory)
+		12 => "01001" & "101",
+		13 => "00010000", -- ldi r5, 0x10
+		14 => "00110" & "000",
+		15 => "00000" & "101", -- poi r5
+		16 => "00111" & "001",
+		17 => "00000000", -- st r1, 0x1000
+		18 => "00111" & "010",
+		19 => "00000001", -- st r2, 0x1001
+		20 => "01000" & "011",
+		21 => "00000000", -- ld r3, 0x1000
+		22 => "01000" & "100",
+		23 => "00000001", -- ld r4, 0x1001
+		24 => "01101" & "110",
+	   25 =>	"100" & "10" & "011", -- sub r6, r4, r3
+		26 => "00111" & "110",
+		27 => "00000010", -- st r6, 0x1002
+		-- r3 should be 1, r4 should be 4, r6 should 3
 	
 		others => x"00"
 			-- kod ide ovde !!!
