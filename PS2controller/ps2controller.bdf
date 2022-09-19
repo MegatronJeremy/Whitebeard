@@ -1258,32 +1258,6 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 1600 264 1648 296)
-	(text "NOT" (rect 27 22 47 32)(font "Arial" (font_size 6)))
-	(text "inst37" (rect 16 -1 45 11)(font "Arial" ))
-	(port
-		(pt 48 16)
-		(input)
-		(text "IN" (rect 2 7 13 19)(font "Courier New" (bold))(invisible))
-		(text "IN" (rect 35 13 46 25)(font "Courier New" (bold))(invisible))
-		(line (pt 48 16)(pt 35 16))
-	)
-	(port
-		(pt 0 16)
-		(output)
-		(text "OUT" (rect 32 7 49 19)(font "Courier New" (bold))(invisible))
-		(text "OUT" (rect -1 13 16 25)(font "Courier New" (bold))(invisible))
-		(line (pt 9 16)(pt 0 16))
-	)
-	(drawing
-		(line (pt 35 7)(pt 35 25))
-		(line (pt 35 25)(pt 17 16))
-		(line (pt 35 7)(pt 17 16))
-		(circle (rect 9 12 17 20))
-	)
-	(rotate180)
-)
-(symbol
 	(rect 1464 240 1528 320)
 	(text "DFF" (rect 45 0 63 10)(font "Arial" (font_size 6)))
 	(text "inst38" (rect 32 68 61 80)(font "Arial" ))
@@ -1866,12 +1840,6 @@ applicable agreement for further details.
 (connector
 	(pt 504 216)
 	(pt 480 216)
-)
-(connector
-	(text "ldReg" (rect 490 216 518 228)(font "Arial" ))
-	(pt 480 232)
-	(pt 528 232)
-	(bus)
 )
 (connector
 	(text "data_out[8..1]" (rect 480 232 548 244)(font "Arial" ))
@@ -2500,16 +2468,8 @@ applicable agreement for further details.
 	(pt 1592 264)
 )
 (connector
-	(pt 1592 280)
-	(pt 1600 280)
-)
-(connector
 	(pt 1592 264)
 	(pt 1592 280)
-)
-(connector
-	(pt 1648 280)
-	(pt 1656 280)
 )
 (connector
 	(pt 880 232)
@@ -2535,6 +2495,16 @@ applicable agreement for further details.
 	(text "mr" (rect 880 224 892 236)(font "Arial" ))
 	(pt 880 240)
 	(pt 888 240)
+)
+(connector
+	(text "cnt10" (rect 490 216 517 228)(font "Arial" ))
+	(pt 480 232)
+	(pt 528 232)
+	(bus)
+)
+(connector
+	(pt 1592 280)
+	(pt 1656 280)
 )
 (junction (pt 232 504))
 (junction (pt 232 456))
