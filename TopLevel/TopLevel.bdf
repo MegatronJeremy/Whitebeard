@@ -68,22 +68,6 @@ applicable agreement for further details.
 	)
 )
 (pin
-	(output)
-	(rect 952 256 1128 272)
-	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
-	(text "rdwr" (rect 90 0 110 12)(font "Arial" ))
-	(pt 0 8)
-	(drawing
-		(line (pt 0 8)(pt 52 8))
-		(line (pt 52 4)(pt 78 4))
-		(line (pt 52 12)(pt 78 12))
-		(line (pt 52 12)(pt 52 4))
-		(line (pt 78 4)(pt 82 8))
-		(line (pt 82 8)(pt 78 12))
-		(line (pt 78 12)(pt 82 8))
-	)
-)
-(pin
 	(bidir)
 	(rect 952 240 1128 256)
 	(text "BIDIR" (rect 1 0 25 10)(font "Arial" (font_size 6)))
@@ -158,7 +142,7 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 120 264 264 360)
+	(rect 120 248 264 344)
 	(text "CSrom" (rect 5 0 42 14)(font "Arial" (font_size 8)))
 	(text "inst4" (rect 8 80 31 92)(font "Arial" ))
 	(port
@@ -180,9 +164,9 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 336 264 536 344)
+	(rect 336 248 536 360)
 	(text "rom_4kB_test" (rect 5 0 73 12)(font "Arial" ))
-	(text "inst7" (rect 8 64 31 76)(font "Arial" ))
+	(text "inst7" (rect 8 96 31 108)(font "Arial" ))
 	(port
 		(pt 0 32)
 		(input)
@@ -193,9 +177,23 @@ applicable agreement for further details.
 	(port
 		(pt 0 48)
 		(input)
+		(text "clk" (rect 0 0 14 12)(font "Arial" ))
+		(text "clk" (rect 21 43 35 55)(font "Arial" ))
+		(line (pt 0 48)(pt 16 48))
+	)
+	(port
+		(pt 0 64)
+		(input)
+		(text "rd" (rect 0 0 9 12)(font "Arial" ))
+		(text "rd" (rect 21 59 30 71)(font "Arial" ))
+		(line (pt 0 64)(pt 16 64))
+	)
+	(port
+		(pt 0 80)
+		(input)
 		(text "addr[11..0]" (rect 0 0 53 12)(font "Arial" ))
-		(text "addr[11..0]" (rect 21 43 74 55)(font "Arial" ))
-		(line (pt 0 48)(pt 16 48)(line_width 3))
+		(text "addr[11..0]" (rect 21 75 74 87)(font "Arial" ))
+		(line (pt 0 80)(pt 16 80)(line_width 3))
 	)
 	(port
 		(pt 200 32)
@@ -205,7 +203,7 @@ applicable agreement for further details.
 		(line (pt 200 32)(pt 184 32)(line_width 3))
 	)
 	(drawing
-		(rectangle (rect 16 16 184 64))
+		(rectangle (rect 16 16 184 96))
 	)
 )
 (connector
@@ -225,20 +223,9 @@ applicable agreement for further details.
 	(pt 576 248)
 )
 (connector
-	(text "abus[15..12]" (rect 32 288 93 300)(font "Arial" ))
-	(pt 120 296)
-	(pt 96 296)
-	(bus)
-)
-(connector
 	(text "busy" (rect 810 232 834 244)(font "Arial" ))
 	(pt 952 248)
 	(pt 792 248)
-)
-(connector
-	(text "rdwr" (rect 810 248 830 260)(font "Arial" ))
-	(pt 952 264)
-	(pt 792 264)
 )
 (connector
 	(text "dbus_out[7..0]" (rect 808 304 878 316)(font "Arial" ))
@@ -257,28 +244,39 @@ applicable agreement for further details.
 	(pt 264 216)
 )
 (connector
+	(pt 536 280)
 	(pt 584 280)
-	(pt 544 280)
 	(bus)
 )
 (connector
-	(pt 544 280)
-	(pt 544 296)
+	(text "abus[15..12]" (rect 32 272 93 284)(font "Arial" ))
+	(pt 120 280)
+	(pt 96 280)
 	(bus)
 )
 (connector
-	(pt 544 296)
-	(pt 536 296)
-	(bus)
+	(pt 264 280)
+	(pt 336 280)
 )
 (connector
-	(pt 264 296)
+	(text "clk" (rect 298 288 312 300)(font "Arial" ))
+	(pt 320 296)
 	(pt 336 296)
 )
 (connector
-	(text "abus[11..0]" (rect 280 320 335 332)(font "Arial" ))
+	(text "abus[11..0]" (rect 280 336 335 348)(font "Arial" ))
+	(pt 320 328)
+	(pt 336 328)
+	(bus)
+)
+(connector
+	(text "rdwr" (rect 810 248 830 260)(font "Arial" ))
+	(pt 808 264)
+	(pt 792 264)
+)
+(connector
+	(text "rdwr" (rect 296 304 316 316)(font "Arial" ))
 	(pt 336 312)
 	(pt 320 312)
-	(bus)
 )
 (text "clk" (rect 552 256 566 268)(font "Arial" ))

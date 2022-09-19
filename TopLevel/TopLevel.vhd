@@ -14,7 +14,7 @@
 
 -- PROGRAM		"Quartus II 64-Bit"
 -- VERSION		"Version 13.1.0 Build 162 10/23/2013 SJ Web Edition"
--- CREATED		"Mon Sep 19 10:31:45 2022"
+-- CREATED		"Mon Sep 19 12:51:51 2022"
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.all; 
@@ -27,7 +27,6 @@ ENTITY TopLevel IS
 		clk :  IN  STD_LOGIC;
 		mr :  IN  STD_LOGIC;
 		busy :  INOUT  STD_LOGIC;
-		rdwr :  OUT  STD_LOGIC;
 		dbus_out :  OUT  STD_LOGIC_VECTOR(7 DOWNTO 0)
 	);
 END TopLevel;
@@ -53,12 +52,15 @@ END COMPONENT;
 
 COMPONENT rom_4kb_test
 	PORT(cs : IN STD_LOGIC;
+		 clk : IN STD_LOGIC;
+		 rd : IN STD_LOGIC;
 		 addr : IN STD_LOGIC_VECTOR(11 DOWNTO 0);
 		 instr_out : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
 	);
 END COMPONENT;
 
 SIGNAL	abus :  STD_LOGIC_VECTOR(15 DOWNTO 0);
+SIGNAL	rdwr :  STD_LOGIC;
 SIGNAL	SYNTHESIZED_WIRE_0 :  STD_LOGIC_VECTOR(7 DOWNTO 0);
 SIGNAL	SYNTHESIZED_WIRE_1 :  STD_LOGIC;
 
@@ -84,6 +86,8 @@ PORT MAP(A => abus(15 DOWNTO 12),
 
 b2v_inst7 : rom_4kb_test
 PORT MAP(cs => SYNTHESIZED_WIRE_1,
+		 clk => clk,
+		 rd => rdwr,
 		 addr => abus(11 DOWNTO 0),
 		 instr_out => SYNTHESIZED_WIRE_0);
 

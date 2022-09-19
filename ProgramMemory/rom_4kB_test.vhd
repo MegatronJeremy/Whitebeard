@@ -5,6 +5,8 @@ use IEEE.numeric_Std.all;
 entity rom_4kB_test is
 	port (
 		cs : in std_logic;
+		clk : in std_logic;
+		rd : in std_logic;
 		-- Instruction interface
 		addr : in std_logic_vector(11 downto 0);
 		instr_out : out std_logic_vector(7 downto 0)
@@ -47,13 +49,15 @@ architecture beh of rom_4kB_test is
 	attribute ram_style : string;
 
 begin
-		process(cs, prog_memory, addr)
+		process(clk, addr)
 		begin
-				if cs = '1' then
+			if (rising_edge(clk)) then
+				if cs = '1' and rd = '1' then
 					rom_out <= prog_memory(to_integer(unsigned(addr(11 downto 0))));
 				else
 					rom_out <= (others => 'Z');
 				end if;
+			end if;
 		end process;
 		instr_out<=rom_out;
 

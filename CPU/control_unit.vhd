@@ -82,8 +82,8 @@ architecture beh of control_unit is
   -- States
   constant FETCH_1 : std_logic_vector(1 downto 0) := "00";
   constant FETCH_2 : std_logic_vector(1 downto 0) := "01";
-  constant EXEC_1 : std_logic_vector(1 downto 0) := "10";
-  constant EXEC_2 : std_logic_vector(1 downto 0) := "11";
+  constant FETCH_3 : std_logic_vector(1 downto 0) := "10";
+  constant EXEC : std_logic_vector(1 downto 0) := "11";
   
   -- Opcodes
   constant NOP : std_logic_vector(4 downto 0) := "00000";
@@ -210,13 +210,16 @@ instr_decode : process(instr, state, busy, opcode, reg_src)
 			if NOT(busy = '1') then
 				bus_rd_out <= '1';
 				abus_out <= '1';
-				ld_ir1 <= NOT state(0);
-				ld_ir2 <= state(0);
+				ld_ir1 <= state(0);
 				inc_state <= '1';
 				inc_pc <= '1';
 			end if;
 			
-		when EXEC_1 | EXEC_2 => 
+		when FETCH_3 =>
+			ld_ir2 <= '1';
+			inc_state <= '1';
+			
+		when EXEC => 
 			case opcode is
 				when NOP =>
 					clr_state <= '1';

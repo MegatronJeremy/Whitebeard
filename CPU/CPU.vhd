@@ -14,7 +14,7 @@
 
 -- PROGRAM		"Quartus II 64-Bit"
 -- VERSION		"Version 13.1.0 Build 162 10/23/2013 SJ Web Edition"
--- CREATED		"Mon Sep 19 09:33:12 2022"
+-- CREATED		"Mon Sep 19 12:46:15 2022"
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.all; 
@@ -780,20 +780,20 @@ PORT MAP(sel => reg_a_sel,
 
 
 
-PROCESS(gnd,bus_rd_out)
+PROCESS(vcc,bus_rd_out)
 BEGIN
 if (bus_rd_out = '1') THEN
-	rdwr <= gnd;
+	rdwr <= vcc;
 ELSE
 	rdwr <= 'Z';
 END IF;
 END PROCESS;
 
 
-PROCESS(vcc,bus_wr_out)
+PROCESS(gnd,bus_wr_out)
 BEGIN
 if (bus_wr_out = '1') THEN
-	rdwr <= vcc;
+	rdwr <= gnd;
 ELSE
 	rdwr <= 'Z';
 END IF;

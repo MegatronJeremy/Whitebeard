@@ -2041,11 +2041,6 @@ applicable agreement for further details.
 	(pt 1640 568)
 )
 (connector
-	(text "gnd" (rect 1538 656 1555 668)(font "Arial" ))
-	(pt 1576 664)
-	(pt 1560 664)
-)
-(connector
 	(text "bus_rd_out" (rect 1584 592 1596 646)(font "Arial" )(vertical))
 	(pt 1600 632)
 	(pt 1600 648)
@@ -2053,11 +2048,6 @@ applicable agreement for further details.
 (connector
 	(pt 1640 664)
 	(pt 1624 664)
-)
-(connector
-	(text "vcc" (rect 1536 560 1554 572)(font "Arial" ))
-	(pt 1558 568)
-	(pt 1576 568)
 )
 (connector
 	(text "vcc" (rect 1538 464 1556 476)(font "Arial" ))
@@ -3217,5 +3207,15 @@ applicable agreement for further details.
 	(pt 1688 984)
 	(pt 1664 984)
 	(bus)
+)
+(connector
+	(text "vcc" (rect 1538 656 1556 668)(font "Arial" ))
+	(pt 1576 664)
+	(pt 1560 664)
+)
+(connector
+	(text "gnd" (rect 1536 560 1553 572)(font "Arial" ))
+	(pt 1558 568)
+	(pt 1576 568)
 )
 (junction (pt 1640 616))
