@@ -6,6 +6,7 @@ entity rom_4kB is
 	port (
 		clk : in std_logic;
 		cs : in std_logic;
+		rd : in std_logic;
 		-- Instruction interface
 		addr : in std_logic_vector(11 downto 0);
 		instr_out : out std_logic_vector(7 downto 0)
@@ -33,7 +34,7 @@ begin
 		process(clk)
 		begin
 			if rising_edge(clk) then
-				if cs = '1' then
+				if cs = '1' and rd = '1' then
 					rom_out <= prog_memory(to_integer(unsigned(addr(11 downto 0))));
 				else
 					rom_out <= (others => 'Z');
