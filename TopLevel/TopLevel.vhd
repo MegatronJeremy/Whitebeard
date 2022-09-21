@@ -14,7 +14,7 @@
 
 -- PROGRAM		"Quartus II 64-Bit"
 -- VERSION		"Version 13.1.0 Build 162 10/23/2013 SJ Web Edition"
--- CREATED		"Mon Sep 19 16:39:46 2022"
+-- CREATED		"Tue Sep 20 18:23:37 2022"
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.all; 
@@ -26,6 +26,8 @@ ENTITY TopLevel IS
 	(
 		clk :  IN  STD_LOGIC;
 		mr :  IN  STD_LOGIC;
+		kclk :  IN  STD_LOGIC;
+		kdata :  IN  STD_LOGIC;
 		busy :  INOUT  STD_LOGIC;
 		dbus_out :  OUT  STD_LOGIC_VECTOR(7 DOWNTO 0)
 	);
@@ -63,6 +65,17 @@ COMPONENT csram
 	);
 END COMPONENT;
 
+COMPONENT ps2controller
+	PORT(mr : IN STD_LOGIC;
+		 sclk : IN STD_LOGIC;
+		 RD : IN STD_LOGIC;
+		 EN : IN STD_LOGIC;
+		 kclk : IN STD_LOGIC;
+		 serial_data_in : IN STD_LOGIC;
+		 d_out_tri : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
+	);
+END COMPONENT;
+
 COMPONENT csrom
 	PORT(A : IN STD_LOGIC_VECTOR(15 DOWNTO 12);
 		 ENrom : OUT STD_LOGIC
@@ -78,12 +91,19 @@ COMPONENT rom_4kb_test_cpu
 	);
 END COMPONENT;
 
+COMPONENT csps2
+	PORT(A : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+		 ENps2 : OUT STD_LOGIC
+	);
+END COMPONENT;
+
 SIGNAL	abus :  STD_LOGIC_VECTOR(15 DOWNTO 0);
 SIGNAL	dbus_out_ALTERA_SYNTHESIZED :  STD_LOGIC_VECTOR(7 DOWNTO 0);
 SIGNAL	rdwr :  STD_LOGIC;
-SIGNAL	SYNTHESIZED_WIRE_4 :  STD_LOGIC_VECTOR(7 DOWNTO 0);
-SIGNAL	SYNTHESIZED_WIRE_2 :  STD_LOGIC;
+SIGNAL	SYNTHESIZED_WIRE_6 :  STD_LOGIC_VECTOR(7 DOWNTO 0);
 SIGNAL	SYNTHESIZED_WIRE_3 :  STD_LOGIC;
+SIGNAL	SYNTHESIZED_WIRE_4 :  STD_LOGIC;
+SIGNAL	SYNTHESIZED_WIRE_5 :  STD_LOGIC;
 
 
 BEGIN 
@@ -94,7 +114,7 @@ b2v_inst : cpu
 PORT MAP(mr => mr,
 		 clk => clk,
 		 busy => busy,
-		 dbus_in => SYNTHESIZED_WIRE_4,
+		 dbus_in => SYNTHESIZED_WIRE_6,
 		 rdwr => rdwr,
 		 abus => abus,
 		 dbus_out => dbus_out_ALTERA_SYNTHESIZED);
@@ -105,29 +125,44 @@ GENERIC MAP(addr_width => 13,
 			data_width => 8
 			)
 PORT MAP(clk => clk,
-		 cs => SYNTHESIZED_WIRE_2,
+		 cs => SYNTHESIZED_WIRE_3,
 		 rdwr => rdwr,
 		 addr => abus(12 DOWNTO 0),
 		 data_in => dbus_out_ALTERA_SYNTHESIZED,
-		 data_out => SYNTHESIZED_WIRE_4);
+		 data_out => SYNTHESIZED_WIRE_6);
 
 
 b2v_inst2 : csram
 PORT MAP(A => abus(15 DOWNTO 12),
-		 ENram => SYNTHESIZED_WIRE_2);
+		 ENram => SYNTHESIZED_WIRE_3);
+
+
+b2v_inst3 : ps2controller
+PORT MAP(mr => mr,
+		 sclk => clk,
+		 RD => rdwr,
+		 EN => SYNTHESIZED_WIRE_4,
+		 kclk => kclk,
+		 serial_data_in => kdata,
+		 d_out_tri => SYNTHESIZED_WIRE_6);
 
 
 b2v_inst4 : csrom
 PORT MAP(A => abus(15 DOWNTO 12),
-		 ENrom => SYNTHESIZED_WIRE_3);
+		 ENrom => SYNTHESIZED_WIRE_5);
 
 
 b2v_inst5 : rom_4kb_test_cpu
-PORT MAP(cs => SYNTHESIZED_WIRE_3,
+PORT MAP(cs => SYNTHESIZED_WIRE_5,
 		 clk => clk,
 		 rd => rdwr,
 		 addr => abus(11 DOWNTO 0),
-		 instr_out => SYNTHESIZED_WIRE_4);
+		 instr_out => SYNTHESIZED_WIRE_6);
+
+
+b2v_inst6 : csps2
+PORT MAP(A => abus,
+		 ENps2 => SYNTHESIZED_WIRE_4);
 
 dbus_out <= dbus_out_ALTERA_SYNTHESIZED;
 

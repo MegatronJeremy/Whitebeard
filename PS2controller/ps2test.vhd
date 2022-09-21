@@ -7,7 +7,7 @@ end ps2test;
 architecture test1 of ps2test is
 	signal mr : std_logic := '0';
 	signal serial_data_in : std_logic := '0';
-	signal RD : std_logic := '1';
+	signal RD : std_logic := '0';
 	signal EN : std_logic := '1';
 	signal sclk : std_logic := '0';
 	signal kclk : std_logic := '0';
