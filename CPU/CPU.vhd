@@ -14,7 +14,7 @@
 
 -- PROGRAM		"Quartus II 64-Bit"
 -- VERSION		"Version 13.1.0 Build 162 10/23/2013 SJ Web Edition"
--- CREATED		"Mon Sep 19 18:25:42 2022"
+-- CREATED		"Wed Sep 21 22:18:38 2022"
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.all; 
@@ -26,6 +26,7 @@ ENTITY CPU IS
 	(
 		clk :  IN  STD_LOGIC;
 		mr :  IN  STD_LOGIC;
+		intr :  IN  STD_LOGIC;
 		busy :  INOUT  STD_LOGIC;
 		dbus_in :  IN  STD_LOGIC_VECTOR(7 DOWNTO 0);
 		rdwr :  OUT  STD_LOGIC;
@@ -75,6 +76,8 @@ END COMPONENT;
 
 COMPONENT control_unit
 	PORT(busy : IN STD_LOGIC;
+		 intr : IN STD_LOGIC;
+		 pswi : IN STD_LOGIC;
 		 instr : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
 		 state : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
 		 abus_sel : OUT STD_LOGIC;
@@ -96,6 +99,12 @@ COMPONENT control_unit
 		 ld_psw : OUT STD_LOGIC;
 		 shf_b_sel : OUT STD_LOGIC;
 		 addr_sel : OUT STD_LOGIC;
+		 ld_spc : OUT STD_LOGIC;
+		 spc_sel : OUT STD_LOGIC;
+		 ld_spsw : OUT STD_LOGIC;
+		 spsw_sel : OUT STD_LOGIC;
+		 toggle_pswi : OUT STD_LOGIC;
+		 sel_intr : OUT STD_LOGIC;
 		 alu_b_sel : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
 		 alu_func : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
 		 br_cond : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
@@ -196,6 +205,20 @@ COMPONENT sign_ext_7_16
 	);
 END COMPONENT;
 
+COMPONENT mux2_4b
+	PORT(sel : IN STD_LOGIC;
+		 zero : IN STD_LOGIC;
+		 d_in_1 : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+		 d_in_2 : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+		 d_out : OUT STD_LOGIC_VECTOR(3 DOWNTO 0)
+	);
+END COMPONENT;
+
+COMPONENT lpm_constant3
+	PORT(		 result : OUT STD_LOGIC_VECTOR(15 DOWNTO 0)
+	);
+END COMPONENT;
+
 COMPONENT reg_8b
 	PORT(mr : IN STD_LOGIC;
 		 clk : IN STD_LOGIC;
@@ -279,6 +302,8 @@ SIGNAL	imm :  STD_LOGIC_VECTOR(7 DOWNTO 0);
 SIGNAL	imm_shf :  STD_LOGIC_VECTOR(2 DOWNTO 0);
 SIGNAL	inc_pc :  STD_LOGIC;
 SIGNAL	inc_state :  STD_LOGIC;
+SIGNAL	intr_ff :  STD_LOGIC;
+SIGNAL	intr_vec :  STD_LOGIC_VECTOR(15 DOWNTO 0);
 SIGNAL	ir :  STD_LOGIC_VECTOR(15 DOWNTO 0);
 SIGNAL	ld_ir1 :  STD_LOGIC;
 SIGNAL	ld_ir2 :  STD_LOGIC;
@@ -286,6 +311,8 @@ SIGNAL	ld_pc :  STD_LOGIC;
 SIGNAL	ld_poi :  STD_LOGIC;
 SIGNAL	ld_psw :  STD_LOGIC;
 SIGNAL	ld_rdst :  STD_LOGIC;
+SIGNAL	ld_spc :  STD_LOGIC;
+SIGNAL	ld_spsw :  STD_LOGIC;
 SIGNAL	out_reg_a :  STD_LOGIC_VECTOR(2 DOWNTO 0);
 SIGNAL	out_reg_b :  STD_LOGIC_VECTOR(2 DOWNTO 0);
 SIGNAL	pc :  STD_LOGIC_VECTOR(15 DOWNTO 0);
@@ -296,6 +323,7 @@ SIGNAL	psw_dbus :  STD_LOGIC_VECTOR(3 DOWNTO 0);
 SIGNAL	psw_imm :  STD_LOGIC_VECTOR(3 DOWNTO 0);
 SIGNAL	psw_sel :  STD_LOGIC_VECTOR(1 DOWNTO 0);
 SIGNAL	psw_shf :  STD_LOGIC_VECTOR(3 DOWNTO 0);
+SIGNAL	pswi :  STD_LOGIC;
 SIGNAL	reg_a :  STD_LOGIC_VECTOR(7 DOWNTO 0);
 SIGNAL	reg_a_sel :  STD_LOGIC;
 SIGNAL	reg_b :  STD_LOGIC_VECTOR(7 DOWNTO 0);
@@ -303,10 +331,16 @@ SIGNAL	reg_dst :  STD_LOGIC_VECTOR(2 DOWNTO 0);
 SIGNAL	reg_dst_sel :  STD_LOGIC_VECTOR(1 DOWNTO 0);
 SIGNAL	se_imm :  STD_LOGIC_VECTOR(4 DOWNTO 0);
 SIGNAL	se_offset :  STD_LOGIC_VECTOR(6 DOWNTO 0);
+SIGNAL	sel_intr :  STD_LOGIC;
 SIGNAL	shf :  STD_LOGIC_VECTOR(7 DOWNTO 0);
 SIGNAL	shf_b_sel :  STD_LOGIC;
 SIGNAL	shf_func :  STD_LOGIC_VECTOR(1 DOWNTO 0);
+SIGNAL	spc :  STD_LOGIC_VECTOR(15 DOWNTO 0);
+SIGNAL	spc_sel :  STD_LOGIC;
+SIGNAL	spsw :  STD_LOGIC_VECTOR(3 DOWNTO 0);
+SIGNAL	spsw_sel :  STD_LOGIC;
 SIGNAL	state :  STD_LOGIC_VECTOR(2 DOWNTO 0);
+SIGNAL	toggle_pswi :  STD_LOGIC;
 SIGNAL	vcc :  STD_LOGIC;
 SIGNAL	zero_2b :  STD_LOGIC_VECTOR(1 DOWNTO 0);
 SIGNAL	zero_3b :  STD_LOGIC_VECTOR(2 DOWNTO 0);
@@ -319,10 +353,14 @@ SIGNAL	SYNTHESIZED_WIRE_4 :  STD_LOGIC;
 SIGNAL	SYNTHESIZED_WIRE_5 :  STD_LOGIC;
 SIGNAL	SYNTHESIZED_WIRE_6 :  STD_LOGIC_VECTOR(7 DOWNTO 0);
 SIGNAL	SYNTHESIZED_WIRE_7 :  STD_LOGIC;
-SIGNAL	SYNTHESIZED_WIRE_8 :  STD_LOGIC;
-SIGNAL	SYNTHESIZED_WIRE_9 :  STD_LOGIC_VECTOR(3 DOWNTO 0);
-SIGNAL	SYNTHESIZED_WIRE_10 :  STD_LOGIC_VECTOR(2 DOWNTO 0);
-SIGNAL	SYNTHESIZED_WIRE_11 :  STD_LOGIC_VECTOR(7 DOWNTO 0);
+SIGNAL	SYNTHESIZED_WIRE_8 :  STD_LOGIC_VECTOR(3 DOWNTO 0);
+SIGNAL	SYNTHESIZED_WIRE_9 :  STD_LOGIC_VECTOR(15 DOWNTO 0);
+SIGNAL	SYNTHESIZED_WIRE_10 :  STD_LOGIC;
+SIGNAL	SYNTHESIZED_WIRE_11 :  STD_LOGIC;
+SIGNAL	SYNTHESIZED_WIRE_12 :  STD_LOGIC_VECTOR(15 DOWNTO 0);
+SIGNAL	SYNTHESIZED_WIRE_13 :  STD_LOGIC_VECTOR(3 DOWNTO 0);
+SIGNAL	SYNTHESIZED_WIRE_14 :  STD_LOGIC_VECTOR(2 DOWNTO 0);
+SIGNAL	SYNTHESIZED_WIRE_15 :  STD_LOGIC_VECTOR(7 DOWNTO 0);
 
 
 BEGIN 
@@ -364,6 +402,8 @@ PORT MAP(n => psw(3),
 
 b2v_CONTROL_UNIT : control_unit
 PORT MAP(busy => busy,
+		 intr => intr_ff,
+		 pswi => pswi,
 		 instr => ir,
 		 state => state,
 		 abus_sel => abus_sel,
@@ -385,6 +425,12 @@ PORT MAP(busy => busy,
 		 ld_psw => ld_psw,
 		 shf_b_sel => shf_b_sel,
 		 addr_sel => addr_sel,
+		 ld_spc => ld_spc,
+		 spc_sel => spc_sel,
+		 ld_spsw => ld_spsw,
+		 spsw_sel => spsw_sel,
+		 toggle_pswi => toggle_pswi,
+		 sel_intr => sel_intr,
 		 alu_b_sel => alu_b_sel,
 		 alu_func => alu_func,
 		 br_cond => br_cond,
@@ -406,7 +452,17 @@ PORT MAP(d_in_1 => psw_alu,
 		 d_in_3 => psw_imm,
 		 d_in_4 => psw_shf,
 		 sel => psw_sel,
-		 d_out => SYNTHESIZED_WIRE_9);
+		 d_out => SYNTHESIZED_WIRE_8);
+
+
+PROCESS(clk,mr)
+BEGIN
+IF (mr = '0') THEN
+	intr_ff <= '0';
+ELSIF (RISING_EDGE(clk)) THEN
+	intr_ff <= intr;
+END IF;
+END PROCESS;
 
 
 b2v_inst10 : mx4x8
@@ -417,7 +473,7 @@ PORT MAP(EN => vcc,
 		 I1 => imm,
 		 I2 => shf,
 		 I3 => dbus_in,
-		 Y => SYNTHESIZED_WIRE_11);
+		 Y => SYNTHESIZED_WIRE_15);
 
 
 b2v_inst11 : lpm_constant0
@@ -642,7 +698,19 @@ PORT MAP(data_in => shf,
 		 zero => psw_shf(2));
 
 
-SYNTHESIZED_WIRE_8 <= ld_pc AND branch;
+SYNTHESIZED_WIRE_10 <= ld_pc AND branch;
+
+
+PROCESS(clk,mr)
+VARIABLE pswi_synthesized_var : STD_LOGIC;
+BEGIN
+IF (mr = '0') THEN
+	pswi_synthesized_var := '1';
+ELSIF (RISING_EDGE(clk)) THEN
+	pswi_synthesized_var := pswi_synthesized_var XOR toggle_pswi;
+END IF;
+	pswi <= pswi_synthesized_var;
+END PROCESS;
 
 
 SYNTHESIZED_WIRE_5 <= SYNTHESIZED_WIRE_7 AND alu_func(1);
@@ -676,6 +744,14 @@ psw_imm(3) <= imm(7);
 
 psw_dbus(3) <= dbus_in(7);
 
+
+
+b2v_inst36 : mux2_4b
+PORT MAP(sel => spsw_sel,
+		 zero => gnd,
+		 d_in_1 => SYNTHESIZED_WIRE_8,
+		 d_in_2 => spsw,
+		 d_out => SYNTHESIZED_WIRE_13);
 
 
 PROCESS(reg_b,dbus_out_out)
@@ -759,10 +835,33 @@ PORT MAP(sel => reg_a_sel,
 		 zero => gnd,
 		 d_in_1 => out_reg_a,
 		 d_in_2 => poi,
-		 d_out => SYNTHESIZED_WIRE_10);
+		 d_out => SYNTHESIZED_WIRE_14);
 
 addr_1(7 DOWNTO 0) <= imm;
 
+
+
+b2v_inst41 : mux2_16b
+PORT MAP(sel => spc_sel,
+		 zero => gnd,
+		 d_in_1 => adder,
+		 d_in_2 => spc,
+		 d_out => SYNTHESIZED_WIRE_9);
+
+
+b2v_inst42 : mux2_16b
+PORT MAP(sel => sel_intr,
+		 zero => gnd,
+		 d_in_1 => SYNTHESIZED_WIRE_9,
+		 d_in_2 => intr_vec,
+		 d_out => SYNTHESIZED_WIRE_12);
+
+
+SYNTHESIZED_WIRE_11 <= sel_intr OR SYNTHESIZED_WIRE_10;
+
+
+b2v_inst45 : lpm_constant3
+PORT MAP(		 result => intr_vec);
 
 
 
@@ -824,9 +923,9 @@ PORT MAP(mr => mr,
 b2v_PROGRAM_COUNTER : reg_16b_inc
 PORT MAP(mr => mr,
 		 clk => clk,
-		 ld => SYNTHESIZED_WIRE_8,
+		 ld => SYNTHESIZED_WIRE_11,
 		 inc => inc_pc,
-		 d_in => adder,
+		 d_in => SYNTHESIZED_WIRE_12,
 		 q_out => pc);
 
 
@@ -834,7 +933,7 @@ b2v_PROGRAM_STATUS_WORD : reg_4b
 PORT MAP(mr => mr,
 		 clk => clk,
 		 ld => ld_psw,
-		 d_in => SYNTHESIZED_WIRE_9,
+		 d_in => SYNTHESIZED_WIRE_13,
 		 q_out => psw);
 
 
@@ -842,10 +941,10 @@ b2v_REG_FILE : reg_file_8x8b
 PORT MAP(clk => clk,
 		 mr => mr,
 		 load => ld_rdst,
-		 read_addr_1 => SYNTHESIZED_WIRE_10,
+		 read_addr_1 => SYNTHESIZED_WIRE_14,
 		 read_addr_2 => out_reg_b,
 		 write_addr => reg_dst,
-		 write_data => SYNTHESIZED_WIRE_11,
+		 write_data => SYNTHESIZED_WIRE_15,
 		 read_data_1 => reg_a,
 		 read_data_2 => reg_b);
 
@@ -857,6 +956,23 @@ PORT MAP(mr => mr,
 		 inc => inc_state,
 		 d_in => zero_3b,
 		 q_out => state);
+
+
+b2v_STORED_PC : reg_16b_inc
+PORT MAP(mr => mr,
+		 clk => clk,
+		 ld => ld_spc,
+		 inc => gnd,
+		 d_in => pc,
+		 q_out => spc);
+
+
+b2v_STORED_PSW : reg_4b
+PORT MAP(mr => mr,
+		 clk => clk,
+		 ld => ld_spsw,
+		 d_in => psw,
+		 q_out => spsw);
 
 
 gnd <= '0';

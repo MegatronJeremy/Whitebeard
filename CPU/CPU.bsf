@@ -45,6 +45,13 @@ applicable agreement for further details.
 		(line (pt 0 64)(pt 16 64)(line_width 3))
 	)
 	(port
+		(pt 0 80)
+		(input)
+		(text "intr" (rect 0 0 17 14)(font "Arial" (font_size 8)))
+		(text "intr" (rect 21 75 38 89)(font "Arial" (font_size 8)))
+		(line (pt 0 80)(pt 16 80))
+	)
+	(port
 		(pt 208 48)
 		(output)
 		(text "rdwr" (rect 0 0 28 14)(font "Arial" (font_size 8)))

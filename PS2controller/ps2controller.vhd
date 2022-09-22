@@ -14,7 +14,7 @@
 
 -- PROGRAM		"Quartus II 64-Bit"
 -- VERSION		"Version 13.1.0 Build 162 10/23/2013 SJ Web Edition"
--- CREATED		"Wed Sep 21 11:39:44 2022"
+-- CREATED		"Thu Sep 22 09:33:24 2022"
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.all; 
@@ -30,6 +30,7 @@ ENTITY ps2controller IS
 		EN :  IN  STD_LOGIC;
 		kclk :  IN  STD_LOGIC;
 		serial_data_in :  IN  STD_LOGIC;
+		intr :  OUT  STD_LOGIC;
 		d_out_tri :  OUT  STD_LOGIC_VECTOR(7 DOWNTO 0)
 	);
 END ps2controller;
@@ -320,6 +321,7 @@ SYNTHESIZED_WIRE_2 <= NOT(cnt10);
 
 
 
+intr <= cnt10;
 d_out_tri <= d_out_tri_ALTERA_SYNTHESIZED;
 
 d_inah(0) <= '0';
