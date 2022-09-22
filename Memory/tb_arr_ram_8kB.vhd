@@ -10,7 +10,7 @@ architecture test of tb_arr_ram_8kB is
 		signal data_in :  std_logic_vector(7 downto 0):= (others => '0');
 		signal data_out : std_logic_vector(7 downto 0);
 		signal CS : std_logic := '0' ;
-		signal clk :  std_logic :='0' ;
+		signal clk :  std_logic :='1' ;
 		signal rdwr :  std_logic := '0' ;
 		signal addr : std_logic_vector(12 downto 0):= (others => '0');
 		signal addr_helper : std_logic_vector(15 downto 0):=(others =>'0');

@@ -1,0 +1,12 @@
+#works:
+ldi r5, x10#this is a comment
+ldi r2, 10 #all numbers are hex
+add r1, r2, r3
+add r1 r2,,,, r3
+
+#does not work:
+ld r5, x1000#no errors, won't compile in vhdl code
+ld, r5, x10
+
+
+
