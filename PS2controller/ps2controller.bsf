@@ -68,9 +68,16 @@ applicable agreement for further details.
 	(port
 		(pt 208 32)
 		(output)
+		(text "intr_k" (rect 0 0 30 14)(font "Arial" (font_size 8)))
+		(text "intr_k" (rect 157 27 187 41)(font "Arial" (font_size 8)))
+		(line (pt 208 32)(pt 192 32))
+	)
+	(port
+		(pt 208 48)
+		(output)
 		(text "d_out_tri[7..0]" (rect 0 0 77 14)(font "Arial" (font_size 8)))
-		(text "d_out_tri[7..0]" (rect 110 27 187 41)(font "Arial" (font_size 8)))
-		(line (pt 208 32)(pt 192 32)(line_width 3))
+		(text "d_out_tri[7..0]" (rect 110 43 187 57)(font "Arial" (font_size 8)))
+		(line (pt 208 48)(pt 192 48)(line_width 3))
 	)
 	(port
 		(pt 208 48)
