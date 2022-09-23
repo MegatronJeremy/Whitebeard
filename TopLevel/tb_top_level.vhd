@@ -102,7 +102,7 @@ begin
 		wait for Tkclk;
 		kdata <= '1';
 		wait for Tkclk;
-		kdata <= '0';
+		kdata <= '1';
 		wait for Tkclk;
 		kdata <= '1';
 		wait for Tkclk;

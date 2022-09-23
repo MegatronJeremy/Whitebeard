@@ -14,7 +14,7 @@
 
 -- PROGRAM		"Quartus II 64-Bit"
 -- VERSION		"Version 13.1.0 Build 162 10/23/2013 SJ Web Edition"
--- CREATED		"Fri Sep 23 11:26:47 2022"
+-- CREATED		"Fri Sep 23 11:49:21 2022"
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.all; 
@@ -116,13 +116,13 @@ END COMPONENT;
 
 SIGNAL	abus :  STD_LOGIC_VECTOR(15 DOWNTO 0);
 SIGNAL	dbus_out :  STD_LOGIC_VECTOR(7 DOWNTO 0);
-SIGNAL	gdfx_temp0 :  STD_LOGIC_VECTOR(7 DOWNTO 0);
 SIGNAL	rdwr :  STD_LOGIC;
 SIGNAL	SYNTHESIZED_WIRE_0 :  STD_LOGIC;
-SIGNAL	SYNTHESIZED_WIRE_1 :  STD_LOGIC;
-SIGNAL	SYNTHESIZED_WIRE_2 :  STD_LOGIC;
-SIGNAL	SYNTHESIZED_WIRE_3 :  STD_LOGIC;
+SIGNAL	SYNTHESIZED_WIRE_8 :  STD_LOGIC_VECTOR(7 DOWNTO 0);
 SIGNAL	SYNTHESIZED_WIRE_4 :  STD_LOGIC;
+SIGNAL	SYNTHESIZED_WIRE_5 :  STD_LOGIC;
+SIGNAL	SYNTHESIZED_WIRE_6 :  STD_LOGIC;
+SIGNAL	SYNTHESIZED_WIRE_7 :  STD_LOGIC;
 
 
 BEGIN 
@@ -134,7 +134,7 @@ PORT MAP(mr => mr,
 		 clk => clk,
 		 intr => SYNTHESIZED_WIRE_0,
 		 busy => busy,
-		 dbus_in => gdfx_temp0,
+		 dbus_in => SYNTHESIZED_WIRE_8,
 		 rdwr => rdwr,
 		 abus => abus,
 		 dbus_out => dbus_out);
@@ -145,57 +145,57 @@ GENERIC MAP(addr_width => 13,
 			data_width => 8
 			)
 PORT MAP(clk => clk,
-		 cs => SYNTHESIZED_WIRE_1,
+		 cs => SYNTHESIZED_WIRE_4,
 		 rdwr => rdwr,
 		 addr => abus(12 DOWNTO 0),
 		 data_in => dbus_out,
-		 data_out => gdfx_temp0);
+		 data_out => SYNTHESIZED_WIRE_8);
 
 
 b2v_inst2 : csram
 PORT MAP(A => abus(15 DOWNTO 12),
-		 ENram => SYNTHESIZED_WIRE_1);
+		 ENram => SYNTHESIZED_WIRE_4);
 
 
 b2v_inst3 : csdebug
 PORT MAP(A => abus,
-		 ENdebug => SYNTHESIZED_WIRE_4);
+		 ENdebug => SYNTHESIZED_WIRE_7);
 
 
 b2v_inst4 : csrom
 PORT MAP(A => abus(15 DOWNTO 12),
-		 ENrom => SYNTHESIZED_WIRE_2);
+		 ENrom => SYNTHESIZED_WIRE_5);
 
 
 b2v_inst5 : rom_4kb_test_cpu
-PORT MAP(cs => SYNTHESIZED_WIRE_2,
+PORT MAP(cs => SYNTHESIZED_WIRE_5,
 		 clk => clk,
 		 rd => rdwr,
 		 addr => abus(11 DOWNTO 0),
-		 instr_out => gdfx_temp0);
+		 instr_out => SYNTHESIZED_WIRE_8);
 
 
 b2v_inst6 : csps2
 PORT MAP(A => abus,
-		 ENps2 => SYNTHESIZED_WIRE_3);
+		 ENps2 => SYNTHESIZED_WIRE_6);
 
 
 b2v_inst7 : ps2controller
 PORT MAP(mr => mr,
 		 sclk => clk,
 		 RD => rdwr,
-		 EN => SYNTHESIZED_WIRE_3,
+		 EN => SYNTHESIZED_WIRE_6,
 		 kclk => kclk,
 		 serial_data_in => kdata,
 		 intr_k => SYNTHESIZED_WIRE_0,
-		 d_out_tri => gdfx_temp0);
+		 d_out_tri => SYNTHESIZED_WIRE_8);
 
 
 b2v_inst9 : reg_8b
 PORT MAP(mr => mr,
 		 clk => clk,
-		 ld => SYNTHESIZED_WIRE_4,
-		 d_in => gdfx_temp0,
+		 ld => SYNTHESIZED_WIRE_7,
+		 d_in => dbus_out,
 		 q_out => debug);
 
 
