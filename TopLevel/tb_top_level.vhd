@@ -55,7 +55,7 @@ begin
 		wait for Tkclk;
 		kdata <= '0';
 		wait for Tkclk;
-		kdata <= '0';
+		kdata <= '1';
 		wait for Tkclk;
 		kdata <= '1';
 		wait for Tkclk;
@@ -79,7 +79,7 @@ begin
 		wait for Tkclk;
 		kdata <= '1';
 		wait for Tkclk;
-		kdata <= '0';
+		kdata <= '1';
 		wait for Tkclk;
 		kdata <= '1';
 		wait for Tkclk;
@@ -102,7 +102,7 @@ begin
 		wait for Tkclk;
 		kdata <= '1';
 		wait for Tkclk;
-		kdata <= '1';
+		kdata <= '0';
 		wait for Tkclk;
 		kdata <= '1';
 		wait for Tkclk;
