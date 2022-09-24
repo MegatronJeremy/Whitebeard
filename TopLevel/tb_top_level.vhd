@@ -9,8 +9,7 @@ architecture test of tb_top_level is
 	signal kdata : std_logic := '0';
 	signal clk : std_logic := '1';
 	signal mr : std_logic := '1';
-	signal busy : std_logic;
-	signal dbus_out : std_logic_vector(7 downto 0);
+	signal debug : std_logic_vector(7 downto 0);
 	
 	constant Tclk : time := 20 ns;
 	constant TKclk : time := 100 us; -- real clock is 100 us
@@ -24,18 +23,14 @@ begin
 		kdata => kdata,
 		mr=>mr, 
 		clk=>clk, 
-		busy=>busy, 
-		dbus_out=>dbus_out
+		debug=>debug
 	);
 	
 	stimulus: process 
 	begin
 		mr <= '0';
-		busy <= 'Z';
-		wait for Tkclk;
-		
-		mr <= '1';		
-		
+		wait for TKClk;
+		mr <= '1';
 		--- PS/2 test
 		kdata <= '0';
 		wait for Tkclk;
@@ -55,7 +50,7 @@ begin
 		wait for Tkclk;
 		kdata <= '0';
 		wait for Tkclk;
-		kdata <= '0';
+		kdata <= '1';
 		wait for Tkclk;
 		kdata <= '1';
 		wait for Tkclk;
@@ -79,7 +74,77 @@ begin
 		wait for Tkclk;
 		kdata <= '1';
 		wait for Tkclk;
+		kdata <= '1';
+		wait for Tkclk;
+		kdata <= '1';
+		wait for Tkclk;
+		
 		kdata <= '0';
+		wait for Tkclk;
+		kdata <= '0';
+		wait for Tkclk;
+		kdata <= '0';
+		wait for Tkclk;
+		kdata <= '0';
+		wait for Tkclk;
+		kdata <= '0';
+		wait for Tkclk;
+		kdata <= '1';
+		wait for Tkclk;
+		kdata <= '1';
+		wait for Tkclk;
+		kdata <= '1';
+		wait for Tkclk;
+		kdata <= '1';
+		wait for Tkclk;
+		kdata <= '1';
+		wait for Tkclk;
+		kdata <= '1';
+		wait for Tkclk;
+		
+		kdata <= '0';
+		wait for Tkclk;
+		kdata <= '1';
+		wait for Tkclk;
+		kdata <= '1';
+		wait for Tkclk;
+		kdata <= '1';
+		wait for Tkclk;
+		kdata <= '1';
+		wait for Tkclk;
+		kdata <= '0';
+		wait for Tkclk;
+		kdata <= '0';
+		wait for Tkclk;
+		kdata <= '0';
+		wait for Tkclk;
+		kdata <= '0';
+		wait for Tkclk;
+		kdata <= '1';
+		wait for Tkclk;
+		kdata <= '1';
+		wait for Tkclk;
+		
+		
+		kdata <= '0';
+		wait for Tkclk;
+		kdata <= '0';
+		wait for Tkclk;
+		kdata <= '1';
+		wait for Tkclk;
+		kdata <= '0';
+		wait for Tkclk;
+		kdata <= '1';
+		wait for Tkclk;
+		kdata <= '1';
+		wait for Tkclk;
+		kdata <= '1';
+		wait for Tkclk;
+		kdata <= '1';
+		wait for Tkclk;
+		kdata <= '1';
+		wait for Tkclk;
+		kdata <= '1';
 		wait for Tkclk;
 		kdata <= '1';
 		wait for Tkclk;

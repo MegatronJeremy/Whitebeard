@@ -14,7 +14,7 @@
 
 -- PROGRAM		"Quartus II 64-Bit"
 -- VERSION		"Version 13.1.0 Build 162 10/23/2013 SJ Web Edition"
--- CREATED		"Wed Sep 21 22:18:38 2022"
+-- CREATED		"Fri Sep 23 10:33:14 2022"
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.all; 
@@ -103,8 +103,10 @@ COMPONENT control_unit
 		 spc_sel : OUT STD_LOGIC;
 		 ld_spsw : OUT STD_LOGIC;
 		 spsw_sel : OUT STD_LOGIC;
-		 toggle_pswi : OUT STD_LOGIC;
+		 set_pswi : OUT STD_LOGIC;
+		 clr_pswi : OUT STD_LOGIC;
 		 sel_intr : OUT STD_LOGIC;
+		 clr_intr : OUT STD_LOGIC;
 		 alu_b_sel : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
 		 alu_func : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
 		 br_cond : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
@@ -295,6 +297,8 @@ SIGNAL	branch :  STD_LOGIC;
 SIGNAL	bus_busy_out :  STD_LOGIC;
 SIGNAL	bus_rd_out :  STD_LOGIC;
 SIGNAL	bus_wr_out :  STD_LOGIC;
+SIGNAL	clr_intr :  STD_LOGIC;
+SIGNAL	clr_pswi :  STD_LOGIC;
 SIGNAL	clr_state :  STD_LOGIC;
 SIGNAL	dbus_out_out :  STD_LOGIC;
 SIGNAL	gnd :  STD_LOGIC;
@@ -332,6 +336,7 @@ SIGNAL	reg_dst_sel :  STD_LOGIC_VECTOR(1 DOWNTO 0);
 SIGNAL	se_imm :  STD_LOGIC_VECTOR(4 DOWNTO 0);
 SIGNAL	se_offset :  STD_LOGIC_VECTOR(6 DOWNTO 0);
 SIGNAL	sel_intr :  STD_LOGIC;
+SIGNAL	set_pswi :  STD_LOGIC;
 SIGNAL	shf :  STD_LOGIC_VECTOR(7 DOWNTO 0);
 SIGNAL	shf_b_sel :  STD_LOGIC;
 SIGNAL	shf_func :  STD_LOGIC_VECTOR(1 DOWNTO 0);
@@ -340,7 +345,6 @@ SIGNAL	spc_sel :  STD_LOGIC;
 SIGNAL	spsw :  STD_LOGIC_VECTOR(3 DOWNTO 0);
 SIGNAL	spsw_sel :  STD_LOGIC;
 SIGNAL	state :  STD_LOGIC_VECTOR(2 DOWNTO 0);
-SIGNAL	toggle_pswi :  STD_LOGIC;
 SIGNAL	vcc :  STD_LOGIC;
 SIGNAL	zero_2b :  STD_LOGIC_VECTOR(1 DOWNTO 0);
 SIGNAL	zero_3b :  STD_LOGIC_VECTOR(2 DOWNTO 0);
@@ -429,8 +433,10 @@ PORT MAP(busy => busy,
 		 spc_sel => spc_sel,
 		 ld_spsw => ld_spsw,
 		 spsw_sel => spsw_sel,
-		 toggle_pswi => toggle_pswi,
+		 set_pswi => set_pswi,
+		 clr_pswi => clr_pswi,
 		 sel_intr => sel_intr,
+		 clr_intr => clr_intr,
 		 alu_b_sel => alu_b_sel,
 		 alu_func => alu_func,
 		 br_cond => br_cond,
@@ -456,12 +462,14 @@ PORT MAP(d_in_1 => psw_alu,
 
 
 PROCESS(clk,mr)
+VARIABLE synthesized_var_for_intr_ff : STD_LOGIC;
 BEGIN
 IF (mr = '0') THEN
-	intr_ff <= '0';
+	synthesized_var_for_intr_ff := '0';
 ELSIF (RISING_EDGE(clk)) THEN
-	intr_ff <= intr;
+	synthesized_var_for_intr_ff := (NOT(synthesized_var_for_intr_ff) AND intr) OR (synthesized_var_for_intr_ff AND (NOT(clr_intr)));
 END IF;
+	intr_ff <= synthesized_var_for_intr_ff;
 END PROCESS;
 
 
@@ -672,6 +680,18 @@ b2v_inst19 : lpm_constant2
 PORT MAP(		 result => zero_3b);
 
 
+PROCESS(clk,mr)
+VARIABLE synthesized_var_for_pswi : STD_LOGIC;
+BEGIN
+IF (mr = '0') THEN
+	synthesized_var_for_pswi := '1';
+ELSIF (RISING_EDGE(clk)) THEN
+	synthesized_var_for_pswi := (NOT(synthesized_var_for_pswi) AND set_pswi) OR (synthesized_var_for_pswi AND (NOT(clr_pswi)));
+END IF;
+	pswi <= synthesized_var_for_pswi;
+END PROCESS;
+
+
 b2v_inst20 : mux2_16b
 PORT MAP(sel => abus_sel,
 		 zero => gnd,
@@ -699,18 +719,6 @@ PORT MAP(data_in => shf,
 
 
 SYNTHESIZED_WIRE_10 <= ld_pc AND branch;
-
-
-PROCESS(clk,mr)
-VARIABLE pswi_synthesized_var : STD_LOGIC;
-BEGIN
-IF (mr = '0') THEN
-	pswi_synthesized_var := '1';
-ELSIF (RISING_EDGE(clk)) THEN
-	pswi_synthesized_var := pswi_synthesized_var XOR toggle_pswi;
-END IF;
-	pswi <= pswi_synthesized_var;
-END PROCESS;
 
 
 SYNTHESIZED_WIRE_5 <= SYNTHESIZED_WIRE_7 AND alu_func(1);

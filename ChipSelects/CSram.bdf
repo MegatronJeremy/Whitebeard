@@ -23,7 +23,7 @@ applicable agreement for further details.
 	(input)
 	(rect 272 128 440 144)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "A[15..12]" (rect 5 0 50 12)(font "Arial" ))
+	(text "A[15..12]" (rect 5 0 49 12)(font "Arial" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -369,40 +369,8 @@ applicable agreement for further details.
 	(pt 672 208)
 )
 (connector
-	(pt 608 240)
-	(pt 592 240)
-)
-(connector
-	(pt 608 280)
-	(pt 608 240)
-)
-(connector
 	(pt 592 280)
 	(pt 600 280)
-)
-(connector
-	(pt 600 280)
-	(pt 600 296)
-)
-(connector
-	(pt 600 296)
-	(pt 608 296)
-)
-(connector
-	(pt 592 344)
-	(pt 608 344)
-)
-(connector
-	(pt 608 344)
-	(pt 608 328)
-)
-(connector
-	(pt 672 304)
-	(pt 752 304)
-)
-(connector
-	(pt 752 304)
-	(pt 752 224)
 )
 (connector
 	(text "A[3..0]" (rect 440 120 473 132)(font "Arial" ))
@@ -441,12 +409,44 @@ applicable agreement for further details.
 	(pt 536 280)
 )
 (connector
+	(text "A[0]" (rect 536 328 556 340)(font "Arial" ))
+	(pt 544 344)
+	(pt 536 344)
+)
+(connector
+	(pt 592 240)
+	(pt 608 240)
+)
+(connector
+	(pt 608 240)
+	(pt 608 280)
+)
+(connector
+	(pt 600 280)
+	(pt 600 296)
+)
+(connector
+	(pt 592 344)
+	(pt 608 344)
+)
+(connector
+	(pt 608 344)
+	(pt 608 328)
+)
+(connector
+	(pt 752 224)
+	(pt 752 304)
+)
+(connector
 	(text "A[1]" (rect 600 296 620 308)(font "Arial" ))
 	(pt 608 312)
 	(pt 600 312)
 )
 (connector
-	(text "A[0]" (rect 536 328 556 340)(font "Arial" ))
-	(pt 544 344)
-	(pt 536 344)
+	(pt 600 296)
+	(pt 608 296)
+)
+(connector
+	(pt 672 304)
+	(pt 752 304)
 )

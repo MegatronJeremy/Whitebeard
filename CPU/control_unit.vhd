@@ -79,10 +79,12 @@ entity control_unit is
 		spsw_sel : out std_logic := '0';
 		
 		-- PSWI
-		toggle_pswi : out std_logic := '0';
+		set_pswi : out std_logic := '0';
+		clr_pswi : out std_logic := '0';
 		
 		-- INTR
-		sel_intr : out std_logic := '0'
+		sel_intr : out std_logic := '0';
+		clr_intr : out std_logic := '0'
 		
   );
 end entity;
@@ -206,7 +208,6 @@ instr_decode : process(instr, state, busy, opcode, reg_src, intr, pswi)
 	
 	inc_pc <= '0';
 	ld_pc <= '0';
-	sel_intr <= NO_INTR;
 	
 	inc_state <= '0';
 	clr_state <= '0';
@@ -237,7 +238,11 @@ instr_decode : process(instr, state, busy, opcode, reg_src, intr, pswi)
 	ld_spsw <= '0';
 	spsw_sel <= PSW;
 	
-	toggle_pswi <= '0';
+	set_pswi <= '0';
+	clr_pswi <= '0';
+	
+	sel_intr <= NO_INTR;
+	clr_intr <= '0';
   
 	case state is
 		
@@ -381,7 +386,7 @@ instr_decode : process(instr, state, busy, opcode, reg_src, intr, pswi)
 				when RTI =>
 					spsw_sel <= SPSW;
 					spc_sel <= SPC;
-					toggle_pswi <= '1';
+					set_pswi <= '1';
 					br_enable <= '1';
 					br_cond <= BR_TRUE;
 					ld_pc <= '1';
@@ -400,7 +405,8 @@ instr_decode : process(instr, state, busy, opcode, reg_src, intr, pswi)
 						ld_spc <= '1';
 						ld_spsw <= '1';
 						sel_intr <= LD_INTR;
-						toggle_pswi <= '1';
+						clr_pswi <= '1';
+						clr_intr <= '1';
 					else
 						clr_state <= '1';
 					end if;
@@ -411,7 +417,8 @@ instr_decode : process(instr, state, busy, opcode, reg_src, intr, pswi)
 							ld_spc <= '1';
 							ld_spsw <= '1';
 							sel_intr <= LD_INTR;
-							toggle_pswi <= '1';
+							clr_pswi <= '1';
+							clr_intr <= '1';
 						else
 							clr_state <= '1';
 						end if;
@@ -424,7 +431,8 @@ instr_decode : process(instr, state, busy, opcode, reg_src, intr, pswi)
 								ld_spc <= '1';
 								ld_spsw <= '1';
 								sel_intr <= LD_INTR;
-								toggle_pswi <= '1';
+								clr_pswi <= '1';
+								clr_intr <= '1';
 							else
 								clr_state <= '1';
 							end if;
