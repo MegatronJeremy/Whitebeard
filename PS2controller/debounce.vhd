@@ -42,7 +42,7 @@ BEGIN
 
   counter_set <= flipflops(0) xor flipflops(1);   --determine when to start/reset counter
   
-  PROCESS(clk)
+  PROCESS(clk, moj_reset)
   BEGIN
 	 IF(moj_reset = '0') THEN
 		result <= '0';

@@ -12,7 +12,7 @@ end entity;
 architecture beh of CSps2 is
 	constant PS2_ADDR : std_logic_vector(15 downto 0) := x"3000";
 begin
-	decode : process(A)
+	decode : process(A, RD)
 	begin
 	case A is
 		when PS2_ADDR =>
