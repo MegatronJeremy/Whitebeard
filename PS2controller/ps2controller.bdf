@@ -38,23 +38,6 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect -64 120 104 136)
-	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "RD" (rect 5 0 21 12)(font "Arial" ))
-	(pt 168 8)
-	(drawing
-		(line (pt 84 12)(pt 109 12))
-		(line (pt 84 4)(pt 109 4))
-		(line (pt 113 8)(pt 168 8))
-		(line (pt 84 12)(pt 84 4))
-		(line (pt 109 4)(pt 113 8))
-		(line (pt 109 12)(pt 113 8))
-	)
-	(text "GND" (rect 128 7 149 17)(font "Arial" (font_size 6)))
-	(annotation_block (location)(rect -88 136 -32 152))
-)
-(pin
-	(input)
 	(rect 240 88 408 104)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
 	(text "sclk" (rect 5 0 25 12)(font "Arial" ))
@@ -72,7 +55,7 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect -64 152 104 168)
+	(rect -64 136 104 152)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
 	(text "EN" (rect 5 0 20 12)(font "Arial" ))
 	(pt 168 8)
@@ -145,7 +128,7 @@ applicable agreement for further details.
 	(output)
 	(rect -72 80 104 96)
 	(text "OUTPUT" (rect 137 0 175 10)(font "Arial" (font_size 6)))
-	(text "intr_k" (rect 5 0 33 12)(font "Arial" ))
+	(text "intr_k" (rect 5 0 32 12)(font "Arial" ))
 	(pt 176 8)
 	(drawing
 		(line (pt 176 8)(pt 124 8))
@@ -485,38 +468,6 @@ applicable agreement for further details.
 		(line (pt 34 7)(pt 16 16))
 	)
 	(flipy)
-)
-(symbol
-	(rect 152 120 216 168)
-	(text "AND2" (rect 1 0 25 10)(font "Arial" (font_size 6)))
-	(text "inst24" (rect 3 37 32 49)(font "Arial" ))
-	(port
-		(pt 0 16)
-		(input)
-		(text "IN1" (rect 2 7 19 19)(font "Courier New" (bold))(invisible))
-		(text "IN1" (rect 2 7 19 19)(font "Courier New" (bold))(invisible))
-		(line (pt 0 16)(pt 14 16))
-	)
-	(port
-		(pt 0 32)
-		(input)
-		(text "IN2" (rect 2 23 19 35)(font "Courier New" (bold))(invisible))
-		(text "IN2" (rect 2 23 19 35)(font "Courier New" (bold))(invisible))
-		(line (pt 0 32)(pt 14 32))
-	)
-	(port
-		(pt 64 24)
-		(output)
-		(text "OUT" (rect 48 15 65 27)(font "Courier New" (bold))(invisible))
-		(text "OUT" (rect 48 15 65 27)(font "Courier New" (bold))(invisible))
-		(line (pt 42 24)(pt 64 24))
-	)
-	(drawing
-		(line (pt 14 12)(pt 30 12))
-		(line (pt 14 37)(pt 31 37))
-		(line (pt 14 12)(pt 14 37))
-		(arc (pt 31 37)(pt 30 12)(rect 18 12 43 37))
-	)
 )
 (symbol
 	(rect 1288 920 1336 952)
@@ -2556,11 +2507,6 @@ applicable agreement for further details.
 	(pt 1376 168)
 )
 (connector
-	(text "mr" (rect 1344 224 1356 236)(font "Arial" ))
-	(pt 1344 240)
-	(pt 1352 240)
-)
-(connector
 	(pt 1368 192)
 	(pt 1368 200)
 )
@@ -2572,14 +2518,6 @@ applicable agreement for further details.
 	(text "inv_kclk" (rect 1346 200 1387 212)(font "Arial" ))
 	(pt 1384 216)
 	(pt 1336 216)
-)
-(connector
-	(pt 1344 240)
-	(pt 1344 232)
-)
-(connector
-	(pt 1344 232)
-	(pt 1336 232)
 )
 (connector
 	(text "data_out[10..0]" (rect 1064 184 1138 196)(font "Arial" ))
@@ -2703,23 +2641,6 @@ applicable agreement for further details.
 	(bus)
 )
 (connector
-	(pt 152 152)
-	(pt 152 160)
-)
-(connector
-	(pt 104 160)
-	(pt 152 160)
-)
-(connector
-	(pt 216 144)
-	(pt 232 144)
-)
-(connector
-	(text "overwrite" (rect 232 128 276 140)(font "Arial" ))
-	(pt 232 144)
-	(pt 256 144)
-)
-(connector
 	(pt 480 232)
 	(pt 488 232)
 )
@@ -2754,14 +2675,6 @@ applicable agreement for further details.
 	(pt 144 384)
 	(pt 120 384)
 	(bus)
-)
-(connector
-	(pt 152 136)
-	(pt 152 128)
-)
-(connector
-	(pt 104 128)
-	(pt 152 128)
 )
 (connector
 	(pt 512 200)
@@ -2811,7 +2724,7 @@ applicable agreement for further details.
 	(pt 600 176)
 )
 (connector
-	(text "overwrite" (rect 552 224 596 236)(font "Arial" ))
+	(text "overwrite" (rect 576 232 620 244)(font "Arial" ))
 	(pt 560 240)
 	(pt 552 240)
 )
@@ -2819,6 +2732,28 @@ applicable agreement for further details.
 	(text "overwrite" (rect 760 320 804 332)(font "Arial" ))
 	(pt 760 336)
 	(pt 768 336)
+)
+(connector
+	(text "mr" (rect 1344 224 1356 236)(font "Arial" ))
+	(pt 1352 240)
+	(pt 1344 240)
+)
+(connector
+	(pt 1344 240)
+	(pt 1344 232)
+)
+(connector
+	(pt 1336 232)
+	(pt 1344 232)
+)
+(connector
+	(text "overwrite" (rect 232 128 276 140)(font "Arial" ))
+	(pt 232 144)
+	(pt 256 144)
+)
+(connector
+	(pt 104 144)
+	(pt 232 144)
 )
 (junction (pt 232 504))
 (junction (pt 232 456))

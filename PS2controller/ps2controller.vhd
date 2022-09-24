@@ -14,7 +14,7 @@
 
 -- PROGRAM		"Quartus II 64-Bit"
 -- VERSION		"Version 13.1.0 Build 162 10/23/2013 SJ Web Edition"
--- CREATED		"Fri Sep 23 11:23:47 2022"
+-- CREATED		"Sat Sep 24 22:16:01 2022"
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.all; 
@@ -25,7 +25,6 @@ ENTITY ps2controller IS
 	PORT
 	(
 		mr :  IN  STD_LOGIC;
-		RD :  IN  STD_LOGIC;
 		sclk :  IN  STD_LOGIC;
 		EN :  IN  STD_LOGIC;
 		kclk :  IN  STD_LOGIC;
@@ -259,9 +258,6 @@ END IF;
 END PROCESS;
 
 
-overwrite <= RD AND EN;
-
-
 SYNTHESIZED_WIRE_14 <= NOT(isEven);
 
 
@@ -408,6 +404,7 @@ SYNTHESIZED_WIRE_5 <= NOT(q_out(2));
 
 intr_k <= intr_k_ALTERA_SYNTHESIZED;
 d_out_tri <= d_out_tri_ALTERA_SYNTHESIZED;
+overwrite <= EN;
 
 d_inah(0) <= '0';
 d_inah(1) <= '0';

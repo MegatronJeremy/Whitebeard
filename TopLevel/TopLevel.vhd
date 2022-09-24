@@ -14,7 +14,7 @@
 
 -- PROGRAM		"Quartus II 64-Bit"
 -- VERSION		"Version 13.1.0 Build 162 10/23/2013 SJ Web Edition"
--- CREATED		"Fri Sep 23 11:49:21 2022"
+-- CREATED		"Sat Sep 24 22:17:22 2022"
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.all; 
@@ -28,7 +28,6 @@ ENTITY TopLevel IS
 		mr :  IN  STD_LOGIC;
 		kclk :  IN  STD_LOGIC;
 		kdata :  IN  STD_LOGIC;
-		busy :  INOUT  STD_LOGIC;
 		debug :  OUT  STD_LOGIC_VECTOR(7 DOWNTO 0)
 	);
 END TopLevel;
@@ -88,7 +87,8 @@ COMPONENT rom_4kb_test_cpu
 END COMPONENT;
 
 COMPONENT csps2
-	PORT(A : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+	PORT(RD : IN STD_LOGIC;
+		 A : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
 		 ENps2 : OUT STD_LOGIC
 	);
 END COMPONENT;
@@ -96,7 +96,6 @@ END COMPONENT;
 COMPONENT ps2controller
 	PORT(mr : IN STD_LOGIC;
 		 sclk : IN STD_LOGIC;
-		 RD : IN STD_LOGIC;
 		 EN : IN STD_LOGIC;
 		 kclk : IN STD_LOGIC;
 		 serial_data_in : IN STD_LOGIC;
@@ -115,6 +114,7 @@ COMPONENT reg_8b
 END COMPONENT;
 
 SIGNAL	abus :  STD_LOGIC_VECTOR(15 DOWNTO 0);
+SIGNAL	busy :  STD_LOGIC;
 SIGNAL	dbus_out :  STD_LOGIC_VECTOR(7 DOWNTO 0);
 SIGNAL	rdwr :  STD_LOGIC;
 SIGNAL	SYNTHESIZED_WIRE_0 :  STD_LOGIC;
@@ -176,19 +176,20 @@ PORT MAP(cs => SYNTHESIZED_WIRE_5,
 
 
 b2v_inst6 : csps2
-PORT MAP(A => abus,
+PORT MAP(RD => rdwr,
+		 A => abus,
 		 ENps2 => SYNTHESIZED_WIRE_6);
 
 
 b2v_inst7 : ps2controller
 PORT MAP(mr => mr,
 		 sclk => clk,
-		 RD => rdwr,
 		 EN => SYNTHESIZED_WIRE_6,
 		 kclk => kclk,
 		 serial_data_in => kdata,
 		 intr_k => SYNTHESIZED_WIRE_0,
 		 d_out_tri => SYNTHESIZED_WIRE_8);
+
 
 
 b2v_inst9 : reg_8b
@@ -199,4 +200,5 @@ PORT MAP(mr => mr,
 		 q_out => debug);
 
 
+busy <= '0';
 END bdf_type;

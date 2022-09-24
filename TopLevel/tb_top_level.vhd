@@ -9,7 +9,6 @@ architecture test of tb_top_level is
 	signal kdata : std_logic := '0';
 	signal clk : std_logic := '1';
 	signal mr : std_logic := '1';
-	signal busy : std_logic;
 	signal debug : std_logic_vector(7 downto 0);
 	
 	constant Tclk : time := 20 ns;
@@ -24,19 +23,85 @@ begin
 		kdata => kdata,
 		mr=>mr, 
 		clk=>clk, 
-		busy=>busy, 
 		debug=>debug
 	);
 	
 	stimulus: process 
 	begin
 		mr <= '0';
-		busy <= 'Z';
+		wait for TKClk;
+		mr <= '1';
+		--- PS/2 test
+		kdata <= '0';
+		wait for Tkclk;
+		kdata <= '1';
+		wait for Tkclk;
+		kdata <= '1';
+		wait for Tkclk;
+		kdata <= '1';
+		wait for Tkclk;
+		kdata <= '1';
+		wait for Tkclk;
+		kdata <= '0';
+		wait for Tkclk;
+		kdata <= '0';
+		wait for Tkclk;
+		kdata <= '0';
+		wait for Tkclk;
+		kdata <= '0';
+		wait for Tkclk;
+		kdata <= '1';
+		wait for Tkclk;
+		kdata <= '1';
 		wait for Tkclk;
 		
-		mr <= '1';		
 		
-		--- PS/2 test
+		kdata <= '0';
+		wait for Tkclk;
+		kdata <= '0';
+		wait for Tkclk;
+		kdata <= '1';
+		wait for Tkclk;
+		kdata <= '0';
+		wait for Tkclk;
+		kdata <= '1';
+		wait for Tkclk;
+		kdata <= '1';
+		wait for Tkclk;
+		kdata <= '1';
+		wait for Tkclk;
+		kdata <= '1';
+		wait for Tkclk;
+		kdata <= '1';
+		wait for Tkclk;
+		kdata <= '1';
+		wait for Tkclk;
+		kdata <= '1';
+		wait for Tkclk;
+		
+		kdata <= '0';
+		wait for Tkclk;
+		kdata <= '0';
+		wait for Tkclk;
+		kdata <= '0';
+		wait for Tkclk;
+		kdata <= '0';
+		wait for Tkclk;
+		kdata <= '0';
+		wait for Tkclk;
+		kdata <= '1';
+		wait for Tkclk;
+		kdata <= '1';
+		wait for Tkclk;
+		kdata <= '1';
+		wait for Tkclk;
+		kdata <= '1';
+		wait for Tkclk;
+		kdata <= '1';
+		wait for Tkclk;
+		kdata <= '1';
+		wait for Tkclk;
+		
 		kdata <= '0';
 		wait for Tkclk;
 		kdata <= '1';
