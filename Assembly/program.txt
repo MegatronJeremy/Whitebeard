@@ -12,3 +12,17 @@ ldi r5, x10
 poi r5
 st r1, x00
 st r2 x01
+ld r3, x00
+ld r4, 0x01
+sub r6, r4, r3
+st r6, 0x02
+
+#third test
+
+ldi r7, x30
+poi r7
+in r1, x00
+bz xfc
+st r1, x10
+poi r0
+jmp r0, x1e
