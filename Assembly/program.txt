@@ -19,6 +19,8 @@ st r6, 0x02
 
 #third test
 
+org x1000
+
 ldi r7, x30
 poi r7
 in r1, x00
@@ -26,3 +28,4 @@ bz xfc
 st r1, x10
 poi r0
 jmp r0, x1e
+

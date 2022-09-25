@@ -9,4 +9,5 @@ ld r5, x1000#no errors, won't compile in vhdl code
 ld, r5, x10
 
 
-
+org x1000 #next instruction starts from address 1000 hex
+jmp r0, x10

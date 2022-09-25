@@ -132,6 +132,11 @@ def decode(a):
         str2 = '"' + registers.get(words[2].replace(",", "")) + logic.get(
             words[0]) + registers.get(words[3].replace(",", "")) + '"'
         ret.append(str2)
+    elif words[0].lower()=="org":
+        str1=words[0]
+        ret.append(str1)
+        str2=str(int(words[1].replace("x", ""), 16))
+        ret.append(str2)
     else:
         raise TypeError
 
@@ -154,12 +159,15 @@ with open(inp, "r") as infile, open("prog.S", "w+") as outfile:
 
         i = 0
         for elem in output:
-            writestring1 = str(i) + "=>" + elem[0] + ",\n"
-            i += 1
-            writestring2 = str(i) + "=>" + elem[1] + ",\n"
-            i += 1
-            outfile.write(writestring1)
-            outfile.write(writestring2)
+            if(elem[0]=="org"):
+                i=int(elem[1])
+            else:
+                writestring1 = str(i) + "=>" + elem[0] + ",\n"
+                i += 1
+                writestring2 = str(i) + "=>" + elem[1] + ",\n"
+                i += 1
+                outfile.write(writestring1)
+                outfile.write(writestring2)
         outfile.write("others => (others=>'0')")
         print("OK")
     except TypeError:
