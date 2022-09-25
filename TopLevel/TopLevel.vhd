@@ -14,7 +14,7 @@
 
 -- PROGRAM		"Quartus II 64-Bit"
 -- VERSION		"Version 13.1.0 Build 162 10/23/2013 SJ Web Edition"
--- CREATED		"Sat Sep 24 22:17:22 2022"
+-- CREATED		"Sun Sep 25 09:43:39 2022"
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.all; 
@@ -59,21 +59,22 @@ GENERIC (addr_width : INTEGER;
 	);
 END COMPONENT;
 
+COMPONENT csrom
+	PORT(A : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+		 ENrom : OUT STD_LOGIC
+	);
+END COMPONENT;
+
 COMPONENT csram
-	PORT(A : IN STD_LOGIC_VECTOR(15 DOWNTO 12);
+	PORT(A : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
 		 ENram : OUT STD_LOGIC
 	);
 END COMPONENT;
 
 COMPONENT csdebug
-	PORT(A : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+	PORT(WR : IN STD_LOGIC;
+		 A : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
 		 ENdebug : OUT STD_LOGIC
-	);
-END COMPONENT;
-
-COMPONENT csrom
-	PORT(A : IN STD_LOGIC_VECTOR(15 DOWNTO 12);
-		 ENrom : OUT STD_LOGIC
 	);
 END COMPONENT;
 
@@ -152,19 +153,20 @@ PORT MAP(clk => clk,
 		 data_out => SYNTHESIZED_WIRE_8);
 
 
-b2v_inst2 : csram
+b2v_inst10 : csrom
+PORT MAP(A => abus(15 DOWNTO 12),
+		 ENrom => SYNTHESIZED_WIRE_5);
+
+
+b2v_inst11 : csram
 PORT MAP(A => abus(15 DOWNTO 12),
 		 ENram => SYNTHESIZED_WIRE_4);
 
 
 b2v_inst3 : csdebug
-PORT MAP(A => abus,
+PORT MAP(WR => rdwr,
+		 A => abus,
 		 ENdebug => SYNTHESIZED_WIRE_7);
-
-
-b2v_inst4 : csrom
-PORT MAP(A => abus(15 DOWNTO 12),
-		 ENrom => SYNTHESIZED_WIRE_5);
 
 
 b2v_inst5 : rom_4kb_test_cpu
