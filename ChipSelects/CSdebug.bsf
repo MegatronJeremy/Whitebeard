@@ -31,6 +31,13 @@ applicable agreement for further details.
 		(line (pt 0 32)(pt 16 32)(line_width 3))
 	)
 	(port
+		(pt 0 48)
+		(input)
+		(text "WR" (rect 0 0 18 12)(font "Arial" ))
+		(text "WR" (rect 21 43 39 55)(font "Arial" ))
+		(line (pt 0 48)(pt 16 48)(line_width 1))
+	)
+	(port
 		(pt 168 32)
 		(output)
 		(text "ENdebug" (rect 0 0 37 12)(font "Arial" ))

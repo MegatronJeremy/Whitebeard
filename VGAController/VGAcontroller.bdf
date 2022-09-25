@@ -2643,7 +2643,7 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 496 336 560 416)
+	(rect 480 336 544 416)
 	(text "JKFF" (rect 1 0 23 10)(font "Arial" (font_size 6)))
 	(text "inst12" (rect 3 68 32 80)(font "Arial" ))
 	(port
@@ -4024,29 +4024,9 @@ applicable agreement for further details.
 	(pt 952 1048)
 )
 (connector
-	(text "VCLK" (rect 458 360 486 372)(font "Arial" ))
-	(pt 456 376)
-	(pt 496 376)
-)
-(connector
-	(text "clrX" (rect 448 376 465 388)(font "Arial" ))
-	(pt 456 392)
-	(pt 496 392)
-)
-(connector
-	(text "notVisibleX" (rect 570 344 623 356)(font "Arial" ))
-	(pt 560 360)
-	(pt 592 360)
-)
-(connector
 	(text "setNotVisibleX" (rect 152 986 164 1056)(font "Arial" )(vertical))
 	(pt 168 968)
 	(pt 168 1024)
-)
-(connector
-	(text "setNotVisibleX" (rect 432 344 502 356)(font "Arial" ))
-	(pt 496 360)
-	(pt 456 360)
 )
 (connector
 	(text "setNotVisibleY" (rect 152 1848 164 1921)(font "Arial" )(vertical))
@@ -4202,19 +4182,6 @@ applicable agreement for further details.
 	(pt 928 736)
 )
 (connector
-	(pt 528 416)
-	(pt 528 424)
-)
-(connector
-	(pt 528 424)
-	(pt 512 424)
-)
-(connector
-	(text "MRST" (rect 496 429 508 458)(font "Arial" )(vertical))
-	(pt 512 424)
-	(pt 512 464)
-)
-(connector
 	(pt 528 1248)
 	(pt 528 1264)
 )
@@ -4350,6 +4317,31 @@ applicable agreement for further details.
 	(text "MRST" (rect 480 557 492 586)(font "Arial" )(vertical))
 	(pt 496 528)
 	(pt 496 592)
+)
+(connector
+	(text "VCLK" (rect 442 360 470 372)(font "Arial" ))
+	(pt 440 376)
+	(pt 480 376)
+)
+(connector
+	(text "clrX" (rect 432 376 449 388)(font "Arial" ))
+	(pt 440 392)
+	(pt 480 392)
+)
+(connector
+	(text "setNotVisibleX" (rect 416 344 486 356)(font "Arial" ))
+	(pt 480 360)
+	(pt 440 360)
+)
+(connector
+	(text "MRST" (rect 496 429 508 458)(font "Arial" )(vertical))
+	(pt 512 416)
+	(pt 512 464)
+)
+(connector
+	(text "notVisibleX" (rect 554 344 607 356)(font "Arial" ))
+	(pt 544 360)
+	(pt 576 360)
 )
 (junction (pt 304 648))
 (junction (pt 144 648))
