@@ -17,11 +17,13 @@ architecture count_arch of cnt_10b_inc is
     begin
       process(rst,clk)
         begin
-			 if (en = '1') then
-				 if (rst = '1') then count <= "0000000000";
-				 elsif (inc = '1') then count <= count + 1;
+			  if (rst = '1') then count <= "0000000000";
+			  elsif (rising_edge(clk)) then
+				 if (en = '1') then
+					 if (inc = '1') then count <= count + 1;
+					 end if;
 				 end if;
-          end if;
+				end if;
     end process;
     o <= count;
 end count_arch;
