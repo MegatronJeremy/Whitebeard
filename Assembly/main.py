@@ -66,7 +66,13 @@ registers = {
 }
 
 
-def decode(a):
+def firstpass(a):
+    #adds the key, value pair to the symbole table, either with return or here (a should be the line read)
+    #TODO:create a symbol table to use with later branch instructions
+    return a
+
+
+def secondpass(a):
     a = a.split("#", 1)[0]  #comment support
     words = a.split(" ")
 
@@ -136,10 +142,10 @@ def decode(a):
         str2 = '"' + registers.get(words[2].replace(",", "")) + logic.get(
             words[0]) + registers.get(words[3].replace(",", "")) + '"'
         ret.append(str2)
-    elif words[0].lower()=="org":
-        str1=words[0]
+    elif words[0].lower() == "org":
+        str1 = words[0]
         ret.append(str1)
-        str2=str(int(words[1].replace("x", ""), 16))
+        str2 = str(int(words[1].replace("x", ""), 16))
         ret.append(str2)
     else:
         raise TypeError
@@ -153,18 +159,20 @@ with open(inp, "r") as infile, open("prog.S", "w+") as outfile:
 
     try:
         L = infile.readlines()
-        i = 0
+        i = 0  #i (or beter yet, address) should be a parameter for firstpass or global
+        symbols = {}  #empty dictionary for symbols (either here or as global)
+        #firstpass call should probably be somewhere around here, in a similar for loop
         output = []
         for line in L:
 
-            l = decode(line)  #bice lista, prvi i drugi bajt
+            l = secondpass(line)  #bice lista, prvi i drugi bajt
             i += 1
             if len(l) > 0: output.append(l)
 
         i = 0
         for elem in output:
-            if(elem[0]=="org"):
-                i=int(elem[1])
+            if (elem[0] == "org"):
+                i = int(elem[1])
             else:
                 writestring1 = str(i) + "=>" + elem[0] + ",\n"
                 i += 1
