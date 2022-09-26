@@ -16,7 +16,6 @@ architecture test of tb_top_level is
 begin
 
 	clk_gen: clk <= not clk after Tclk/2;
-	kclk_gen: kclk <= not kclk after TKclk/2;
 	
 	dut: entity work.TopLevel port map (
 		kclk => kclk,
@@ -29,148 +28,216 @@ begin
 	stimulus: process 
 	begin
 		mr <= '0';
-		wait for TKClk;
+		wait for Tclk;
 		mr <= '1';
-		--- PS/2 test
-		kdata <= '0';
-		wait for Tkclk;
-		kdata <= '1';
-		wait for Tkclk;
-		kdata <= '1';
-		wait for Tkclk;
-		kdata <= '1';
-		wait for Tkclk;
-		kdata <= '1';
-		wait for Tkclk;
-		kdata <= '0';
-		wait for Tkclk;
-		kdata <= '0';
-		wait for Tkclk;
-		kdata <= '0';
-		wait for Tkclk;
-		kdata <= '0';
-		wait for Tkclk;
-		kdata <= '1';
-		wait for Tkclk;
-		kdata <= '1';
-		wait for Tkclk;
 		
+		wait for 3*Tkclk;
+		
+		--- PS/2 test	
+		-- Press and release A
+		-- 1C(F01C)
+	
+		kdata <= '0';
+		kclk <= '0';
+		wait for Tkclk/2;
+		kclk <= '1';
+		wait for Tkclk/2;
 		
 		kdata <= '0';
-		wait for Tkclk;
-		kdata <= '0';
-		wait for Tkclk;
-		kdata <= '1';
-		wait for Tkclk;
-		kdata <= '0';
-		wait for Tkclk;
-		kdata <= '1';
-		wait for Tkclk;
-		kdata <= '1';
-		wait for Tkclk;
-		kdata <= '1';
-		wait for Tkclk;
-		kdata <= '1';
-		wait for Tkclk;
-		kdata <= '1';
-		wait for Tkclk;
-		kdata <= '1';
-		wait for Tkclk;
-		kdata <= '1';
-		wait for Tkclk;
+		kclk <= '0';
+		wait for Tkclk/2;
+		kclk <= '1';
+		wait for Tkclk/2;
 		
 		kdata <= '0';
-		wait for Tkclk;
-		kdata <= '0';
-		wait for Tkclk;
-		kdata <= '0';
-		wait for Tkclk;
-		kdata <= '0';
-		wait for Tkclk;
-		kdata <= '0';
-		wait for Tkclk;
+		kclk <= '0';
+		wait for Tkclk/2;
+		kclk <= '1';
+		wait for Tkclk/2;
+		
 		kdata <= '1';
-		wait for Tkclk;
+		kclk <= '0';
+		wait for Tkclk/2;
+		kclk <= '1';
+		wait for Tkclk/2;
+		
 		kdata <= '1';
-		wait for Tkclk;
+		kclk <= '0';
+		wait for Tkclk/2;
+		kclk <= '1';
+		wait for Tkclk/2;
+		
 		kdata <= '1';
-		wait for Tkclk;
-		kdata <= '1';
-		wait for Tkclk;
-		kdata <= '1';
-		wait for Tkclk;
-		kdata <= '1';
-		wait for Tkclk;
+		kclk <= '0';
+		wait for Tkclk/2;
+		kclk <= '1';
+		wait for Tkclk/2;
 		
 		kdata <= '0';
-		wait for Tkclk;
-		kdata <= '1';
-		wait for Tkclk;
-		kdata <= '1';
-		wait for Tkclk;
-		kdata <= '1';
-		wait for Tkclk;
-		kdata <= '1';
-		wait for Tkclk;
-		kdata <= '0';
-		wait for Tkclk;
-		kdata <= '0';
-		wait for Tkclk;
-		kdata <= '0';
-		wait for Tkclk;
-		kdata <= '0';
-		wait for Tkclk;
-		kdata <= '1';
-		wait for Tkclk;
-		kdata <= '1';
-		wait for Tkclk;
-		
+		kclk <= '0';
+		wait for Tkclk/2;
+		kclk <= '1';
+		wait for Tkclk/2;
 		
 		kdata <= '0';
-		wait for Tkclk;
-		kdata <= '0';
-		wait for Tkclk;
-		kdata <= '1';
-		wait for Tkclk;
-		kdata <= '0';
-		wait for Tkclk;
-		kdata <= '1';
-		wait for Tkclk;
-		kdata <= '1';
-		wait for Tkclk;
-		kdata <= '1';
-		wait for Tkclk;
-		kdata <= '1';
-		wait for Tkclk;
-		kdata <= '1';
-		wait for Tkclk;
-		kdata <= '1';
-		wait for Tkclk;
-		kdata <= '1';
-		wait for Tkclk;
+		kclk <= '0';
+		wait for Tkclk/2;
+		kclk <= '1';
+		wait for Tkclk/2;
 		
 		kdata <= '0';
-		wait for Tkclk;
+		kclk <= '0';
+		wait for Tkclk/2;
+		kclk <= '1';
+		wait for Tkclk/2;
+		
 		kdata <= '0';
-		wait for Tkclk;
+		kclk <= '0';
+		wait for Tkclk/2;
+		kclk <= '1';
+		wait for Tkclk/2;
+		
+		kdata <= '1';
+		kclk <= '0';
+		wait for Tkclk/2;
+		kclk <= '1';
+		wait for Tkclk/2;
+		
+		wait for 5*Tkclk;
+		
 		kdata <= '0';
-		wait for Tkclk;
+		kclk <= '0';
+		wait for Tkclk/2;
+		kclk <= '1';
+		wait for Tkclk/2;
+		
 		kdata <= '0';
-		wait for Tkclk;
+		kclk <= '0';
+		wait for Tkclk/2;
+		kclk <= '1';
+		wait for Tkclk/2;
+		
 		kdata <= '0';
-		wait for Tkclk;
+		kclk <= '0';
+		wait for Tkclk/2;
+		kclk <= '1';
+		wait for Tkclk/2;
+		
+		kdata <= '0';
+		kclk <= '0';
+		wait for Tkclk/2;
+		kclk <= '1';
+		wait for Tkclk/2;
+		
+		kdata <= '0';
+		kclk <= '0';
+		wait for Tkclk/2;
+		kclk <= '1';
+		wait for Tkclk/2;
+		
 		kdata <= '1';
-		wait for Tkclk;
+		kclk <= '0';
+		wait for Tkclk/2;
+		kclk <= '1';
+		wait for Tkclk/2;
+		
 		kdata <= '1';
-		wait for Tkclk;
+		kclk <= '0';
+		wait for Tkclk/2;
+		kclk <= '1';
+		wait for Tkclk/2;
+		
 		kdata <= '1';
-		wait for Tkclk;
+		kclk <= '0';
+		wait for Tkclk/2;
+		kclk <= '1';
+		wait for Tkclk/2;
+		
 		kdata <= '1';
-		wait for Tkclk;
+		kclk <= '0';
+		wait for Tkclk/2;
+		kclk <= '1';
+		wait for Tkclk/2;
+		
 		kdata <= '1';
-		wait for Tkclk;
+		kclk <= '0';
+		wait for Tkclk/2;
+		kclk <= '1';
+		wait for Tkclk/2;
+		
 		kdata <= '1';
-		wait for Tkclk;
+		kclk <= '0';
+		wait for Tkclk/2;
+		kclk <= '1';
+		wait for Tkclk/2;	
+	
+		wait for 2*Tkclk;
+		
+		kdata <= '0';
+		kclk <= '0';
+		wait for Tkclk/2;
+		kclk <= '1';
+		wait for Tkclk/2;
+		
+		kdata <= '0';
+		kclk <= '0';
+		wait for Tkclk/2;
+		kclk <= '1';
+		wait for Tkclk/2;
+		
+		kdata <= '0';
+		kclk <= '0';
+		wait for Tkclk/2;
+		kclk <= '1';
+		wait for Tkclk/2;
+		
+		kdata <= '1';
+		kclk <= '0';
+		wait for Tkclk/2;
+		kclk <= '1';
+		wait for Tkclk/2;
+		
+		kdata <= '1';
+		kclk <= '0';
+		wait for Tkclk/2;
+		kclk <= '1';
+		wait for Tkclk/2;
+		
+		kdata <= '1';
+		kclk <= '0';
+		wait for Tkclk/2;
+		kclk <= '1';
+		wait for Tkclk/2;
+		
+		kdata <= '0';
+		kclk <= '0';
+		wait for Tkclk/2;
+		kclk <= '1';
+		wait for Tkclk/2;
+		
+		kdata <= '0';
+		kclk <= '0';
+		wait for Tkclk/2;
+		kclk <= '1';
+		wait for Tkclk/2;
+		
+		kdata <= '0';
+		kclk <= '0';
+		wait for Tkclk/2;
+		kclk <= '1';
+		wait for Tkclk/2;
+		
+		kdata <= '0';
+		kclk <= '0';
+		wait for Tkclk/2;
+		kclk <= '1';
+		wait for Tkclk/2;
+		
+		kdata <= '1';
+		kclk <= '0';
+		wait for Tkclk/2;
+		kclk <= '1';
+		wait for Tkclk/2;
 		
 		wait;
 	end process;
