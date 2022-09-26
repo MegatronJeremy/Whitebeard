@@ -1,7 +1,7 @@
-import os
 #global data, defining the ISA
+
 arithmetic = {"addc": "01", "add": "00", "sub": "10", "subc": "11"}
-#proveriti tacnost ovoga
+
 branch = {
     "br": "0000",
     "brd": "0001",
@@ -20,9 +20,13 @@ branch = {
     "ble": "1010",
     "bgt": "1011"
 }
+
 empty = ["nop", "halt", "rti"]
+
 memcmp = ["st", "ld", "ldi", "andi", "cmpa", "cmp", "jmp", "out", "in"]
+
 addi = ["addi"]
+
 poi = ["poi"]
 
 shift = {"shl": "00", "shr": "01", "ror": "10", "sar": "11"}
