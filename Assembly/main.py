@@ -154,8 +154,9 @@ def secondpass(a):
 
 
 inp = input("input file: ")
+out = input("output file: ")
 
-with open(inp, "r") as infile, open("prog.S", "w+") as outfile:
+with open(inp, "r") as infile, open(out, "w+") as outfile:
 
     try:
         L = infile.readlines()

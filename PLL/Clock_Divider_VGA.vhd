@@ -24,7 +24,7 @@ begin
   
 process(clk,reset)
 begin
-if(reset='1') then
+if(reset='0') then
 count<=1;
 tmp<='0';
 elsif(clk'event and clk='1') then

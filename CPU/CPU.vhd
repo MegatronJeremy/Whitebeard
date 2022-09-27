@@ -14,7 +14,7 @@
 
 -- PROGRAM		"Quartus II 64-Bit"
 -- VERSION		"Version 13.1.0 Build 162 10/23/2013 SJ Web Edition"
--- CREATED		"Fri Sep 23 10:33:14 2022"
+-- CREATED		"Tue Sep 27 14:27:56 2022"
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.all; 
@@ -107,6 +107,8 @@ COMPONENT control_unit
 		 clr_pswi : OUT STD_LOGIC;
 		 sel_intr : OUT STD_LOGIC;
 		 clr_intr : OUT STD_LOGIC;
+		 ld_spoi : OUT STD_LOGIC;
+		 spoi_sel : OUT STD_LOGIC;
 		 alu_b_sel : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
 		 alu_func : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
 		 br_cond : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
@@ -260,7 +262,6 @@ END COMPONENT;
 
 COMPONENT reg_file_8x8b
 	PORT(clk : IN STD_LOGIC;
-		 mr : IN STD_LOGIC;
 		 load : IN STD_LOGIC;
 		 read_addr_1 : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
 		 read_addr_2 : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
@@ -291,6 +292,7 @@ SIGNAL	alu :  STD_LOGIC_VECTOR(7 DOWNTO 0);
 SIGNAL	alu_b_sel :  STD_LOGIC_VECTOR(1 DOWNTO 0);
 SIGNAL	alu_carry :  STD_LOGIC;
 SIGNAL	alu_func :  STD_LOGIC_VECTOR(2 DOWNTO 0);
+SIGNAL	br_cnd :  STD_LOGIC;
 SIGNAL	br_cond :  STD_LOGIC_VECTOR(3 DOWNTO 0);
 SIGNAL	br_enable :  STD_LOGIC;
 SIGNAL	branch :  STD_LOGIC;
@@ -316,6 +318,7 @@ SIGNAL	ld_poi :  STD_LOGIC;
 SIGNAL	ld_psw :  STD_LOGIC;
 SIGNAL	ld_rdst :  STD_LOGIC;
 SIGNAL	ld_spc :  STD_LOGIC;
+SIGNAL	ld_spoi :  STD_LOGIC;
 SIGNAL	ld_spsw :  STD_LOGIC;
 SIGNAL	out_reg_a :  STD_LOGIC_VECTOR(2 DOWNTO 0);
 SIGNAL	out_reg_b :  STD_LOGIC_VECTOR(2 DOWNTO 0);
@@ -342,6 +345,8 @@ SIGNAL	shf_b_sel :  STD_LOGIC;
 SIGNAL	shf_func :  STD_LOGIC_VECTOR(1 DOWNTO 0);
 SIGNAL	spc :  STD_LOGIC_VECTOR(15 DOWNTO 0);
 SIGNAL	spc_sel :  STD_LOGIC;
+SIGNAL	spoi :  STD_LOGIC_VECTOR(2 DOWNTO 0);
+SIGNAL	spoi_sel :  STD_LOGIC;
 SIGNAL	spsw :  STD_LOGIC_VECTOR(3 DOWNTO 0);
 SIGNAL	spsw_sel :  STD_LOGIC;
 SIGNAL	state :  STD_LOGIC_VECTOR(2 DOWNTO 0);
@@ -359,12 +364,13 @@ SIGNAL	SYNTHESIZED_WIRE_6 :  STD_LOGIC_VECTOR(7 DOWNTO 0);
 SIGNAL	SYNTHESIZED_WIRE_7 :  STD_LOGIC;
 SIGNAL	SYNTHESIZED_WIRE_8 :  STD_LOGIC_VECTOR(3 DOWNTO 0);
 SIGNAL	SYNTHESIZED_WIRE_9 :  STD_LOGIC_VECTOR(15 DOWNTO 0);
-SIGNAL	SYNTHESIZED_WIRE_10 :  STD_LOGIC;
+SIGNAL	SYNTHESIZED_WIRE_10 :  STD_LOGIC_VECTOR(2 DOWNTO 0);
 SIGNAL	SYNTHESIZED_WIRE_11 :  STD_LOGIC;
 SIGNAL	SYNTHESIZED_WIRE_12 :  STD_LOGIC_VECTOR(15 DOWNTO 0);
 SIGNAL	SYNTHESIZED_WIRE_13 :  STD_LOGIC_VECTOR(3 DOWNTO 0);
 SIGNAL	SYNTHESIZED_WIRE_14 :  STD_LOGIC_VECTOR(2 DOWNTO 0);
 SIGNAL	SYNTHESIZED_WIRE_15 :  STD_LOGIC_VECTOR(7 DOWNTO 0);
+SIGNAL	SYNTHESIZED_WIRE_16 :  STD_LOGIC_VECTOR(15 DOWNTO 0);
 
 
 BEGIN 
@@ -437,6 +443,8 @@ PORT MAP(busy => busy,
 		 clr_pswi => clr_pswi,
 		 sel_intr => sel_intr,
 		 clr_intr => clr_intr,
+		 ld_spoi => ld_spoi,
+		 spoi_sel => spoi_sel,
 		 alu_b_sel => alu_b_sel,
 		 alu_func => alu_func,
 		 br_cond => br_cond,
@@ -718,7 +726,15 @@ PORT MAP(data_in => shf,
 		 zero => psw_shf(2));
 
 
-SYNTHESIZED_WIRE_10 <= ld_pc AND branch;
+b2v_inst24 : mux2_3b
+PORT MAP(sel => spoi_sel,
+		 zero => gnd,
+		 d_in_1 => out_reg_b,
+		 d_in_2 => spoi,
+		 d_out => SYNTHESIZED_WIRE_10);
+
+
+br_cnd <= ld_pc AND branch;
 
 
 SYNTHESIZED_WIRE_5 <= SYNTHESIZED_WIRE_7 AND alu_func(1);
@@ -865,7 +881,15 @@ PORT MAP(sel => sel_intr,
 		 d_out => SYNTHESIZED_WIRE_12);
 
 
-SYNTHESIZED_WIRE_11 <= sel_intr OR SYNTHESIZED_WIRE_10;
+SYNTHESIZED_WIRE_11 <= sel_intr OR br_cnd;
+
+
+b2v_inst44 : mux2_16b
+PORT MAP(sel => br_cnd,
+		 zero => gnd,
+		 d_in_1 => pc,
+		 d_in_2 => adder,
+		 d_out => SYNTHESIZED_WIRE_16);
 
 
 b2v_inst45 : lpm_constant3
@@ -924,7 +948,7 @@ b2v_POINTER_ADDRESS : reg_3b
 PORT MAP(mr => mr,
 		 clk => clk,
 		 ld => ld_poi,
-		 d_in => out_reg_b,
+		 d_in => SYNTHESIZED_WIRE_10,
 		 q_out => poi);
 
 
@@ -947,7 +971,6 @@ PORT MAP(mr => mr,
 
 b2v_REG_FILE : reg_file_8x8b
 PORT MAP(clk => clk,
-		 mr => mr,
 		 load => ld_rdst,
 		 read_addr_1 => SYNTHESIZED_WIRE_14,
 		 read_addr_2 => out_reg_b,
@@ -971,8 +994,16 @@ PORT MAP(mr => mr,
 		 clk => clk,
 		 ld => ld_spc,
 		 inc => gnd,
-		 d_in => pc,
+		 d_in => SYNTHESIZED_WIRE_16,
 		 q_out => spc);
+
+
+b2v_STORED_POI : reg_3b
+PORT MAP(mr => mr,
+		 clk => clk,
+		 ld => ld_spoi,
+		 d_in => poi,
+		 q_out => spoi);
 
 
 b2v_STORED_PSW : reg_4b

@@ -5,7 +5,6 @@ use IEEE.numeric_std.all;
 entity reg_file_8x8b is
 	port (
 		clk : in std_logic;
-		mr : in std_logic;
 		read_addr_1 : in std_logic_vector(2 downto 0);
 		read_data_1 : out std_logic_vector(7 downto 0);
 		read_addr_2 : in std_logic_vector(2 downto 0);
@@ -25,12 +24,9 @@ begin
 	read_data_1 <= reg_1(to_integer(unsigned(read_addr_1)));
 	read_data_2 <= reg_2(to_integer(unsigned(read_addr_2)));
 
-write_proc : process(mr, clk)
+write_proc : process(clk)
 	begin
-		if (mr = '0') then
-			reg_1 <= (others => (others => '0'));
-			reg_2 <= (others => (others => '0'));
-		elsif rising_edge(clk) then
+		if rising_edge(clk) then
 			if write_addr /= "000" and load = '1' then
 				reg_1(to_integer(unsigned(write_addr))) <= write_data;
 				reg_2(to_integer(unsigned(write_addr))) <= write_data;

@@ -84,7 +84,11 @@ entity control_unit is
 		
 		-- INTR
 		sel_intr : out std_logic := '0';
-		clr_intr : out std_logic := '0'
+		clr_intr : out std_logic := '0';
+		
+		-- SPOI
+		ld_spoi : out std_logic := '0';
+		spoi_sel : out std_logic := '0'
 		
   );
 end entity;
@@ -162,6 +166,9 @@ architecture beh of control_unit is
   
   constant NO_INTR : std_logic := '0';
   constant LD_INTR : std_logic := '1';
+  
+  constant POINTER : std_logic := '0';
+  constant SPOINTER : std_logic := '1';
   
   -- ALU FUNCTION CODES
   constant ALU_ADD : std_logic_vector(2 downto 0) := "000";
@@ -243,6 +250,9 @@ instr_decode : process(instr, state, busy, opcode, reg_src, intr, pswi)
 	
 	sel_intr <= NO_INTR;
 	clr_intr <= '0';
+	
+	ld_spoi <= '0';
+	spoi_sel <= POINTER;
   
 	case state is
 		
@@ -386,11 +396,13 @@ instr_decode : process(instr, state, busy, opcode, reg_src, intr, pswi)
 				when RTI =>
 					spsw_sel <= SPSW;
 					spc_sel <= SPC;
+					spoi_sel <= SPOINTER;
 					set_pswi <= '1';
 					br_enable <= '1';
 					br_cond <= BR_TRUE;
 					ld_pc <= '1';
 					ld_psw <= '1';
+					ld_poi <= '1';
 					clr_state <= '1';
 					
 				when others =>
@@ -404,24 +416,24 @@ instr_decode : process(instr, state, busy, opcode, reg_src, intr, pswi)
 					if (intr = '1' and pswi = '1') then
 						ld_spc <= '1';
 						ld_spsw <= '1';
+						ld_spoi <= '1';
 						sel_intr <= LD_INTR;
 						clr_pswi <= '1';
 						clr_intr <= '1';
-					else
-						clr_state <= '1';
 					end if;
+					clr_state <= '1';
 				
 				when INST_OUT | INST_IN | ST =>
 					if NOT(busy = '1') then
 						if (intr = '1' and pswi = '1') then
 							ld_spc <= '1';
 							ld_spsw <= '1';
+							ld_spoi <= '1';
 							sel_intr <= LD_INTR;
 							clr_pswi <= '1';
 							clr_intr <= '1';
-						else
-							clr_state <= '1';
 						end if;
+						clr_state <= '1';
 					end if;
 					
 				when LD =>
@@ -430,12 +442,12 @@ instr_decode : process(instr, state, busy, opcode, reg_src, intr, pswi)
 							if (intr = '1' and pswi = '1') then
 								ld_spc <= '1';
 								ld_spsw <= '1';
+								ld_spoi <= '1';
 								sel_intr <= LD_INTR;
 								clr_pswi <= '1';
 								clr_intr <= '1';
-							else
-								clr_state <= '1';
 							end if;
+							clr_state <= '1';
 						
 						when others =>
 					end case;

@@ -50,3 +50,8 @@ _output_files/
 *_vmake
 *work
 *tmp
+
+# ignore Python files
+*.idea
+*.xml
+*.iml

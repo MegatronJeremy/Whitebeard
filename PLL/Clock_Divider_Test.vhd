@@ -24,12 +24,12 @@ begin
   
 process(clk,reset)
 begin
-if(reset='1') then
+if(reset='0') then
 count<=1;
 tmp<='0';
 elsif(clk'event and clk='1') then
 count <=count+1;
-if (count = 500) then
+if (count = 1) then
 tmp <= NOT tmp;
 count <= 1;
 end if;
