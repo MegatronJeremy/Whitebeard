@@ -1,4 +1,4 @@
-## Generated SDC file "TopLevel.sdc"
+## Generated SDC file "topir.sdc"
 
 ## Copyright (C) 1991-2013 Altera Corporation
 ## Your use of Altera Corporation's design tools, logic functions 
@@ -19,7 +19,7 @@
 ## PROGRAM "Quartus II"
 ## VERSION "Version 13.1.0 Build 162 10/23/2013 SJ Web Edition"
 
-## DATE    "Wed Sep 28 20:38:46 2022"
+## DATE    "Wed Sep 28 20:24:05 2022"
 
 ##
 ## DEVICE  "EP3C16F484C6"
@@ -38,9 +38,8 @@ set_time_format -unit ns -decimal_places 3
 # Create Clock
 #**************************************************************
 
-create_clock -name {system_clock} -period 20.000 -waveform { 0.000 10.000 } [get_ports {clk}]
+create_clock -name {system_clock} -period 20.000 -waveform { 0.000 10.000 } [get_ports {sclk}]
 create_clock -name {ps2_clock} -period 100000.000 -waveform { 0.000 50000.000 } [get_ports {kclk}]
-create_clock -name {debounced_ps2_clock} -period 100000.000 -waveform { 0.000 50000.000 } [get_registers {ps2controller:b2v_inst7|debounce:b2v_inst40|result}]
 
 
 #**************************************************************
@@ -65,22 +64,24 @@ create_clock -name {debounced_ps2_clock} -period 100000.000 -waveform { 0.000 50
 # Set Input Delay
 #**************************************************************
 
-set_input_delay -add_delay  -clock_fall -clock [get_clocks {ps2_clock}]  1.000 [get_ports {kdata}]
+set_input_delay -add_delay  -clock [get_clocks {system_clock}]  1.000 [get_ports {EN}]
 set_input_delay -add_delay  -clock [get_clocks {system_clock}]  1.000 [get_ports {mr}]
+set_input_delay -add_delay  -clock_fall -clock [get_clocks {ps2_clock}]  1.000 [get_ports {serial_data_in}]
 
 
 #**************************************************************
 # Set Output Delay
 #**************************************************************
 
-set_output_delay -add_delay  -clock [get_clocks {system_clock}]  1.000 [get_ports {debug[0]}]
-set_output_delay -add_delay  -clock [get_clocks {system_clock}]  1.000 [get_ports {debug[1]}]
-set_output_delay -add_delay  -clock [get_clocks {system_clock}]  1.000 [get_ports {debug[2]}]
-set_output_delay -add_delay  -clock [get_clocks {system_clock}]  1.000 [get_ports {debug[3]}]
-set_output_delay -add_delay  -clock [get_clocks {system_clock}]  1.000 [get_ports {debug[4]}]
-set_output_delay -add_delay  -clock [get_clocks {system_clock}]  1.000 [get_ports {debug[5]}]
-set_output_delay -add_delay  -clock [get_clocks {system_clock}]  1.000 [get_ports {debug[6]}]
-set_output_delay -add_delay  -clock [get_clocks {system_clock}]  1.000 [get_ports {debug[7]}]
+set_output_delay -add_delay  -clock [get_clocks {system_clock}]  1.000 [get_ports {d_out_tri[0]}]
+set_output_delay -add_delay  -clock [get_clocks {system_clock}]  1.000 [get_ports {d_out_tri[1]}]
+set_output_delay -add_delay  -clock [get_clocks {system_clock}]  1.000 [get_ports {d_out_tri[2]}]
+set_output_delay -add_delay  -clock [get_clocks {system_clock}]  1.000 [get_ports {d_out_tri[3]}]
+set_output_delay -add_delay  -clock [get_clocks {system_clock}]  1.000 [get_ports {d_out_tri[4]}]
+set_output_delay -add_delay  -clock [get_clocks {system_clock}]  1.000 [get_ports {d_out_tri[5]}]
+set_output_delay -add_delay  -clock [get_clocks {system_clock}]  1.000 [get_ports {d_out_tri[6]}]
+set_output_delay -add_delay  -clock [get_clocks {system_clock}]  1.000 [get_ports {d_out_tri[7]}]
+set_output_delay -add_delay  -clock [get_clocks {system_clock}]  1.000 [get_ports {intr_k}]
 
 
 #**************************************************************
