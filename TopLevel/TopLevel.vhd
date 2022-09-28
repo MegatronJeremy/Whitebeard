@@ -14,7 +14,7 @@
 
 -- PROGRAM		"Quartus II 64-Bit"
 -- VERSION		"Version 13.1.0 Build 162 10/23/2013 SJ Web Edition"
--- CREATED		"Tue Sep 27 10:55:06 2022"
+-- CREATED		"Wed Sep 28 19:01:36 2022"
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.all; 
@@ -27,7 +27,7 @@ ENTITY TopLevel IS
 		mr :  IN  STD_LOGIC;
 		kclk :  IN  STD_LOGIC;
 		kdata :  IN  STD_LOGIC;
-		sclk :  IN  STD_LOGIC;
+		clk :  IN  STD_LOGIC;
 		debug :  OUT  STD_LOGIC_VECTOR(7 DOWNTO 0)
 	);
 END TopLevel;
@@ -116,7 +116,6 @@ END COMPONENT;
 
 SIGNAL	abus :  STD_LOGIC_VECTOR(15 DOWNTO 0);
 SIGNAL	busy :  STD_LOGIC;
-SIGNAL	clk :  STD_LOGIC;
 SIGNAL	dbus_out :  STD_LOGIC_VECTOR(7 DOWNTO 0);
 SIGNAL	rdwr :  STD_LOGIC;
 SIGNAL	SYNTHESIZED_WIRE_0 :  STD_LOGIC;
@@ -162,9 +161,6 @@ PORT MAP(A => abus(15 DOWNTO 12),
 b2v_inst11 : csram
 PORT MAP(A => abus(15 DOWNTO 12),
 		 ENram => SYNTHESIZED_WIRE_4);
-
-clk <= sclk;
-
 
 
 b2v_inst3 : csdebug

@@ -71,7 +71,7 @@ applicable agreement for further details.
 	(input)
 	(rect -96 152 72 168)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "sclk" (rect 5 0 25 12)(font "Arial" ))
+	(text "clk" (rect 5 0 20 12)(font "Arial" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -488,30 +488,6 @@ applicable agreement for further details.
 		(rectangle (rect 16 16 144 64))
 	)
 )
-(symbol
-	(rect 160 144 208 176)
-	(text "WIRE" (rect 1 0 24 10)(font "Arial" (font_size 6)))
-	(text "inst2" (rect 3 21 26 33)(font "Arial" ))
-	(port
-		(pt 0 16)
-		(input)
-		(text "IN" (rect 2 7 13 19)(font "Courier New" (bold))(invisible))
-		(text "IN" (rect 2 7 13 19)(font "Courier New" (bold))(invisible))
-		(line (pt 0 16)(pt 14 16))
-	)
-	(port
-		(pt 48 16)
-		(output)
-		(text "OUT" (rect 32 7 49 19)(font "Courier New" (bold))(invisible))
-		(text "OUT" (rect 32 7 49 19)(font "Courier New" (bold))(invisible))
-		(line (pt 32 16)(pt 48 16))
-	)
-	(drawing
-		(line (pt 14 7)(pt 32 16))
-		(line (pt 14 25)(pt 14 7))
-		(line (pt 14 25)(pt 32 16))
-	)
-)
 (connector
 	(text "abus[15..12]" (rect 32 272 93 284)(font "Arial" ))
 	(pt 120 280)
@@ -743,18 +719,9 @@ applicable agreement for further details.
 	(pt 256 472)
 )
 (connector
-	(pt 160 160)
+	(text "clk" (rect 106 152 120 164)(font "Arial" ))
+	(pt 96 160)
 	(pt 72 160)
-)
-(connector
-	(text "mr" (rect 146 160 158 172)(font "Arial" ))
-	(pt 160 176)
-	(pt 144 176)
-)
-(connector
-	(text "clk" (rect 330 144 344 156)(font "Arial" ))
-	(pt 208 160)
-	(pt 336 160)
 )
 (junction (pt 560 280))
 (text "clk" (rect 600 248 614 260)(font "Arial" ))

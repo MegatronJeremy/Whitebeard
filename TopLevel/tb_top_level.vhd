@@ -7,7 +7,7 @@ end tb_top_level;
 architecture test of tb_top_level is
 	signal kclk : std_logic := '1';
 	signal kdata : std_logic := '0';
-	signal sclk : std_logic := '1';
+	signal clk : std_logic := '1';
 	signal mr : std_logic := '1';
 	signal debug : std_logic_vector(7 downto 0);
 	
@@ -15,13 +15,13 @@ architecture test of tb_top_level is
 	constant TKclk : time := 100 us; -- real clock is 100 us
 begin
 
-	sclk_gen: sclk <= not sclk after Tclk/2;
+	clk_gen: clk <= not clk after Tclk/2;
 	
 	dut: entity work.TopLevel port map (
 		kclk => kclk,
 		kdata => kdata,
 		mr=>mr, 
-		sclk=>sclk, 
+		clk=>clk, 
 		debug=>debug
 	);
 	
