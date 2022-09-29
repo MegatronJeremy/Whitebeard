@@ -40,7 +40,7 @@ set_time_format -unit ns -decimal_places 3
 
 create_clock -name {system_clock} -period 20.000 -waveform { 0.000 10.000 } [get_ports {clk}]
 create_clock -name {ps2_clock} -period 100000.000 -waveform { 0.000 50000.000 } [get_ports {kclk}]
-create_clock -name {debounced_ps2_clock} -period 100000.000 -waveform { 0.000 50000.000 } [get_registers {ps2controller:b2v_inst7|debounce:b2v_inst40|result}]
+create_clock -name {debounced_ps2_clock} -period 100000.000 -waveform { 0.000 50000.000 } [get_registers {ps2controller:b2v_inst2|debounce:b2v_inst40|result}]
 
 
 #**************************************************************

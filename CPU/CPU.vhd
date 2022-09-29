@@ -14,7 +14,7 @@
 
 -- PROGRAM		"Quartus II 64-Bit"
 -- VERSION		"Version 13.1.0 Build 162 10/23/2013 SJ Web Edition"
--- CREATED		"Tue Sep 27 14:27:56 2022"
+-- CREATED		"Thu Sep 29 14:57:23 2022"
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.all; 
@@ -27,8 +27,10 @@ ENTITY CPU IS
 		clk :  IN  STD_LOGIC;
 		mr :  IN  STD_LOGIC;
 		intr :  IN  STD_LOGIC;
-		busy :  INOUT  STD_LOGIC;
-		dbus_in :  IN  STD_LOGIC_VECTOR(7 DOWNTO 0);
+		busy :  IN  STD_LOGIC;
+		dram_in :  IN  STD_LOGIC_VECTOR(7 DOWNTO 0);
+		instr_in :  IN  STD_LOGIC_VECTOR(7 DOWNTO 0);
+		ps2_in :  IN  STD_LOGIC_VECTOR(7 DOWNTO 0);
 		rdwr :  OUT  STD_LOGIC;
 		abus :  OUT  STD_LOGIC_VECTOR(15 DOWNTO 0);
 		dbus_out :  OUT  STD_LOGIC_VECTOR(7 DOWNTO 0)
@@ -83,7 +85,7 @@ COMPONENT control_unit
 		 abus_sel : OUT STD_LOGIC;
 		 abus_out : OUT STD_LOGIC;
 		 dbus_out : OUT STD_LOGIC;
-		 bus_busy_out : OUT STD_LOGIC;
+		 dbus_in_sel : OUT STD_LOGIC;
 		 bus_rd_out : OUT STD_LOGIC;
 		 bus_wr_out : OUT STD_LOGIC;
 		 inc_pc : OUT STD_LOGIC;
@@ -223,6 +225,15 @@ COMPONENT lpm_constant3
 	);
 END COMPONENT;
 
+COMPONENT mx2x8
+	PORT(EN : IN STD_LOGIC;
+		 S0 : IN STD_LOGIC;
+		 I0 : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+		 I1 : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+		 Y : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
+	);
+END COMPONENT;
+
 COMPONENT reg_8b
 	PORT(mr : IN STD_LOGIC;
 		 clk : IN STD_LOGIC;
@@ -296,12 +307,13 @@ SIGNAL	br_cnd :  STD_LOGIC;
 SIGNAL	br_cond :  STD_LOGIC_VECTOR(3 DOWNTO 0);
 SIGNAL	br_enable :  STD_LOGIC;
 SIGNAL	branch :  STD_LOGIC;
-SIGNAL	bus_busy_out :  STD_LOGIC;
 SIGNAL	bus_rd_out :  STD_LOGIC;
 SIGNAL	bus_wr_out :  STD_LOGIC;
 SIGNAL	clr_intr :  STD_LOGIC;
 SIGNAL	clr_pswi :  STD_LOGIC;
 SIGNAL	clr_state :  STD_LOGIC;
+SIGNAL	dbus_in :  STD_LOGIC_VECTOR(7 DOWNTO 0);
+SIGNAL	dbus_in_sel :  STD_LOGIC;
 SIGNAL	dbus_out_out :  STD_LOGIC;
 SIGNAL	gnd :  STD_LOGIC;
 SIGNAL	imm :  STD_LOGIC_VECTOR(7 DOWNTO 0);
@@ -357,13 +369,13 @@ SIGNAL	zero_8b :  STD_LOGIC_VECTOR(7 DOWNTO 0);
 SIGNAL	SYNTHESIZED_WIRE_0 :  STD_LOGIC_VECTOR(15 DOWNTO 0);
 SIGNAL	SYNTHESIZED_WIRE_1 :  STD_LOGIC_VECTOR(7 DOWNTO 0);
 SIGNAL	SYNTHESIZED_WIRE_2 :  STD_LOGIC_VECTOR(2 DOWNTO 0);
-SIGNAL	SYNTHESIZED_WIRE_3 :  STD_LOGIC_VECTOR(15 DOWNTO 0);
+SIGNAL	SYNTHESIZED_WIRE_3 :  STD_LOGIC;
 SIGNAL	SYNTHESIZED_WIRE_4 :  STD_LOGIC;
-SIGNAL	SYNTHESIZED_WIRE_5 :  STD_LOGIC;
-SIGNAL	SYNTHESIZED_WIRE_6 :  STD_LOGIC_VECTOR(7 DOWNTO 0);
-SIGNAL	SYNTHESIZED_WIRE_7 :  STD_LOGIC;
-SIGNAL	SYNTHESIZED_WIRE_8 :  STD_LOGIC_VECTOR(3 DOWNTO 0);
-SIGNAL	SYNTHESIZED_WIRE_9 :  STD_LOGIC_VECTOR(15 DOWNTO 0);
+SIGNAL	SYNTHESIZED_WIRE_5 :  STD_LOGIC_VECTOR(7 DOWNTO 0);
+SIGNAL	SYNTHESIZED_WIRE_6 :  STD_LOGIC;
+SIGNAL	SYNTHESIZED_WIRE_7 :  STD_LOGIC_VECTOR(3 DOWNTO 0);
+SIGNAL	SYNTHESIZED_WIRE_8 :  STD_LOGIC_VECTOR(15 DOWNTO 0);
+SIGNAL	SYNTHESIZED_WIRE_9 :  STD_LOGIC;
 SIGNAL	SYNTHESIZED_WIRE_10 :  STD_LOGIC_VECTOR(2 DOWNTO 0);
 SIGNAL	SYNTHESIZED_WIRE_11 :  STD_LOGIC;
 SIGNAL	SYNTHESIZED_WIRE_12 :  STD_LOGIC_VECTOR(15 DOWNTO 0);
@@ -417,9 +429,7 @@ PORT MAP(busy => busy,
 		 instr => ir,
 		 state => state,
 		 abus_sel => abus_sel,
-		 abus_out => abus_out,
-		 dbus_out => dbus_out_out,
-		 bus_busy_out => bus_busy_out,
+		 dbus_in_sel => dbus_in_sel,
 		 bus_rd_out => bus_rd_out,
 		 bus_wr_out => bus_wr_out,
 		 inc_pc => inc_pc,
@@ -466,7 +476,7 @@ PORT MAP(d_in_1 => psw_alu,
 		 d_in_3 => psw_imm,
 		 d_in_4 => psw_shf,
 		 sel => psw_sel,
-		 d_out => SYNTHESIZED_WIRE_8);
+		 d_out => SYNTHESIZED_WIRE_7);
 
 
 PROCESS(clk,mr)
@@ -498,152 +508,7 @@ PORT MAP(		 result => zero_2b);
 
 b2v_inst12 : sign_ext_5_8
 PORT MAP(d_in => se_imm,
-		 d_out => SYNTHESIZED_WIRE_6);
-
-
-PROCESS(SYNTHESIZED_WIRE_3,abus_out)
-BEGIN
-if (abus_out = '1') THEN
-	abus(15) <= SYNTHESIZED_WIRE_3(15);
-ELSE
-	abus(15) <= 'Z';
-END IF;
-END PROCESS;
-
-PROCESS(SYNTHESIZED_WIRE_3,abus_out)
-BEGIN
-if (abus_out = '1') THEN
-	abus(14) <= SYNTHESIZED_WIRE_3(14);
-ELSE
-	abus(14) <= 'Z';
-END IF;
-END PROCESS;
-
-PROCESS(SYNTHESIZED_WIRE_3,abus_out)
-BEGIN
-if (abus_out = '1') THEN
-	abus(13) <= SYNTHESIZED_WIRE_3(13);
-ELSE
-	abus(13) <= 'Z';
-END IF;
-END PROCESS;
-
-PROCESS(SYNTHESIZED_WIRE_3,abus_out)
-BEGIN
-if (abus_out = '1') THEN
-	abus(12) <= SYNTHESIZED_WIRE_3(12);
-ELSE
-	abus(12) <= 'Z';
-END IF;
-END PROCESS;
-
-PROCESS(SYNTHESIZED_WIRE_3,abus_out)
-BEGIN
-if (abus_out = '1') THEN
-	abus(11) <= SYNTHESIZED_WIRE_3(11);
-ELSE
-	abus(11) <= 'Z';
-END IF;
-END PROCESS;
-
-PROCESS(SYNTHESIZED_WIRE_3,abus_out)
-BEGIN
-if (abus_out = '1') THEN
-	abus(10) <= SYNTHESIZED_WIRE_3(10);
-ELSE
-	abus(10) <= 'Z';
-END IF;
-END PROCESS;
-
-PROCESS(SYNTHESIZED_WIRE_3,abus_out)
-BEGIN
-if (abus_out = '1') THEN
-	abus(9) <= SYNTHESIZED_WIRE_3(9);
-ELSE
-	abus(9) <= 'Z';
-END IF;
-END PROCESS;
-
-PROCESS(SYNTHESIZED_WIRE_3,abus_out)
-BEGIN
-if (abus_out = '1') THEN
-	abus(8) <= SYNTHESIZED_WIRE_3(8);
-ELSE
-	abus(8) <= 'Z';
-END IF;
-END PROCESS;
-
-PROCESS(SYNTHESIZED_WIRE_3,abus_out)
-BEGIN
-if (abus_out = '1') THEN
-	abus(7) <= SYNTHESIZED_WIRE_3(7);
-ELSE
-	abus(7) <= 'Z';
-END IF;
-END PROCESS;
-
-PROCESS(SYNTHESIZED_WIRE_3,abus_out)
-BEGIN
-if (abus_out = '1') THEN
-	abus(6) <= SYNTHESIZED_WIRE_3(6);
-ELSE
-	abus(6) <= 'Z';
-END IF;
-END PROCESS;
-
-PROCESS(SYNTHESIZED_WIRE_3,abus_out)
-BEGIN
-if (abus_out = '1') THEN
-	abus(5) <= SYNTHESIZED_WIRE_3(5);
-ELSE
-	abus(5) <= 'Z';
-END IF;
-END PROCESS;
-
-PROCESS(SYNTHESIZED_WIRE_3,abus_out)
-BEGIN
-if (abus_out = '1') THEN
-	abus(4) <= SYNTHESIZED_WIRE_3(4);
-ELSE
-	abus(4) <= 'Z';
-END IF;
-END PROCESS;
-
-PROCESS(SYNTHESIZED_WIRE_3,abus_out)
-BEGIN
-if (abus_out = '1') THEN
-	abus(3) <= SYNTHESIZED_WIRE_3(3);
-ELSE
-	abus(3) <= 'Z';
-END IF;
-END PROCESS;
-
-PROCESS(SYNTHESIZED_WIRE_3,abus_out)
-BEGIN
-if (abus_out = '1') THEN
-	abus(2) <= SYNTHESIZED_WIRE_3(2);
-ELSE
-	abus(2) <= 'Z';
-END IF;
-END PROCESS;
-
-PROCESS(SYNTHESIZED_WIRE_3,abus_out)
-BEGIN
-if (abus_out = '1') THEN
-	abus(1) <= SYNTHESIZED_WIRE_3(1);
-ELSE
-	abus(1) <= 'Z';
-END IF;
-END PROCESS;
-
-PROCESS(SYNTHESIZED_WIRE_3,abus_out)
-BEGIN
-if (abus_out = '1') THEN
-	abus(0) <= SYNTHESIZED_WIRE_3(0);
-ELSE
-	abus(0) <= 'Z';
-END IF;
-END PROCESS;
+		 d_out => SYNTHESIZED_WIRE_5);
 
 
 b2v_inst14 : lpm_constant1
@@ -661,8 +526,8 @@ PORT MAP(sel => shf_b_sel,
 b2v_inst16 : nzcv_gen
 PORT MAP(C => alu_carry,
 		 ALU7 => alu(7),
-		 ADD => SYNTHESIZED_WIRE_4,
-		 SUB => SYNTHESIZED_WIRE_5,
+		 ADD => SYNTHESIZED_WIRE_3,
+		 SUB => SYNTHESIZED_WIRE_4,
 		 AB => reg_a,
 		 BB => reg_b,
 		 nzcv => psw_alu);
@@ -679,7 +544,7 @@ PORT MAP(EN => vcc,
 		 S1 => alu_b_sel(1),
 		 I0 => reg_b,
 		 I1 => imm,
-		 I2 => SYNTHESIZED_WIRE_6,
+		 I2 => SYNTHESIZED_WIRE_5,
 		 I3 => zero_8b,
 		 Y => SYNTHESIZED_WIRE_1);
 
@@ -705,7 +570,7 @@ PORT MAP(sel => abus_sel,
 		 zero => gnd,
 		 d_in_1 => pc,
 		 d_in_2 => adder,
-		 d_out => SYNTHESIZED_WIRE_3);
+		 d_out => abus);
 
 
 b2v_inst21 : mux2_16b
@@ -737,13 +602,17 @@ PORT MAP(sel => spoi_sel,
 br_cnd <= ld_pc AND branch;
 
 
-SYNTHESIZED_WIRE_5 <= SYNTHESIZED_WIRE_7 AND alu_func(1);
+SYNTHESIZED_WIRE_9 <= NOT(bus_wr_out);
 
 
-SYNTHESIZED_WIRE_4 <= NOT(alu_func(2) OR alu_func(1));
+
+SYNTHESIZED_WIRE_4 <= SYNTHESIZED_WIRE_6 AND alu_func(1);
 
 
-SYNTHESIZED_WIRE_7 <= NOT(alu_func(2));
+SYNTHESIZED_WIRE_3 <= NOT(alu_func(2) OR alu_func(1));
+
+
+SYNTHESIZED_WIRE_6 <= NOT(alu_func(2));
 
 
 
@@ -773,82 +642,9 @@ psw_dbus(3) <= dbus_in(7);
 b2v_inst36 : mux2_4b
 PORT MAP(sel => spsw_sel,
 		 zero => gnd,
-		 d_in_1 => SYNTHESIZED_WIRE_8,
+		 d_in_1 => SYNTHESIZED_WIRE_7,
 		 d_in_2 => spsw,
 		 d_out => SYNTHESIZED_WIRE_13);
-
-
-PROCESS(reg_b,dbus_out_out)
-BEGIN
-if (dbus_out_out = '1') THEN
-	dbus_out(7) <= reg_b(7);
-ELSE
-	dbus_out(7) <= 'Z';
-END IF;
-END PROCESS;
-
-PROCESS(reg_b,dbus_out_out)
-BEGIN
-if (dbus_out_out = '1') THEN
-	dbus_out(6) <= reg_b(6);
-ELSE
-	dbus_out(6) <= 'Z';
-END IF;
-END PROCESS;
-
-PROCESS(reg_b,dbus_out_out)
-BEGIN
-if (dbus_out_out = '1') THEN
-	dbus_out(5) <= reg_b(5);
-ELSE
-	dbus_out(5) <= 'Z';
-END IF;
-END PROCESS;
-
-PROCESS(reg_b,dbus_out_out)
-BEGIN
-if (dbus_out_out = '1') THEN
-	dbus_out(4) <= reg_b(4);
-ELSE
-	dbus_out(4) <= 'Z';
-END IF;
-END PROCESS;
-
-PROCESS(reg_b,dbus_out_out)
-BEGIN
-if (dbus_out_out = '1') THEN
-	dbus_out(3) <= reg_b(3);
-ELSE
-	dbus_out(3) <= 'Z';
-END IF;
-END PROCESS;
-
-PROCESS(reg_b,dbus_out_out)
-BEGIN
-if (dbus_out_out = '1') THEN
-	dbus_out(2) <= reg_b(2);
-ELSE
-	dbus_out(2) <= 'Z';
-END IF;
-END PROCESS;
-
-PROCESS(reg_b,dbus_out_out)
-BEGIN
-if (dbus_out_out = '1') THEN
-	dbus_out(1) <= reg_b(1);
-ELSE
-	dbus_out(1) <= 'Z';
-END IF;
-END PROCESS;
-
-PROCESS(reg_b,dbus_out_out)
-BEGIN
-if (dbus_out_out = '1') THEN
-	dbus_out(0) <= reg_b(0);
-ELSE
-	dbus_out(0) <= 'Z';
-END IF;
-END PROCESS;
 
 addr_1(15 DOWNTO 8) <= reg_a;
 
@@ -870,13 +666,13 @@ PORT MAP(sel => spc_sel,
 		 zero => gnd,
 		 d_in_1 => adder,
 		 d_in_2 => spc,
-		 d_out => SYNTHESIZED_WIRE_9);
+		 d_out => SYNTHESIZED_WIRE_8);
 
 
 b2v_inst42 : mux2_16b
 PORT MAP(sel => sel_intr,
 		 zero => gnd,
-		 d_in_1 => SYNTHESIZED_WIRE_9,
+		 d_in_1 => SYNTHESIZED_WIRE_8,
 		 d_in_2 => intr_vec,
 		 d_out => SYNTHESIZED_WIRE_12);
 
@@ -896,43 +692,24 @@ b2v_inst45 : lpm_constant3
 PORT MAP(		 result => intr_vec);
 
 
+rdwr <= bus_rd_out OR SYNTHESIZED_WIRE_9;
 
 
-PROCESS(vcc,bus_rd_out)
-BEGIN
-if (bus_rd_out = '1') THEN
-	rdwr <= vcc;
-ELSE
-	rdwr <= 'Z';
-END IF;
-END PROCESS;
 
 
-PROCESS(gnd,bus_wr_out)
-BEGIN
-if (bus_wr_out = '1') THEN
-	rdwr <= gnd;
-ELSE
-	rdwr <= 'Z';
-END IF;
-END PROCESS;
-
-
-PROCESS(vcc,bus_busy_out)
-BEGIN
-if (bus_busy_out = '1') THEN
-	busy <= vcc;
-ELSE
-	busy <= 'Z';
-END IF;
-END PROCESS;
+b2v_inst9 : mx2x8
+PORT MAP(EN => vcc,
+		 S0 => dbus_in_sel,
+		 I0 => dram_in,
+		 I1 => ps2_in,
+		 Y => dbus_in);
 
 
 b2v_INSTRUCTION_REG_1 : reg_8b
 PORT MAP(mr => mr,
 		 clk => clk,
 		 ld => ld_ir1,
-		 d_in => dbus_in,
+		 d_in => instr_in,
 		 q_out => ir(15 DOWNTO 8));
 
 
@@ -940,7 +717,7 @@ b2v_INSTRUCTION_REG_2 : reg_8b
 PORT MAP(mr => mr,
 		 clk => clk,
 		 ld => ld_ir2,
-		 d_in => dbus_in,
+		 d_in => instr_in,
 		 q_out => ir(7 DOWNTO 0));
 
 
@@ -1013,6 +790,7 @@ PORT MAP(mr => mr,
 		 d_in => psw,
 		 q_out => spsw);
 
+dbus_out <= reg_b;
 
 gnd <= '0';
 vcc <= '1';

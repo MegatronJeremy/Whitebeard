@@ -16,9 +16,9 @@ entity control_unit is
 		
 		-- DBUS
 		dbus_out : out std_logic := '0';
+		dbus_in_sel : out std_logic := '0';
 		
 		-- BUS
-		bus_busy_out : out std_logic := '0';
 		bus_rd_out : out std_logic := '0';
 		bus_wr_out : out std_logic := '0';
 
@@ -132,6 +132,9 @@ architecture beh of control_unit is
   constant RTI : std_logic_vector(4 downto 0) := "10010";
   
   -- MX selection codes
+  constant DBUS_RAM : std_logic := '0';
+  constant DBUS_PS2 : std_logic := '1';
+  
   constant ABUS_PC : std_logic := '0';
   constant ABUS_ADDER : std_logic := '1';
   
@@ -204,12 +207,12 @@ instr_decode : process(instr, state, busy, opcode, reg_src, intr, pswi)
 	shf_func <= instr(4 downto 3);
 
 	-- DEFAULT OUTPUT
+	dbus_in_sel <= DBUS_RAM;
+	
 	abus_sel <= ABUS_PC;
-	abus_out <= '0';
 	
 	dbus_out <= '0';
 	
-	bus_busy_out <= '0';
 	bus_rd_out <= '0';
 	bus_wr_out <= '0';
 	
@@ -259,7 +262,6 @@ instr_decode : process(instr, state, busy, opcode, reg_src, intr, pswi)
 		when FETCH_1 | FETCH_3 =>
 			if NOT(busy = '1') then
 				bus_rd_out <= '1';
-				abus_out <= '1';
 				inc_state <= '1';
 				inc_pc <= '1';
 			end if;
@@ -290,16 +292,15 @@ instr_decode : process(instr, state, busy, opcode, reg_src, intr, pswi)
 						out_reg_b <= reg_src;
 						bus_wr_out <= '1';
 						abus_sel <= ABUS_ADDER;
-						abus_out <= '1';
 						reg_a_sel <= REG_A_POI;
 						dbus_out <= '1';
 					end if;
 					
 				when INST_IN =>
 					if NOT(busy = '1') then
+						dbus_in_sel <= DBUS_PS2;
 						bus_rd_out <= '1';
 						abus_sel <= ABUS_ADDER;
-						abus_out <= '1';
 						reg_a_sel <= REG_A_POI;
 						ld_rdst <= '1';
 						reg_dst_sel <= REG_DST_DBUS;
@@ -320,7 +321,6 @@ instr_decode : process(instr, state, busy, opcode, reg_src, intr, pswi)
 						out_reg_b <= reg_src;
 						bus_wr_out <= '1';
 						abus_sel <= ABUS_ADDER;
-						abus_out <= '1';
 						reg_a_sel <= REG_A_POI;
 						dbus_out <= '1';
 					end if;
@@ -331,7 +331,6 @@ instr_decode : process(instr, state, busy, opcode, reg_src, intr, pswi)
 							if NOT(busy = '1') then
 								bus_rd_out <= '1';
 								abus_sel <= ABUS_ADDER;
-								abus_out <= '1';
 								reg_a_sel <= REG_A_POI;
 								inc_state <= '1';
 							end if;

@@ -14,7 +14,7 @@
 
 -- PROGRAM		"Quartus II 64-Bit"
 -- VERSION		"Version 13.1.0 Build 162 10/23/2013 SJ Web Edition"
--- CREATED		"Sat Sep 24 22:16:01 2022"
+-- CREATED		"Thu Sep 29 15:20:53 2022"
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.all; 
@@ -30,7 +30,7 @@ ENTITY ps2controller IS
 		kclk :  IN  STD_LOGIC;
 		serial_data_in :  IN  STD_LOGIC;
 		intr_k :  OUT  STD_LOGIC;
-		d_out_tri :  OUT  STD_LOGIC_VECTOR(7 DOWNTO 0)
+		d_out :  OUT  STD_LOGIC_VECTOR(7 DOWNTO 0)
 	);
 END ps2controller;
 
@@ -92,8 +92,6 @@ END COMPONENT;
 
 SIGNAL	cnt10 :  STD_LOGIC;
 SIGNAL	d_inah :  STD_LOGIC_VECTOR(7 DOWNTO 0);
-SIGNAL	d_out :  STD_LOGIC_VECTOR(7 DOWNTO 0);
-SIGNAL	d_out_tri_ALTERA_SYNTHESIZED :  STD_LOGIC_VECTOR(7 DOWNTO 0);
 SIGNAL	data_out :  STD_LOGIC_VECTOR(10 DOWNTO 0);
 SIGNAL	intr_k_ALTERA_SYNTHESIZED :  STD_LOGIC;
 SIGNAL	inv_kclk :  STD_LOGIC;
@@ -170,92 +168,12 @@ SYNTHESIZED_WIRE_15 <= NOT(cnt10);
 
 
 
-PROCESS(d_out(7),overwrite)
-BEGIN
-if (overwrite = '1') THEN
-	d_out_tri_ALTERA_SYNTHESIZED(7) <= d_out(7);
-ELSE
-	d_out_tri_ALTERA_SYNTHESIZED(7) <= 'Z';
-END IF;
-END PROCESS;
-
-
-PROCESS(d_out(6),overwrite)
-BEGIN
-if (overwrite = '1') THEN
-	d_out_tri_ALTERA_SYNTHESIZED(6) <= d_out(6);
-ELSE
-	d_out_tri_ALTERA_SYNTHESIZED(6) <= 'Z';
-END IF;
-END PROCESS;
-
-
-PROCESS(d_out(5),overwrite)
-BEGIN
-if (overwrite = '1') THEN
-	d_out_tri_ALTERA_SYNTHESIZED(5) <= d_out(5);
-ELSE
-	d_out_tri_ALTERA_SYNTHESIZED(5) <= 'Z';
-END IF;
-END PROCESS;
-
-
-PROCESS(d_out(4),overwrite)
-BEGIN
-if (overwrite = '1') THEN
-	d_out_tri_ALTERA_SYNTHESIZED(4) <= d_out(4);
-ELSE
-	d_out_tri_ALTERA_SYNTHESIZED(4) <= 'Z';
-END IF;
-END PROCESS;
-
-
 b2v_inst2 : reg_8b
 PORT MAP(mr => mr,
 		 clk => sclk,
 		 ld => SYNTHESIZED_WIRE_2,
 		 d_in => SYNTHESIZED_WIRE_3,
 		 q_out => d_out);
-
-
-PROCESS(d_out(3),overwrite)
-BEGIN
-if (overwrite = '1') THEN
-	d_out_tri_ALTERA_SYNTHESIZED(3) <= d_out(3);
-ELSE
-	d_out_tri_ALTERA_SYNTHESIZED(3) <= 'Z';
-END IF;
-END PROCESS;
-
-
-PROCESS(d_out(2),overwrite)
-BEGIN
-if (overwrite = '1') THEN
-	d_out_tri_ALTERA_SYNTHESIZED(2) <= d_out(2);
-ELSE
-	d_out_tri_ALTERA_SYNTHESIZED(2) <= 'Z';
-END IF;
-END PROCESS;
-
-
-PROCESS(d_out(1),overwrite)
-BEGIN
-if (overwrite = '1') THEN
-	d_out_tri_ALTERA_SYNTHESIZED(1) <= d_out(1);
-ELSE
-	d_out_tri_ALTERA_SYNTHESIZED(1) <= 'Z';
-END IF;
-END PROCESS;
-
-
-PROCESS(d_out(0),overwrite)
-BEGIN
-if (overwrite = '1') THEN
-	d_out_tri_ALTERA_SYNTHESIZED(0) <= d_out(0);
-ELSE
-	d_out_tri_ALTERA_SYNTHESIZED(0) <= 'Z';
-END IF;
-END PROCESS;
 
 
 SYNTHESIZED_WIRE_14 <= NOT(isEven);
@@ -403,7 +321,6 @@ SYNTHESIZED_WIRE_5 <= NOT(q_out(2));
 
 
 intr_k <= intr_k_ALTERA_SYNTHESIZED;
-d_out_tri <= d_out_tri_ALTERA_SYNTHESIZED;
 overwrite <= EN;
 
 d_inah(0) <= '0';

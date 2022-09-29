@@ -20,9 +20,9 @@ applicable agreement for further details.
 */
 (header "symbol" (version "1.1"))
 (symbol
-	(rect 16 16 224 704)
+	(rect 16 16 224 736)
 	(text "control_unit" (rect 5 0 49 12)(font "Arial" ))
-	(text "inst" (rect 8 672 20 684)(font "Arial" ))
+	(text "inst" (rect 8 704 20 716)(font "Arial" ))
 	(port
 		(pt 0 32)
 		(input)
@@ -82,8 +82,8 @@ applicable agreement for further details.
 	(port
 		(pt 208 80)
 		(output)
-		(text "bus_busy_out" (rect 0 0 57 12)(font "Arial" ))
-		(text "bus_busy_out" (rect 130 75 187 87)(font "Arial" ))
+		(text "dbus_in_sel" (rect 0 0 47 12)(font "Arial" ))
+		(text "dbus_in_sel" (rect 140 75 187 87)(font "Arial" ))
 		(line (pt 208 80)(pt 192 80)(line_width 1))
 	)
 	(port
@@ -338,7 +338,21 @@ applicable agreement for further details.
 		(text "clr_intr" (rect 160 651 187 663)(font "Arial" ))
 		(line (pt 208 656)(pt 192 656)(line_width 1))
 	)
+	(port
+		(pt 208 672)
+		(output)
+		(text "ld_spoi" (rect 0 0 27 12)(font "Arial" ))
+		(text "ld_spoi" (rect 160 667 187 679)(font "Arial" ))
+		(line (pt 208 672)(pt 192 672)(line_width 1))
+	)
+	(port
+		(pt 208 688)
+		(output)
+		(text "spoi_sel" (rect 0 0 31 12)(font "Arial" ))
+		(text "spoi_sel" (rect 156 683 187 695)(font "Arial" ))
+		(line (pt 208 688)(pt 192 688)(line_width 1))
+	)
 	(drawing
-		(rectangle (rect 16 16 192 672)(line_width 1))
+		(rectangle (rect 16 16 192 704)(line_width 1))
 	)
 )
