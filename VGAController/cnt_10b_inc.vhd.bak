@@ -7,7 +7,6 @@ entity cnt_10b_inc is
     Port (
 		 rst,clk : in std_logic;
 		 inc: in std_logic;
-		 en: in std_logic;
 		 o: out std_logic_vector(0 to 9)
 	 );
 end cnt_10b_inc;
@@ -17,10 +16,9 @@ architecture count_arch of cnt_10b_inc is
     begin
       process(rst,clk)
         begin
-			 if (rst = '1') then count <= "0000000000";
-			 elsif (clk'event and clk = '1' and en = '1' and inc = '1') then	 
-				 count <=  count + 1;
-		    end if;
-		  end process;
+          if (rst = '1') then count <= "0000000000";
+			 elsif (rising_edge(clk) and inc = '1') then count <= count + 1;
+          end if;
+    end process;
     o <= count;
 end count_arch;
