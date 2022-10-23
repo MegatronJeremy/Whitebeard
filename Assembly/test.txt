@@ -4,5 +4,5 @@ ld r5, x3
 label1: st r1, x00
 ld r2, x5
 st r2, x2
-st r5, x8
 br label1
+ld r5, x2
