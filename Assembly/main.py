@@ -66,18 +66,40 @@ registers = {
 }
 
 
-def firstpass(a):
-    #adds the key, value pair to the symbole table, either with return or here (a should be the line read)
-    #TODO:create a symbol table to use with later branch instructions
-    return a
-
-
-def secondpass(a):
+def firstpass(a, address, symbols):
+    #adds the key, value pair to the symbol table, either with return or here (a should be the line read)
+    #TODO: reorganize, no syntax check necessary so far.
     a = a.split("#", 1)[0]  #comment support
+    if (len(a) == 0): return address
+    if(":" in a):
+        a=a.split(":")
+        a=[x.strip().lower() for x in a if x.strip()]
+        if(len(a)==0): return address
+        elif(len(a)==1):
+            # if len is 1 its just a symbol, if 2 its symbol + instruction
+            symbols[a[0]]=address
+
+        elif(len(a)==2):
+            symbols[a[0]] = address
+            address+=2
+        else:
+            raise TypeError #or something else
+    else:
+        address+=2 #this should also work
+
+    return address
+
+
+def secondpass(a, symbols, address):
+    a = a.split("#", 1)[0]  #comment support
+    if (":" in a ): a=a.split(":")[1]#should work
     words = a.split(" ")
 
     words = [x.strip().lower() for x in words if x.strip()]
-    if len(words) == 0: return words
+
+
+    if len(words) == 0: return words, address
+    address+=2 #current value of pc
     ret = []
     if words[0] in arithmetic.keys():
         str1 = '"' + opcodes.get("arithmetic") + registers.get(
@@ -88,19 +110,31 @@ def secondpass(a):
         ret.append(str2)
 
     elif words[0] in branch:
-        str1 = '"' + opcodes.get("branch") + branch.get(words[0])[:3] + '"'
-        ret.append(str1)
-        #binary=str(bin(int(words[1].replace("x", ""), 16)))[3]
-        str2 = '"' + branch.get(words[0])[3] + str(
-            bin(int(words[1].replace("x", ""), 16)))[2:].zfill(8)[1:] + '"'
-        ret.append(str2)
+        if words[1] in symbols.keys():
+            if(address-symbols.get(words[1])>0 and address-symbols.get(words[1])<=2**6): #call to an earlier label, displacement NEGATIVE
+                str1 = '"' + opcodes.get("branch") + branch.get(words[0])[:3] + '"'
+                ret.append(str1)
+                str2='"'+  branch.get(words[0])[3]+str(bin(~(address-symbols.get(words[1]))+1))[3:].rjust(7, '1')[-7:] + '"'
+                ret.append(str2)
+            elif(address-symbols.get(words[1])<=0 and address-symbols.get(words[1])>-(2**6)): #check conditions, displacement POSITIVE
+                str1 = '"' + opcodes.get("branch") + branch.get(words[0])[:3] + '"'
+                ret.append(str1)
+                str2='"' + branch.get(words[0])[3]+str(bin(symbols.get(words[1])-address))[2:].zfill(8)[-7:] + '"'
+                ret.append(str2)
+            else: raise ValueError;
+
+        else: #normal branch, should work or raise an error
+            str1 = '"' + opcodes.get("branch") + branch.get(words[0])[:3] + '"'
+            ret.append(str1)
+            str2 = '"' + branch.get(words[0])[3] + str(bin(int(words[1].replace("x", ""), 16)))[2:].zfill(8)[-7:] + '"' #replaced with [-7:], test this
+            ret.append(str2)
     elif words[0] in memcmp:
 
         str1 = '"' + opcodes.get(words[0]) + registers.get(words[1].replace(
             ",", "")) + '"'
         ret.append(str1)
         str2 = '"' + str(bin(int(words[2].replace("x", ""),
-                                 16)))[2:].zfill(8) + '"'
+                                 16)))[2:].zfill(8)[-8:] + '"'#replaced with [-8:], test this
         ret.append(str2)
     elif words[0] in empty:
         str1 = '"' + opcodes.get(words[0]) + "000" + '"'
@@ -113,7 +147,7 @@ def secondpass(a):
             ",", "")) + '"'
         ret.append(str1)
         str2 = '"' + registers.get(words[2].replace(",", "")) + str(
-            bin(int(words[3].replace("x", ""), 16)))[2:].zfill(5) + '"'
+            bin(int(words[3].replace("x", ""), 16)))[2:].zfill(8)[-5:] + '"'
         ret.append(str2)
     elif words[0] in poi:
         str1 = '"' + opcodes.get(words[0]) + "000" + '"'
@@ -133,7 +167,7 @@ def secondpass(a):
         ret.append(str1)
         str2 = '"' + registers.get(words[2].replace(
             ",", "")) + shiftimmed.get(words[0]) + str(
-                bin(int(words[3].replace("x", ""), 16)))[3:].zfill(3) + '"'
+                bin(int(words[3].replace("x", ""), 16)))[2:].zfill(3)[-3:] + '"' #added [-3:]
         ret.append(str2)
     elif words[0] in logic:
         str1 = '"' + opcodes.get("logic") + registers.get(words[1].replace(
@@ -148,25 +182,31 @@ def secondpass(a):
         str2 = str(int(words[1].replace("x", ""), 16))
         ret.append(str2)
     else:
+        address-=2 #return pc to previous value, wont affect anything
         raise TypeError
 
-    return ret
+    return ret, address
 
 
 inp = input("input file: ")
 out = input("output file: ")
 
 with open(inp, "r") as infile, open(out, "w+") as outfile:
-
+    #maybe intermediate files, especially for "call" or similar instructions
+    #or alternatively, making and modifying a list in the first pass, for the second, which is more efficient
     try:
         L = infile.readlines()
         i = 0  #i (or beter yet, address) should be a parameter for firstpass or global
         symbols = {}  #empty dictionary for symbols (either here or as global)
         #firstpass call should probably be somewhere around here, in a similar for loop
         output = []
+        address=0
+        for line in L:
+            address=firstpass(line, address, symbols)
+        address=0
         for line in L:
 
-            l = secondpass(line)  #bice lista, prvi i drugi bajt
+            l,address = secondpass(line, symbols, address)  #bice lista, prvi i drugi bajt
             i += 1
             if len(l) > 0: output.append(l)
 
@@ -187,5 +227,3 @@ with open(inp, "r") as infile, open(out, "w+") as outfile:
         print("invalid instruction on line ", i)
     except FileNotFoundError:
         print("DAT_GRESKA")
-    except:
-        print("unkown error")
