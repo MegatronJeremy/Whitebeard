@@ -111,6 +111,7 @@ def secondpass(a, symbols, address):
 
     elif words[0] in branch:
         if words[1] in symbols.keys():
+            print(symbols.get(words[1]))
             if(address-symbols.get(words[1])>0 and address-symbols.get(words[1])<=2**6): #call to an earlier label, displacement NEGATIVE
                 str1 = '"' + opcodes.get("branch") + branch.get(words[0])[:3] + '"'
                 ret.append(str1)
