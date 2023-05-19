@@ -127,7 +127,7 @@ applicable agreement for further details.
 	(output)
 	(rect -8 656 168 672)
 	(text "OUTPUT" (rect 137 0 175 10)(font "Arial" (font_size 6)))
-	(text "d_out[7..0]" (rect 5 0 59 12)(font "Arial" ))
+	(text "d_out[7..0]" (rect 5 0 58 12)(font "Arial" ))
 	(pt 176 8)
 	(drawing
 		(line (pt 176 8)(pt 124 8))
@@ -139,7 +139,7 @@ applicable agreement for further details.
 		(line (pt 98 12)(pt 94 8))
 	)
 	(flipy)
-	(annotation_block (location)(rect 168 672 216 688))
+	(annotation_block (location)(rect 168 672 208 688))
 )
 (symbol
 	(rect 1232 840 1296 920)
@@ -1037,92 +1037,6 @@ applicable agreement for further details.
 	(flipy)
 )
 (symbol
-	(rect 1464 272 1624 384)
-	(text "debounce" (rect 108 0 155 12)(font "Arial" ))
-	(text "inst40" (rect 123 96 152 108)(font "Arial" ))
-	(port
-		(pt 160 32)
-		(input)
-		(text "clk" (rect 0 0 14 12)(font "Arial" ))
-		(text "clk" (rect 125 27 139 39)(font "Arial" ))
-		(line (pt 160 32)(pt 144 32))
-	)
-	(port
-		(pt 160 48)
-		(input)
-		(text "button" (rect 0 0 30 12)(font "Arial" ))
-		(text "button" (rect 109 43 139 55)(font "Arial" ))
-		(line (pt 160 48)(pt 144 48))
-	)
-	(port
-		(pt 160 64)
-		(input)
-		(text "moj_reset" (rect 0 0 48 12)(font "Arial" ))
-		(text "moj_reset" (rect 91 59 139 71)(font "Arial" ))
-		(line (pt 160 64)(pt 144 64))
-	)
-	(port
-		(pt 0 32)
-		(output)
-		(text "result" (rect 0 0 27 12)(font "Arial" ))
-		(text "result" (rect 21 27 48 39)(font "Arial" ))
-		(line (pt 0 32)(pt 16 32))
-	)
-	(parameter
-		"counter_size"
-		"8"
-		""
-		(type "PARAMETER_SIGNED_DEC")	)
-	(drawing
-		(rectangle (rect 16 16 144 96))
-	)
-	(flipy)
-	(annotation_block (parameter)(rect 1608 240 1804 268))
-)
-(symbol
-	(rect 1464 456 1624 568)
-	(text "debounce" (rect 108 0 155 12)(font "Arial" ))
-	(text "inst42" (rect 123 96 152 108)(font "Arial" ))
-	(port
-		(pt 160 32)
-		(input)
-		(text "clk" (rect 0 0 14 12)(font "Arial" ))
-		(text "clk" (rect 125 27 139 39)(font "Arial" ))
-		(line (pt 160 32)(pt 144 32))
-	)
-	(port
-		(pt 160 48)
-		(input)
-		(text "button" (rect 0 0 30 12)(font "Arial" ))
-		(text "button" (rect 109 43 139 55)(font "Arial" ))
-		(line (pt 160 48)(pt 144 48))
-	)
-	(port
-		(pt 160 64)
-		(input)
-		(text "moj_reset" (rect 0 0 48 12)(font "Arial" ))
-		(text "moj_reset" (rect 91 59 139 71)(font "Arial" ))
-		(line (pt 160 64)(pt 144 64))
-	)
-	(port
-		(pt 0 32)
-		(output)
-		(text "result" (rect 0 0 27 12)(font "Arial" ))
-		(text "result" (rect 21 27 48 39)(font "Arial" ))
-		(line (pt 0 32)(pt 16 32))
-	)
-	(parameter
-		"counter_size"
-		"8"
-		""
-		(type "PARAMETER_SIGNED_DEC")	)
-	(drawing
-		(rectangle (rect 16 16 144 96))
-	)
-	(flipy)
-	(annotation_block (parameter)(rect 1608 424 1804 452))
-)
-(symbol
 	(rect 1184 888 1232 920)
 	(text "NOT" (rect 1 0 21 10)(font "Arial" (font_size 6)))
 	(text "inst6" (rect 3 21 26 33)(font "Arial" ))
@@ -1506,6 +1420,66 @@ applicable agreement for further details.
 	)
 	(drawing
 		(rectangle (rect 16 16 152 80))
+	)
+	(flipy)
+)
+(symbol
+	(rect 1464 272 1560 368)
+	(text "Debouncer" (rect 29 0 91 14)(font "Arial" (font_size 8)))
+	(text "inst16" (rect 59 80 88 92)(font "Arial" ))
+	(port
+		(pt 96 32)
+		(input)
+		(text "CLK" (rect 0 0 23 14)(font "Arial" (font_size 8)))
+		(text "CLK" (rect 52 27 75 41)(font "Arial" (font_size 8)))
+		(line (pt 96 32)(pt 80 32))
+	)
+	(port
+		(pt 96 48)
+		(input)
+		(text "IN" (rect 0 0 10 14)(font "Arial" (font_size 8)))
+		(text "IN" (rect 65 43 75 57)(font "Arial" (font_size 8)))
+		(line (pt 96 48)(pt 80 48))
+	)
+	(port
+		(pt 0 32)
+		(output)
+		(text "OUT" (rect 0 0 24 14)(font "Arial" (font_size 8)))
+		(text "OUT" (rect 21 27 45 41)(font "Arial" (font_size 8)))
+		(line (pt 0 32)(pt 16 32))
+	)
+	(drawing
+		(rectangle (rect 16 16 80 80))
+	)
+	(flipy)
+)
+(symbol
+	(rect 1464 456 1560 552)
+	(text "Debouncer" (rect 29 0 91 14)(font "Arial" (font_size 8)))
+	(text "inst17" (rect 59 80 88 92)(font "Arial" ))
+	(port
+		(pt 96 32)
+		(input)
+		(text "CLK" (rect 0 0 23 14)(font "Arial" (font_size 8)))
+		(text "CLK" (rect 52 27 75 41)(font "Arial" (font_size 8)))
+		(line (pt 96 32)(pt 80 32))
+	)
+	(port
+		(pt 96 48)
+		(input)
+		(text "IN" (rect 0 0 10 14)(font "Arial" (font_size 8)))
+		(text "IN" (rect 65 43 75 57)(font "Arial" (font_size 8)))
+		(line (pt 96 48)(pt 80 48))
+	)
+	(port
+		(pt 0 32)
+		(output)
+		(text "OUT" (rect 0 0 24 14)(font "Arial" (font_size 8)))
+		(text "OUT" (rect 21 27 45 41)(font "Arial" (font_size 8)))
+		(line (pt 0 32)(pt 16 32))
+	)
+	(drawing
+		(rectangle (rect 16 16 80 80))
 	)
 	(flipy)
 )
@@ -1959,24 +1933,6 @@ applicable agreement for further details.
 	(pt 1432 488)
 )
 (connector
-	(text "sclk" (rect 1642 472 1662 484)(font "Arial" ))
-	(pt 1648 488)
-	(pt 1624 488)
-)
-(connector
-	(text "sclk" (rect 1642 288 1662 300)(font "Arial" ))
-	(pt 1648 304)
-	(pt 1624 304)
-)
-(connector
-	(pt 1656 320)
-	(pt 1624 320)
-)
-(connector
-	(pt 1656 504)
-	(pt 1624 504)
-)
-(connector
 	(text "mr" (rect 1634 504 1646 516)(font "Arial" ))
 	(pt 1624 520)
 	(pt 1640 520)
@@ -2040,14 +1996,6 @@ applicable agreement for further details.
 (connector
 	(pt 1760 360)
 	(pt 1824 360)
-)
-(connector
-	(pt 1824 360)
-	(pt 1824 376)
-)
-(connector
-	(pt 1824 376)
-	(pt 1888 376)
 )
 (connector
 	(pt 1376 192)
@@ -2302,6 +2250,32 @@ applicable agreement for further details.
 	(pt 168 664)
 	(pt 200 664)
 	(bus)
+)
+(connector
+	(pt 1824 360)
+	(pt 1824 376)
+)
+(connector
+	(pt 1824 376)
+	(pt 1888 376)
+)
+(connector
+	(text "sclk" (rect 1642 288 1662 300)(font "Arial" ))
+	(pt 1560 304)
+	(pt 1648 304)
+)
+(connector
+	(pt 1560 320)
+	(pt 1656 320)
+)
+(connector
+	(text "sclk" (rect 1642 472 1662 484)(font "Arial" ))
+	(pt 1560 488)
+	(pt 1648 488)
+)
+(connector
+	(pt 1560 504)
+	(pt 1656 504)
 )
 (junction (pt 960 912))
 (junction (pt 712 864))
