@@ -54,13 +54,27 @@ set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "2.5 V"
-set_location_assignment PIN_U7 -to en
-set_location_assignment PIN_M21 -to io
-set_location_assignment PIN_AA1 -to led
+set_location_assignment PIN_AA2 -to led
 set_location_assignment PIN_M9 -to clk
 set_location_assignment PIN_K20 -to gnd
 set_location_assignment PIN_K22 -to vcc
 set_global_assignment -name SEARCH_PATH "c:\\users\\xparh\\onedrive - student.etf.bg.ac.rs\\documents\\github\\whitebeard"
+set_location_assignment PIN_M21 -to sig
+set_location_assignment PIN_U13 -to BT[7]
+set_location_assignment PIN_V13 -to BT[6]
+set_location_assignment PIN_T13 -to BT[5]
+set_location_assignment PIN_T12 -to BT[4]
+set_location_assignment PIN_AA15 -to BT[3]
+set_location_assignment PIN_AB15 -to BT[2]
+set_location_assignment PIN_AA14 -to BT[1]
+set_location_assignment PIN_AA13 -to BT[0]
+set_location_assignment PIN_AB13 -to mr
+set_location_assignment PIN_U7 -to not_en
+set_location_assignment PIN_AA1 -to pin_name1
+set_location_assignment PIN_W2 -to pin_name2
+set_location_assignment PIN_Y3 -to pin_name3
+set_instance_assignment -name IO_STANDARD "SSTL-2 CLASS II" -to sig
+set_global_assignment -name BDF_FILE ../Components/Komponente/pCD8.bdf
 set_global_assignment -name VHDL_FILE ../Components/Komponente/MP4X.vhd
 set_global_assignment -name BDF_FILE ../Components/Komponente/MP8_1b.bdf
 set_global_assignment -name VHDL_FILE ../Components/Komponente/MP2X.vhd
@@ -77,7 +91,6 @@ set_global_assignment -name QIP_FILE output_files/lpm_constant0.qip
 set_global_assignment -name VHDL_FILE buzz.vhd
 set_global_assignment -name QIP_FILE lpm_const_1.qip
 set_global_assignment -name QIP_FILE lpm_constant5000.qip
-set_global_assignment -name BDF_FILE ../Components/Komponente/MP8X.bdf
 set_global_assignment -name QIP_FILE ../Components/Constants/lpm_16000.qip
 set_global_assignment -name QIP_FILE ../Components/Constants/lpm_14000.qip
 set_global_assignment -name QIP_FILE ../Components/Constants/lpm_12000.qip
@@ -89,4 +102,13 @@ set_global_assignment -name QIP_FILE ../Components/Constants/lpm_6000.qip
 set_global_assignment -name QIP_FILE ../Components/Constants/lpm_16b_0.qip
 set_global_assignment -name VHDL_FILE ../Components/Logic/zero_checker_8b.vhd
 set_global_assignment -name BDF_FILE ../Components/Komponente/CD8.bdf
+set_global_assignment -name QIP_FILE ../Components/Constants/lpm_32000.qip
+set_global_assignment -name QIP_FILE ../Components/Constants/lpm_100.qip
+set_global_assignment -name QIP_FILE lpm_500.qip
+set_global_assignment -name QIP_FILE lpm_1000.qip
+set_global_assignment -name QIP_FILE output_files/lpm_constant200.qip
+set_global_assignment -name QIP_FILE output_files/lpm_constant1.qip
+set_global_assignment -name QIP_FILE lpm_28000.qip
+set_global_assignment -name QIP_FILE lpm_24000.qip
+set_global_assignment -name QIP_FILE lpm_4000.qip
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
