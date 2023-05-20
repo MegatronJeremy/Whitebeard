@@ -81,6 +81,14 @@ set_location_assignment PIN_H8 -to HSync
 set_location_assignment PIN_V13 -to MRST
 set_location_assignment PIN_T13 -to ENABLE
 set_location_assignment PIN_M9 -to CLK
+set_location_assignment PIN_U13 -to STATE
+set_location_assignment PIN_T12 -to switchY
+set_global_assignment -name BDF_FILE ../Components/Komponente/pCD8.bdf
+set_global_assignment -name VHDL_FILE ../Components/Komponente/MP4X.vhd
+set_global_assignment -name VHDL_FILE ../Components/Komponente/MP2X.vhd
+set_global_assignment -name BDF_FILE "../Components/Signal Modifiers/signal_to_impulse.bdf"
+set_global_assignment -name BDF_FILE "../PS2controller/ort2 stvari/RisingEdge.bdf"
+set_global_assignment -name BDF_FILE ../RandomGen/RandomGen.bdf
 set_global_assignment -name VHDL_FILE ../Components/Komponente/CMPX.vhd
 set_global_assignment -name BDF_FILE "../PS2controller/ort2 stvari/REG1_INC_CL.bdf"
 set_global_assignment -name BDF_FILE "../PS2controller/ort2 stvari/Debouncer.bdf"
@@ -97,5 +105,5 @@ set_global_assignment -name BDF_FILE pcd_4b.bdf
 set_global_assignment -name VHDL_FILE cmp_16b.vhd
 set_global_assignment -name VHDL_FILE cmp_32b.vhd
 set_global_assignment -name QIP_FILE output_files/lpm_constant0.qip
-set_location_assignment PIN_U13 -to STATE
+set_global_assignment -name BDF_FILE object.bdf
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
