@@ -4,7 +4,7 @@
 -- MODULE: LPM_CONSTANT 
 
 -- ============================================================
--- File Name: lpm_constant0.vhd
+-- File Name: lpm_10000.vhd
 -- Megafunction Name(s):
 -- 			LPM_CONSTANT
 --
@@ -39,15 +39,15 @@ USE ieee.std_logic_1164.all;
 LIBRARY lpm;
 USE lpm.all;
 
-ENTITY lpm_constant0 IS
+ENTITY lpm_10000 IS
 	PORT
 	(
 		result		: OUT STD_LOGIC_VECTOR (15 DOWNTO 0)
 	);
-END lpm_constant0;
+END lpm_10000;
 
 
-ARCHITECTURE SYN OF lpm_constant0 IS
+ARCHITECTURE SYN OF lpm_10000 IS
 
 	SIGNAL sub_wire0	: STD_LOGIC_VECTOR (15 DOWNTO 0);
 
@@ -101,9 +101,9 @@ END SYN;
 -- Retrieval info: CONSTANT: LPM_WIDTH NUMERIC "16"
 -- Retrieval info: USED_PORT: result 0 0 16 0 OUTPUT NODEFVAL "result[15..0]"
 -- Retrieval info: CONNECT: result 0 0 16 0 @result 0 0 16 0
--- Retrieval info: GEN_FILE: TYPE_NORMAL lpm_constant0.vhd TRUE
--- Retrieval info: GEN_FILE: TYPE_NORMAL lpm_constant0.inc FALSE
--- Retrieval info: GEN_FILE: TYPE_NORMAL lpm_constant0.cmp TRUE
--- Retrieval info: GEN_FILE: TYPE_NORMAL lpm_constant0.bsf TRUE FALSE
--- Retrieval info: GEN_FILE: TYPE_NORMAL lpm_constant0_inst.vhd FALSE
+-- Retrieval info: GEN_FILE: TYPE_NORMAL lpm_10000.vhd TRUE
+-- Retrieval info: GEN_FILE: TYPE_NORMAL lpm_10000.inc FALSE
+-- Retrieval info: GEN_FILE: TYPE_NORMAL lpm_10000.cmp TRUE
+-- Retrieval info: GEN_FILE: TYPE_NORMAL lpm_10000.bsf TRUE FALSE
+-- Retrieval info: GEN_FILE: TYPE_NORMAL lpm_10000_inst.vhd FALSE
 -- Retrieval info: LIB_FILE: lpm
