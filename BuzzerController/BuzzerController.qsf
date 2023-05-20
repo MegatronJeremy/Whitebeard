@@ -18,14 +18,14 @@
 #
 # Quartus II 64-Bit
 # Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
-# Date created = 19:34:30  September 26, 2022
+# Date created = 10:32:55  May 20, 2023
 #
 # -------------------------------------------------------------------------- #
 #
 # Notes:
 #
 # 1) The default values for assignments are stored in the file:
-#		PLL_assignment_defaults.qdf
+#		BuzzerController_assignment_defaults.qdf
 #    If this file doesn't exist, see file:
 #		assignment_defaults.qdf
 #
@@ -36,27 +36,36 @@
 # -------------------------------------------------------------------------- #
 
 
-set_global_assignment -name FAMILY "Cyclone III"
-set_global_assignment -name DEVICE EP3C16F484C6
-set_global_assignment -name TOP_LEVEL_ENTITY Clock_Divider_Test
+set_global_assignment -name FAMILY "Cyclone V"
+set_global_assignment -name DEVICE 5CEBA4F23C7
+set_global_assignment -name TOP_LEVEL_ENTITY BuzzerController
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 13.1
-set_global_assignment -name PROJECT_CREATION_TIME_DATE "19:34:30  SEPTEMBER 26, 2022"
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "10:32:55  MAY 20, 2023"
 set_global_assignment -name LAST_QUARTUS_VERSION 13.1
 set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
 set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
-set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 1
-set_global_assignment -name NOMINAL_CORE_SUPPLY_VOLTAGE 1.2V
+set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 256
 set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (VHDL)"
 set_global_assignment -name EDA_OUTPUT_DATA_FORMAT VHDL -section_id eda_simulation
-set_global_assignment -name VHDL_FILE Clock_Divider_VGA.vhd
-set_global_assignment -name BDF_FILE PLL.bdf
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
-set_global_assignment -name VHDL_FILE Clock_Divider_Test.vhd
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name VHDL_FILE ../VGAController/cmp_16b.vhd
+set_global_assignment -name VHDL_FILE ../Components/Storage/reg_16b_inc.vhd
+set_global_assignment -name BDF_FILE ../PLL/PLL_16b.bdf
+set_global_assignment -name BDF_FILE ../PLL/PLL.bdf
+set_global_assignment -name BDF_FILE BuzzerController.bdf
+set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "2.5 V"
+set_location_assignment PIN_U7 -to en
+set_location_assignment PIN_M21 -to io
+set_location_assignment PIN_AA1 -to led
+set_global_assignment -name QIP_FILE output_files/lpm_constant0.qip
+set_global_assignment -name VHDL_FILE buzz.vhd
+set_location_assignment PIN_M9 -to clk
+set_global_assignment -name QIP_FILE lpm_const_1.qip
+set_location_assignment PIN_K20 -to gnd
+set_location_assignment PIN_K22 -to vcc
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
-set_global_assignment -name QIP_FILE lpm_constant0.qip
-set_global_assignment -name BDF_FILE PLL_16b.bdf
