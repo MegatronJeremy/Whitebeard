@@ -86,6 +86,14 @@ set_location_assignment PIN_T12 -to switchY
 set_location_assignment PIN_AA2 -to pin_name1
 set_location_assignment PIN_AA1 -to pin_name2
 set_location_assignment PIN_W2 -to pin_name3
+set_location_assignment PIN_D3 -to PS2CLK
+set_location_assignment PIN_G2 -to PS2DATA
+set_global_assignment -name BDF_FILE ../Components/Komponente/CD8.bdf
+set_global_assignment -name VHDL_FILE ../PS2controller/cmp_8b.vhd
+set_global_assignment -name BDF_FILE "../PS2controller/ort2 stvari/UB.bdf"
+set_global_assignment -name BDF_FILE "../PS2controller/ort2 stvari/UA.bdf"
+set_global_assignment -name BDF_FILE "../PS2controller/ort2 stvari/P.bdf"
+set_global_assignment -name BDF_FILE "../PS2controller/ort2 stvari/Main.bdf"
 set_global_assignment -name BDF_FILE ../Components/Komponente/DC8.bdf
 set_global_assignment -name VHDL_FILE ../Components/Komponente/REGX.vhd
 set_global_assignment -name BDF_FILE ../RandomGen/xCoordGen.bdf
