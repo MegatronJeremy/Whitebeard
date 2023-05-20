@@ -1164,11 +1164,6 @@ https://fpgasoftware.intel.com/eula.
 	(pt 912 440)
 )
 (connector
-	(text "rstObjectX" (rect 816 448 882 463)(font "Arial" ))
-	(pt 880 456)
-	(pt 928 456)
-)
-(connector
 	(text "VCLK" (rect 904 664 940 679)(font "Arial" ))
 	(pt 928 680)
 	(pt 896 680)
@@ -1281,11 +1276,6 @@ https://fpgasoftware.intel.com/eula.
 	(pt 896 712)
 )
 (connector
-	(text "0" (rect 832 472 840 487)(font "Arial" ))
-	(pt 928 472)
-	(pt 896 472)
-)
-(connector
 	(text "0,0,0,0,0,0,1,1,0,0,1,1,1,1,1,0" (rect 1351 399 1366 584)(font "Arial" )(vertical))
 	(pt 1376 440)
 	(pt 1376 503)
@@ -1396,6 +1386,16 @@ https://fpgasoftware.intel.com/eula.
 	(text "1" (rect 882 640 890 655)(font "Arial" ))
 	(pt 920 656)
 	(pt 872 656)
+)
+(connector
+	(text "switchLoadYImpulse" (rect 816 448 951 463)(font "Arial" ))
+	(pt 880 456)
+	(pt 928 456)
+)
+(connector
+	(text "0" (rect 856 464 864 479)(font "Arial" ))
+	(pt 928 472)
+	(pt 872 472)
 )
 (junction (pt 1136 424))
 (text "X BEGIN" (rect 984 368 1044 384)(font "Arial" (font_size 8)))
