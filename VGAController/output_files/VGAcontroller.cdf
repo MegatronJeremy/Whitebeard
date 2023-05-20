@@ -4,7 +4,7 @@ JedecChain;
 	DefaultMfr(6E);
 
 	P ActionCode(Cfg)
-		Device PartName(5CEBA4F23) Path("C:/Users/Filip/Desktop/ELSYS/Whitebeard-VGA800x600/VGAController/output_files/") File("VGAcontroller.sof") MfrSpec(OpMask(1));
+		Device PartName(5CEBA4F23) Path("C:/Users/Filip/Documents/GitHub/Whitebeard/VGAController/output_files/") File("VGAcontroller.sof") MfrSpec(OpMask(1));
 
 ChainEnd;
 
