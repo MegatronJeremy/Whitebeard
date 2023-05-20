@@ -83,6 +83,16 @@ set_location_assignment PIN_T13 -to ENABLE
 set_location_assignment PIN_M9 -to CLK
 set_location_assignment PIN_U13 -to STATE
 set_location_assignment PIN_T12 -to switchY
+set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_formal_verification
+set_global_assignment -name BDF_FILE ../Components/Komponente/MP8_1b.bdf
+set_global_assignment -name BDF_FILE ../Components/Plexers/mx2x8.bdf
+set_global_assignment -name BDF_FILE ../Components/Komponente/CD8.bdf
+set_global_assignment -name BDF_FILE ../Components/Logic/zero_checker_8b.bdf
+set_global_assignment -name BDF_FILE ../PLL/PLL_16b.bdf
+set_global_assignment -name VHDL_FILE ../PS2controller/debounce.vhd
+set_global_assignment -name VHDL_FILE ../PS2controller/cmp_8b.vhd
+set_global_assignment -name BDF_FILE ../PS2controller/ps2controller.bdf
+set_global_assignment -name BDF_FILE ../BuzzerController/BuzzerController.bdf
 set_global_assignment -name BDF_FILE ../Components/Komponente/pCD8.bdf
 set_global_assignment -name VHDL_FILE ../Components/Komponente/MP4X.vhd
 set_global_assignment -name VHDL_FILE ../Components/Komponente/MP2X.vhd
@@ -106,4 +116,22 @@ set_global_assignment -name VHDL_FILE cmp_16b.vhd
 set_global_assignment -name VHDL_FILE cmp_32b.vhd
 set_global_assignment -name QIP_FILE output_files/lpm_constant0.qip
 set_global_assignment -name BDF_FILE object.bdf
+set_global_assignment -name BDF_FILE ../BuzzerController/PWM_Gen.bdf
+set_global_assignment -name VHDL_FILE ../Components/Constants/lpm_20000.vhd
+set_global_assignment -name VHDL_FILE ../Components/Constants/lpm_18000.vhd
+set_global_assignment -name VHDL_FILE ../Components/Constants/lpm_16000.vhd
+set_global_assignment -name VHDL_FILE ../Components/Constants/lpm_14000.vhd
+set_global_assignment -name VHDL_FILE ../Components/Constants/lpm_12000.vhd
+set_global_assignment -name VHDL_FILE ../Components/Constants/lpm_10000.vhd
+set_global_assignment -name VHDL_FILE ../Components/Constants/lpm_8000.vhd
+set_global_assignment -name VHDL_FILE ../Components/Constants/lpm_6000.vhd
+set_global_assignment -name VHDL_FILE ../Components/Constants/lpm_16b_0.vhd
+set_global_assignment -name BDF_FILE ../Components/Storage/shiftRegister.bdf
+set_global_assignment -name VHDL_FILE ../Components/Storage/reg_4b_inc.vhd
+set_location_assignment PIN_K20 -to buzzer_gnd
+set_location_assignment PIN_M21 -to buzzer_io
+set_location_assignment PIN_K22 -to buzzer_vcc
+set_location_assignment PIN_D3 -to KCLK
+set_location_assignment PIN_G2 -to KDATA
+set_location_assignment PIN_U7 -to buzz
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

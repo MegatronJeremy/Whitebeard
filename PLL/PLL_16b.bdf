@@ -100,22 +100,6 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 376 408 392 440)
-	(text "VCC" (rect 0 5 13 29)(font "Arial" (font_size 6))(vertical))
-	(text "inst4" (rect 5 6 20 37)(font "Arial" )(vertical)(invisible))
-	(port
-		(pt 16 16)
-		(output)
-		(text "1" (rect 19 7 27 23)(font "Courier New" (bold))(invisible))
-		(text "1" (rect 7 8 23 16)(font "Courier New" (bold))(vertical)(invisible))
-		(line (pt 16 16)(pt 8 16))
-	)
-	(drawing
-		(line (pt 8 24)(pt 8 8))
-	)
-	(rotate90)
-)
-(symbol
 	(rect 592 336 784 480)
 	(text "reg_16b_inc" (rect 5 0 86 15)(font "Arial" ))
 	(text "inst" (rect 8 128 31 143)(font "Arial" ))
@@ -279,13 +263,30 @@ applicable agreement for further details.
 		(line (pt 0 0)(pt 0 0))
 	)
 )
-(connector
-	(pt 488 280)
-	(pt 544 280)
-)
-(connector
-	(pt 392 424)
-	(pt 400 424)
+(symbol
+	(rect 496 400 544 432)
+	(text "NOT" (rect 1 0 26 13)(font "Arial" (font_size 6)))
+	(text "inst7" (rect 3 21 34 36)(font "Arial" ))
+	(port
+		(pt 0 16)
+		(input)
+		(text "IN" (rect 2 7 18 23)(font "Courier New" (bold))(invisible))
+		(text "IN" (rect 2 7 18 23)(font "Courier New" (bold))(invisible))
+		(line (pt 0 16)(pt 13 16))
+	)
+	(port
+		(pt 48 16)
+		(output)
+		(text "OUT" (rect 32 7 56 23)(font "Courier New" (bold))(invisible))
+		(text "OUT" (rect 32 7 56 23)(font "Courier New" (bold))(invisible))
+		(line (pt 39 16)(pt 48 16))
+	)
+	(drawing
+		(line (pt 13 25)(pt 13 7))
+		(line (pt 13 7)(pt 31 16))
+		(line (pt 13 25)(pt 31 16))
+		(circle (rect 31 12 39 20))
+	)
 )
 (connector
 	(pt 552 248)
@@ -294,22 +295,6 @@ applicable agreement for further details.
 (connector
 	(pt 552 384)
 	(pt 592 384)
-)
-(connector
-	(pt 544 280)
-	(pt 544 368)
-)
-(connector
-	(pt 544 368)
-	(pt 592 368)
-)
-(connector
-	(pt 400 424)
-	(pt 400 416)
-)
-(connector
-	(pt 400 416)
-	(pt 592 416)
 )
 (connector
 	(pt 488 248)
@@ -328,18 +313,6 @@ applicable agreement for further details.
 	(pt 784 368)
 	(pt 808 368)
 	(bus)
-)
-(connector
-	(pt 448 400)
-	(pt 592 400)
-)
-(connector
-	(pt 448 400)
-	(pt 448 328)
-)
-(connector
-	(pt 448 328)
-	(pt 408 328)
 )
 (connector
 	(text "q_out[15..0]" (rect 176 312 251 327)(font "Arial" ))
@@ -366,12 +339,6 @@ applicable agreement for further details.
 	(bus)
 )
 (connector
-	(text "zero[15..0]" (rect 527 440 593 455)(font "Arial" ))
-	(pt 592 432)
-	(pt 560 432)
-	(bus)
-)
-(connector
 	(text "<<__$DEF_ALIAS418>>" (rect 1098 376 1254 391)(font "Arial" )(invisible))
 	(pt 1032 392)
 	(pt 1160 392)
@@ -387,4 +354,51 @@ applicable agreement for further details.
 	(pt 824 408)
 	(bus)
 )
+(connector
+	(pt 504 280)
+	(pt 488 280)
+)
+(connector
+	(pt 408 328)
+	(pt 424 328)
+)
+(connector
+	(pt 504 280)
+	(pt 504 368)
+)
+(connector
+	(pt 504 368)
+	(pt 592 368)
+)
+(connector
+	(pt 544 416)
+	(pt 592 416)
+)
+(connector
+	(pt 424 400)
+	(pt 592 400)
+)
+(connector
+	(pt 496 416)
+	(pt 424 416)
+)
+(connector
+	(pt 424 328)
+	(pt 424 400)
+)
+(connector
+	(pt 424 400)
+	(pt 424 416)
+)
+(connector
+	(pt 592 432)
+	(pt 560 432)
+	(bus)
+)
+(connector
+	(pt 560 432)
+	(pt 560 488)
+	(bus)
+)
 (junction (pt 552 248))
+(junction (pt 424 400))
