@@ -83,6 +83,12 @@ set_location_assignment PIN_T13 -to ENABLE
 set_location_assignment PIN_M9 -to CLK
 set_location_assignment PIN_U13 -to STATE
 set_location_assignment PIN_T12 -to switchY
+set_location_assignment PIN_AA2 -to pin_name1
+set_location_assignment PIN_AA1 -to pin_name2
+set_location_assignment PIN_W2 -to pin_name3
+set_global_assignment -name BDF_FILE ../Components/Komponente/DC8.bdf
+set_global_assignment -name VHDL_FILE ../Components/Komponente/REGX.vhd
+set_global_assignment -name BDF_FILE ../RandomGen/xCoordGen.bdf
 set_global_assignment -name BDF_FILE ../Components/Komponente/pCD8.bdf
 set_global_assignment -name VHDL_FILE ../Components/Komponente/MP4X.vhd
 set_global_assignment -name VHDL_FILE ../Components/Komponente/MP2X.vhd
