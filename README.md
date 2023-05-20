@@ -1,3 +1,5 @@
+DE0-CV board manual: https://www2.pcs.usp.br/~labdig/material/DE0_CV_User_Manual.pdf
+
 # WHITEBEARD
 Implementation of a minimal ISA (Instruction Set Architecture) on an FPGA development board using Quartus, capable of running the classic video game **Pong** using a **VGA output** and **keyboard controls**.
 
