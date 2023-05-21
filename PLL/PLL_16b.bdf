@@ -236,34 +236,6 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 384 464 496 512)
-	(text "lpm_16b_0" (rect 18 0 111 19)(font "Arial" (font_size 10)))
-	(text "inst1" (rect 8 29 39 44)(font "Arial" ))
-	(port
-		(pt 112 24)
-		(output)
-		(text "result[15..0]" (rect 0 0 81 16)(font "Arial" (font_size 8)))
-		(text "0" (rect 86 16 94 32)(font "Arial" (font_size 8)))
-		(line (pt 112 24)(pt 96 24)(line_width 3))
-	)
-	(drawing
-		(text "16" (rect 90 25 106 40)(font "Arial" ))
-		(line (pt 106 20)(pt 98 28))
-		(line (pt 16 16)(pt 16 32))
-		(line (pt 16 16)(pt 96 16))
-		(line (pt 16 32)(pt 96 32))
-		(line (pt 96 16)(pt 96 32))
-		(line (pt 0 0)(pt 114 0))
-		(line (pt 114 0)(pt 114 50))
-		(line (pt 0 50)(pt 114 50))
-		(line (pt 0 0)(pt 0 50))
-		(line (pt 0 0)(pt 0 0))
-		(line (pt 0 0)(pt 0 0))
-		(line (pt 0 0)(pt 0 0))
-		(line (pt 0 0)(pt 0 0))
-	)
-)
-(symbol
 	(rect 496 400 544 432)
 	(text "NOT" (rect 1 0 26 13)(font "Arial" (font_size 6)))
 	(text "inst7" (rect 3 21 34 36)(font "Arial" ))
@@ -287,6 +259,32 @@ applicable agreement for further details.
 		(line (pt 13 25)(pt 31 16))
 		(circle (rect 31 12 39 20))
 	)
+)
+(symbol
+	(rect 440 456 496 512)
+	(text "CONSTX" (rect 5 0 62 15)(font "Arial" ))
+	(text "inst1" (rect 8 40 39 55)(font "Arial" ))
+	(port
+		(pt 56 32)
+		(output)
+		(text "data[size-1..0]" (rect -96 0 -7 15)(font "Arial" ))
+		(text "c" (rect 25 27 32 42)(font "Arial" )(invisible))
+		(line (pt 56 32)(pt 40 32)(line_width 3))
+	)
+	(parameter
+		"size"
+		"16"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"const"
+		"0"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(drawing
+		(rectangle (rect 24 24 40 40)(fill (color 218 218 218)))
+	)
+	(annotation_block (parameter)(rect 520 504 736 552))
 )
 (connector
 	(pt 552 248)

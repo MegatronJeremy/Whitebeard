@@ -50,9 +50,6 @@ set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (VHDL)"
 set_global_assignment -name EDA_OUTPUT_DATA_FORMAT VHDL -section_id eda_simulation
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
-set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
-set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
-set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "2.5 V"
 set_location_assignment PIN_AA2 -to led
 set_location_assignment PIN_M9 -to clk
@@ -74,6 +71,25 @@ set_location_assignment PIN_AA1 -to pin_name1
 set_location_assignment PIN_W2 -to pin_name2
 set_location_assignment PIN_Y3 -to pin_name3
 set_instance_assignment -name IO_STANDARD "SSTL-2 CLASS II" -to sig
+set_location_assignment PIN_U21 -to a
+set_location_assignment PIN_V21 -to b
+set_location_assignment PIN_W22 -to c
+set_location_assignment PIN_W21 -to d
+set_location_assignment PIN_Y22 -to e
+set_location_assignment PIN_Y21 -to f
+set_location_assignment PIN_AA22 -to g
+set_global_assignment -name VHDL_FILE ../Components/Komponente/REGX.vhd
+set_global_assignment -name VHDL_FILE ../Components/Komponente/CMPX.vhd
+set_global_assignment -name VHDL_FILE ../Components/Komponente/RisingEdge.vhd
+set_global_assignment -name VHDL_FILE ../Components/Komponente/seven_segment_digit_interface.vhd
+set_global_assignment -name VHDL_FILE ../Components/Storage/reg_4b_inc.vhd
+set_global_assignment -name VHDL_FILE ../Components/Komponente/CONSTX.vhd
+set_global_assignment -name SOURCE_FILE lpm_500.cmp
+set_global_assignment -name SOURCE_FILE lpm_4000.cmp
+set_global_assignment -name SOURCE_FILE lpm_28000.cmp
+set_global_assignment -name SOURCE_FILE lpm_24000.cmp
+set_global_assignment -name SOURCE_FILE lpm_1000.cmp
+set_global_assignment -name BDF_FILE SSController.bdf
 set_global_assignment -name BDF_FILE ../Components/Komponente/pCD8.bdf
 set_global_assignment -name VHDL_FILE ../Components/Komponente/MP4X.vhd
 set_global_assignment -name BDF_FILE ../Components/Komponente/MP8_1b.bdf
@@ -111,4 +127,8 @@ set_global_assignment -name QIP_FILE output_files/lpm_constant1.qip
 set_global_assignment -name QIP_FILE lpm_28000.qip
 set_global_assignment -name QIP_FILE lpm_24000.qip
 set_global_assignment -name QIP_FILE lpm_4000.qip
+set_global_assignment -name BDF_FILE ../PLL/PLL_32b.bdf
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
