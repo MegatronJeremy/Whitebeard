@@ -21,7 +21,7 @@ https://fpgasoftware.intel.com/eula.
 */
 (header "symbol" (version "1.2"))
 (symbol
-	(rect 16 16 208 112)
+	(rect 16 16 224 112)
 	(text "Main" (rect 5 0 39 20)(font "Intel Clear" (font_size 8)))
 	(text "inst" (rect 8 73 31 92)(font "Intel Clear" ))
 	(port
@@ -46,13 +46,27 @@ https://fpgasoftware.intel.com/eula.
 		(line (pt 0 64)(pt 16 64))
 	)
 	(port
-		(pt 192 32)
+		(pt 208 32)
 		(output)
 		(text "lane[7..0]" (rect 0 0 66 20)(font "Intel Clear" (font_size 8)))
-		(text "lane[7..0]" (rect 105 27 171 47)(font "Intel Clear" (font_size 8)))
-		(line (pt 192 32)(pt 176 32)(line_width 3))
+		(text "lane[7..0]" (rect 121 27 187 47)(font "Intel Clear" (font_size 8)))
+		(line (pt 208 32)(pt 192 32)(line_width 3))
+	)
+	(port
+		(pt 208 48)
+		(output)
+		(text "resetGame" (rect 0 0 75 20)(font "Intel Clear" (font_size 8)))
+		(text "resetGame" (rect 112 43 187 63)(font "Intel Clear" (font_size 8)))
+		(line (pt 208 48)(pt 192 48))
+	)
+	(port
+		(pt 208 64)
+		(output)
+		(text "pauseGame" (rect 0 0 82 20)(font "Intel Clear" (font_size 8)))
+		(text "pauseGame" (rect 105 59 187 79)(font "Intel Clear" (font_size 8)))
+		(line (pt 208 64)(pt 192 64))
 	)
 	(drawing
-		(rectangle (rect 16 16 176 80))
+		(rectangle (rect 16 16 192 80))
 	)
 )
