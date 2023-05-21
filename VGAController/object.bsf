@@ -69,15 +69,15 @@ https://fpgasoftware.intel.com/eula.
 	(port
 		(pt 0 128)
 		(input)
-		(text "despawn" (rect 0 0 63 20)(font "Intel Clear" (font_size 8)))
-		(text "despawn" (rect 21 123 84 143)(font "Intel Clear" (font_size 8)))
+		(text "despawn1" (rect 0 0 73 20)(font "Intel Clear" (font_size 8)))
+		(text "despawn1" (rect 21 123 94 143)(font "Intel Clear" (font_size 8)))
 		(line (pt 0 128)(pt 16 128))
 	)
 	(port
 		(pt 0 144)
 		(input)
-		(text "bits[4..0]" (rect 0 0 61 20)(font "Intel Clear" (font_size 8)))
-		(text "bits[4..0]" (rect 21 139 82 159)(font "Intel Clear" (font_size 8)))
+		(text "bits[5..0]" (rect 0 0 61 20)(font "Intel Clear" (font_size 8)))
+		(text "bits[5..0]" (rect 21 139 82 159)(font "Intel Clear" (font_size 8)))
 		(line (pt 0 144)(pt 16 144)(line_width 3))
 	)
 	(port
