@@ -87,6 +87,13 @@ https://fpgasoftware.intel.com/eula.
 		(text "colision" (rect 149 43 203 63)(font "Intel Clear" (font_size 8)))
 		(line (pt 224 48)(pt 208 48))
 	)
+	(port
+		(pt 224 64)
+		(output)
+		(text "avail" (rect 0 0 33 20)(font "Intel Clear" (font_size 8)))
+		(text "avail" (rect 170 59 203 79)(font "Intel Clear" (font_size 8)))
+		(line (pt 224 64)(pt 208 64))
+	)
 	(drawing
 		(rectangle (rect 16 16 208 144))
 	)
