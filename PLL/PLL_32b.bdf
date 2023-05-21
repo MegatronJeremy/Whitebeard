@@ -4,20 +4,19 @@ editor if you plan to continue editing the block that represents it in
 the Block Editor! File corruption is VERY likely to occur.
 */
 /*
-Copyright (C) 2023  Intel Corporation. All rights reserved.
-Your use of Intel Corporation's design tools, logic functions 
-and other software and tools, and any partner logic 
+Copyright (C) 1991-2013 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
 functions, and any output files from any of the foregoing 
 (including device programming or simulation files), and any 
 associated documentation or information are expressly subject 
-to the terms and conditions of the Intel Program License 
-Subscription Agreement, the Intel Quartus Prime License Agreement,
-the Intel FPGA IP License Agreement, or other applicable license
-agreement, including, without limitation, that your use is for
-the sole purpose of programming logic devices manufactured by
-Intel and sold by Intel or its authorized distributors.  Please
-refer to the applicable agreement for further details, at
-https://fpgasoftware.intel.com/eula.
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
 */
 (header "graphic" (version "1.4"))
 (pin
@@ -406,27 +405,27 @@ https://fpgasoftware.intel.com/eula.
 )
 (symbol
 	(rect 768 480 880 576)
-	(text "RisingEdge" (rect 5 0 80 20)(font "Intel Clear" (font_size 8)))
-	(text "inst8" (rect 8 73 39 92)(font "Intel Clear" ))
+	(text "RisingEdge" (rect 5 0 78 16)(font "Intel Clear" (font_size 8)))
+	(text "inst8" (rect 8 73 38 87)(font "Intel Clear" ))
 	(port
 		(pt 0 32)
 		(input)
-		(text "IN" (rect 0 0 15 20)(font "Intel Clear" (font_size 8)))
-		(text "IN" (rect 21 27 36 47)(font "Intel Clear" (font_size 8)))
+		(text "IN" (rect 0 0 14 16)(font "Intel Clear" (font_size 8)))
+		(text "IN" (rect 21 27 35 43)(font "Intel Clear" (font_size 8)))
 		(line (pt 0 32)(pt 16 32))
 	)
 	(port
 		(pt 0 48)
 		(input)
-		(text "CLK" (rect 0 0 27 20)(font "Intel Clear" (font_size 8)))
-		(text "CLK" (rect 21 43 48 63)(font "Intel Clear" (font_size 8)))
+		(text "CLK" (rect 0 0 24 16)(font "Intel Clear" (font_size 8)))
+		(text "CLK" (rect 21 43 45 59)(font "Intel Clear" (font_size 8)))
 		(line (pt 0 48)(pt 16 48))
 	)
 	(port
 		(pt 112 32)
 		(output)
-		(text "OUT" (rect 0 0 31 20)(font "Intel Clear" (font_size 8)))
-		(text "OUT" (rect 60 27 91 47)(font "Intel Clear" (font_size 8)))
+		(text "OUT" (rect 0 0 29 16)(font "Intel Clear" (font_size 8)))
+		(text "OUT" (rect 60 27 89 43)(font "Intel Clear" (font_size 8)))
 		(line (pt 112 32)(pt 96 32))
 	)
 	(drawing
@@ -582,14 +581,18 @@ https://fpgasoftware.intel.com/eula.
 	(pt 880 512)
 )
 (connector
-	(text "pulse" (rect 752 465 767 501)(font "Arial" )(vertical))
-	(pt 768 472)
-	(pt 768 512)
+	(text "clk" (rect 711 512 728 527)(font "Arial" ))
+	(pt 768 528)
+	(pt 728 528)
 )
 (connector
-	(text "clk" (rect 727 512 744 527)(font "Arial" ))
-	(pt 744 528)
-	(pt 768 528)
+	(pt 768 512)
+	(pt 752 512)
+)
+(connector
+	(text "pulse" (rect 736 465 751 501)(font "Arial" )(vertical))
+	(pt 752 512)
+	(pt 752 472)
 )
 (junction (pt 560 144))
 (junction (pt 120 504))
