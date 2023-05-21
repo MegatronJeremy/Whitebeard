@@ -21,8 +21,8 @@ https://fpgasoftware.intel.com/eula.
 */
 (header "symbol" (version "1.2"))
 (symbol
-	(rect 16 16 224 112)
-	(text "xCoordGen" (rect 5 0 84 20)(font "Intel Clear" (font_size 8)))
+	(rect 16 16 168 112)
+	(text "XORrandom" (rect 5 0 91 20)(font "Intel Clear" (font_size 8)))
 	(text "inst" (rect 8 73 31 92)(font "Intel Clear" ))
 	(port
 		(pt 0 32)
@@ -32,20 +32,13 @@ https://fpgasoftware.intel.com/eula.
 		(line (pt 0 32)(pt 16 32))
 	)
 	(port
-		(pt 208 32)
-		(output)
-		(text "randXCoord[15..0]" (rect 0 0 130 20)(font "Intel Clear" (font_size 8)))
-		(text "randXCoord[15..0]" (rect 57 27 187 47)(font "Intel Clear" (font_size 8)))
-		(line (pt 208 32)(pt 192 32)(line_width 3))
-	)
-	(port
-		(pt 208 48)
+		(pt 152 32)
 		(output)
 		(text "rand[2..0]" (rect 0 0 68 20)(font "Intel Clear" (font_size 8)))
-		(text "rand[2..0]" (rect 119 43 187 63)(font "Intel Clear" (font_size 8)))
-		(line (pt 208 48)(pt 192 48)(line_width 3))
+		(text "rand[2..0]" (rect 63 27 131 47)(font "Intel Clear" (font_size 8)))
+		(line (pt 152 32)(pt 136 32)(line_width 3))
 	)
 	(drawing
-		(rectangle (rect 16 16 192 80))
+		(rectangle (rect 16 16 136 80))
 	)
 )

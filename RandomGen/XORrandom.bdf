@@ -24,7 +24,7 @@ https://fpgasoftware.intel.com/eula.
 	(input)
 	(rect 96 88 264 104)
 	(text "INPUT" (rect 125 0 161 13)(font "Arial" (font_size 6)))
-	(text "CLK" (rect 5 0 34 15)(font "Arial" ))
+	(text "CLK" (rect 5 0 33 15)(font "Arial" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -35,6 +35,7 @@ https://fpgasoftware.intel.com/eula.
 		(line (pt 109 12)(pt 113 8))
 	)
 	(text "VCC" (rect 128 7 152 20)(font "Arial" (font_size 6)))
+	(annotation_block (location)(rect 32 104 96 128))
 )
 (pin
 	(output)
@@ -495,4 +496,5 @@ https://fpgasoftware.intel.com/eula.
 	(text "d1_out[5],d2_out[3],d3_out[8]" (rect 1280 64 1474 83)(font "Intel Clear" ))
 	(pt 1312 88)
 	(pt 1280 88)
+	(bus)
 )
