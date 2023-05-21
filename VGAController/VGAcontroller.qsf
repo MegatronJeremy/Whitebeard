@@ -82,7 +82,6 @@ set_location_assignment PIN_V13 -to MRST
 set_location_assignment PIN_T13 -to ENABLE
 set_location_assignment PIN_M9 -to CLK
 set_location_assignment PIN_U13 -to STATE
-set_location_assignment PIN_AA2 -to pin_name1
 set_location_assignment PIN_D3 -to PS2CLK
 set_location_assignment PIN_G2 -to PS2DATA
 set_location_assignment PIN_M21 -to SIG
@@ -200,4 +199,12 @@ set_location_assignment PIN_W19 -to mh_g
 set_location_assignment PIN_W9 -to butSpd
 set_location_assignment PIN_M7 -to butDuz1
 set_location_assignment PIN_M6 -to butDuz2
+set_location_assignment PIN_U1 -to l1
+set_location_assignment PIN_U2 -to l2
+set_location_assignment PIN_N1 -to l3
+set_location_assignment PIN_N2 -to l4
+set_location_assignment PIN_Y3 -to l5
+set_location_assignment PIN_W2 -to l6
+set_location_assignment PIN_AA1 -to l7
+set_location_assignment PIN_AA2 -to l8
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

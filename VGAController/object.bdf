@@ -120,7 +120,7 @@ https://fpgasoftware.intel.com/eula.
 	(input)
 	(rect 152 1024 320 1040)
 	(text "INPUT" (rect 125 0 161 13)(font "Arial" (font_size 6)))
-	(text "bits[5..0]" (rect 5 0 60 15)(font "Arial" ))
+	(text "bits[5..0]" (rect 5 0 59 15)(font "Arial" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -136,7 +136,7 @@ https://fpgasoftware.intel.com/eula.
 	(input)
 	(rect 168 680 336 696)
 	(text "INPUT" (rect 125 0 161 13)(font "Arial" (font_size 6)))
-	(text "despawn1" (rect 5 0 74 15)(font "Arial" ))
+	(text "despawn1" (rect 5 0 73 15)(font "Arial" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -398,7 +398,7 @@ https://fpgasoftware.intel.com/eula.
 	)
 )
 (symbol
-	(rect 1872 600 2016 712)
+	(rect 1872 608 2016 720)
 	(text "cmp_16b" (rect 5 0 66 15)(font "Arial" ))
 	(text "inst119" (rect 8 96 56 111)(font "Arial" ))
 	(port
@@ -1775,12 +1775,6 @@ https://fpgasoftware.intel.com/eula.
 	(bus)
 )
 (connector
-	(text "0,0,0,0,0,yOut[10..0]" (rect 1776 656 1902 671)(font "Arial" ))
-	(pt 1872 648)
-	(pt 1856 648)
-	(bus)
-)
-(connector
 	(text "0,0,0,0,0,yOut[10..0]" (rect 2056 656 2182 671)(font "Arial" ))
 	(pt 2144 648)
 	(pt 2128 648)
@@ -1808,12 +1802,6 @@ https://fpgasoftware.intel.com/eula.
 	(text "Y_END[15..0]" (rect 2072 616 2158 631)(font "Arial" ))
 	(pt 2144 632)
 	(pt 2128 632)
-	(bus)
-)
-(connector
-	(text "Y_BEGIN[15..0]" (rect 1792 616 1891 631)(font "Arial" ))
-	(pt 1872 632)
-	(pt 1856 632)
 	(bus)
 )
 (connector
@@ -1892,22 +1880,6 @@ https://fpgasoftware.intel.com/eula.
 (connector
 	(pt 2272 544)
 	(pt 2360 544)
-)
-(connector
-	(pt 2040 632)
-	(pt 2040 608)
-)
-(connector
-	(pt 2016 632)
-	(pt 2040 632)
-)
-(connector
-	(pt 2016 664)
-	(pt 2056 664)
-)
-(connector
-	(pt 2056 664)
-	(pt 2056 608)
 )
 (connector
 	(pt 2048 536)
@@ -2452,12 +2424,6 @@ https://fpgasoftware.intel.com/eula.
 	(bus)
 )
 (connector
-	(text "0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,1,0,0,1,0,1,1,0,1,0,0,0,0,0,0" (rect 944 1184 1318 1203)(font "Intel Clear" ))
-	(pt 984 1208)
-	(pt 944 1208)
-	(bus)
-)
-(connector
 	(text "<<__$DEF_ALIAS20415>>" (rect 1119 824 1134 997)(font "Arial" )(vertical)(invisible))
 	(pt 1144 1184)
 	(pt 1144 992)
@@ -2534,9 +2500,43 @@ https://fpgasoftware.intel.com/eula.
 	(bus)
 )
 (connector
+	(text "0,0,0,0,0,yOut[10..0]" (rect 1776 664 1902 679)(font "Arial" ))
+	(pt 1872 656)
+	(pt 1856 656)
+	(bus)
+)
+(connector
+	(text "Y_BEGIN[15..0]" (rect 1792 624 1891 639)(font "Arial" ))
+	(pt 1872 640)
+	(pt 1856 640)
+	(bus)
+)
+(connector
+	(pt 2040 608)
+	(pt 2040 640)
+)
+(connector
+	(pt 2040 640)
+	(pt 2016 640)
+)
+(connector
+	(pt 2056 672)
+	(pt 2016 672)
+)
+(connector
+	(pt 2056 608)
+	(pt 2056 672)
+)
+(connector
 	(text "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0" (rect 960 1136 1334 1155)(font "Intel Clear" ))
 	(pt 984 1160)
 	(pt 960 1160)
+	(bus)
+)
+(connector
+	(text "0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,1,0,0,1,0,1,1,0,1,0,0,0,0,0,0" (rect 944 1184 1318 1203)(font "Intel Clear" ))
+	(pt 984 1208)
+	(pt 944 1208)
 	(bus)
 )
 (junction (pt 1136 424))
